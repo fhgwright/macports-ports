@@ -1,0 +1,45 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           python 1.0
+
+name                py-setuptools29
+version             29.0.1
+categories-append   devel
+license             {PSF ZPL}
+maintainers         jmr openmaintainer
+description         distutils enhancement for build and distribution
+long_description \
+    setuptools is a collection of enhancements to the Python distutils that \
+    allow you to more easily build and distribute Python packages, \
+    especially ones that have dependencies on other packages.
+
+platforms           darwin
+supported_archs     noarch
+
+homepage            https://pypi.python.org/pypi/setuptools/
+master_sites        pypi:s/setuptools/
+distname            setuptools-${version}
+
+checksums           md5     28ecfd0f2574b489b9a18343879a7324 \
+                    rmd160  a701029de4a13d9966e10d0e69c236514084dd72 \
+                    sha256  b539118819a4857378398891fa5366e090690e46b3e41421a1e07d6e9fd8feb0
+
+# The only Python version requiring this pinned version is 3.2
+#python.versions     26 27 31 32 33 34 35 36
+python.versions     32
+python.link_binaries no
+
+if {$subport ne $name} {
+    post-destroot {
+       xinstall -m 755 -d ${destroot}${prefix}/share/doc/${subport}
+       xinstall -m 644 -W ${worksrcpath} CHANGES.rst README.rst \
+          ${destroot}${prefix}/share/doc/${subport}
+       ln -s ${python.prefix}/bin/easy_install-${python.branch} ${destroot}${prefix}/bin
+    }
+    livecheck.type      none
+} else {
+    livecheck.type      regex
+    livecheck.url       ${homepage}
+    livecheck.regex     setuptools/(\\d+(\\.\\d+)+)
+}
