@@ -23,9 +23,20 @@ checksums           rmd160  936ce9d8295ee0a8c5236046365016d86141cd7f \
                     sha256  c91644f7789d73c89f8baafa4fe61cedf5182081314862c05763223ecc39070b \
                     size    899230
 
-python.versions     310 311 312 313 314
+python.versions     27 35 36 37 38 39 310 311 312 313 314
 
 if {${name} ne ${subport}} {
+    if {${python.version} in "27 35"} {
+        version     3.2.3
+        revision    2
+        checksums   rmd160  676b974c27ef3dcbbcc34d6f87cbfc68c2860443 \
+                    sha256  93b7526d7edb542ca319758978ab3c41b04dcb5ec3642c5c9d08346675fee5f6 \
+                    size    601802
+        epoch       1
+
+        livecheck.type  none
+    }
+
     compiler.cxx_standard   2011
     compiler.thread_local_storage yes
 
