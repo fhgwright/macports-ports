@@ -12,6 +12,7 @@ distname            ${python.rootname}-3.10
 revision            0
 
 categories-append   gis
+platforms           darwin
 license             MIT
 maintainers         {petr @petrrr} {yahoo.com:n_larsson @nilason} openmaintainer
 
@@ -25,9 +26,20 @@ checksums           rmd160  9248973e5842e012fdb5df09529d47e1381ffc5e \
                     sha256  98fed53baca2b6ec35daa56773facf425a64cd9d1293eb8be28ef9458ea24820 \
                     size    848086
 
-python.versions     39 310 311 312 313
+python.versions     27 35 36 37 38 39 310 311 312 313
 
 if {${name} ne ${subport}} {
+    if {${python.version} in "27 35"} {
+        version     3.2.3
+        revision    2
+        checksums   rmd160  676b974c27ef3dcbbcc34d6f87cbfc68c2860443 \
+                    sha256  93b7526d7edb542ca319758978ab3c41b04dcb5ec3642c5c9d08346675fee5f6 \
+                    size    601802
+        epoch       1
+
+        livecheck.type  none
+    }
+
     compiler.cxx_standard   2011
     compiler.thread_local_storage yes
 
@@ -50,7 +62,6 @@ if {${name} ne ${subport}} {
         reinplace -q "s|@PYVER@|${python.branch}|" ${destroot_sel_dir}/gdal/py-gdal
         move ${destroot_sel_dir}/gdal/py-gdal ${destroot_sel_dir}/gdal/py${python.version}-gdal
     }
-
     select.group    gdal
     select.file     ${filespath}/py-gdal
 }
