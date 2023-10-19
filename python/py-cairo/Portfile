@@ -22,7 +22,7 @@ checksums               rmd160  0fb3d1f81dc48f1f3a2f4c04912bf53ba94520af \
                         sha256  5cb21e7a00a2afcafea7f14390235be33497a2cce53a98a19389492a60628430 \
                         size    661450
 
-python.versions         27 35 36 37 38 39 310 311 312 313
+python.versions         27 33 34 35 36 37 38 39 310 311 312 313
 
 if {${name} ne ${subport}} {
     depends_build-append    path:bin/pkg-config:pkgconfig \
