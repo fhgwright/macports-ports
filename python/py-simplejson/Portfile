@@ -1,0 +1,40 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim: fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           python 1.0
+
+name                py-simplejson
+version             3.20.1
+revision            0
+categories-append   www
+license             MIT
+
+python.versions     27 39 310 311 312 313
+
+maintainers         {stromnov @stromnov} openmaintainer
+
+description         Simple, fast, extensible JSON encoder/decoder for Python
+
+long_description    simplejson is a simple, fast, complete, correct and \
+                    extensible JSON encoder and decoder for Python 2.4+. \
+                    It is pure Python code with no dependencies, but \
+                    includes an optional C extension for a serious speed \
+                    boost.
+
+homepage            https://simplejson.readthedocs.org/
+
+checksums           rmd160  02c335f3461fb7f93736238d91fd873a5318c00a \
+                    sha256  e64139b4ec4f1f24c142ff7dcafe55a22b811a74d86d66560c8815687143037d \
+                    size    85591
+
+if {${name} ne ${subport}} {
+    post-destroot {
+        set docdir ${destroot}${prefix}/share/doc/${subport}
+        xinstall -d ${docdir}
+        xinstall -m 0644 -W ${worksrcpath} \
+            CHANGES.txt README.rst index.rst \
+            ${docdir}
+    }
+
+    test.run        yes
+}

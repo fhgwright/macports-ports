@@ -1,0 +1,43 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           cmake   1.1
+PortGroup           gitlab  1.0
+PortGroup           boost   1.0
+
+categories          gis
+maintainers         {vince @Veence}
+description         SFCGAL links CGAL to PostGIS
+long_description    SFCGAL (Simple Features for CGAL)\
+                    is a library that provides a SF-SQL API\
+                    to some CGAL routines, thereby enabling spatial\
+                    databases such as PostGIS to rely on CGAL to\
+                    perform 2D and 3D geometry operations (union,\
+                    intersections, buffering, etc.).
+
+license             LGPL-2
+
+homepage            http://www.sfcgal.org/
+
+gitlab.setup        SFCGAL SFCGAL 2.0.0 v
+name                sfcgal
+
+checksums           rmd160  42bdb074a55ccf07f133e860fa79131f17c8a3e0 \
+                    sha256  e3c7a181f93a65fc8ffb14726d014acfc85a6d7130705aaa690eccb3abb34a00 \
+                    size    2662314
+
+depends_lib-append  port:mpfr \
+                    port:gmp \
+                    port:cgal6 \
+                    path:bin/cmake:cmake
+
+boost.version       1.81
+compiler.cxx_standard   2017
+
+if {[string match *gcc* ${configure.compiler}]} {
+    patchfiles-append   patch-atomic.diff
+}
+
+variant examples description {builds examples} {
+    configure.args-append   -DSFCGAL_BUILD_EXAMPLES=ON
+}

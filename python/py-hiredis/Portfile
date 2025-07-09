@@ -1,0 +1,23 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           python 1.0
+
+name                py-hiredis
+version             3.2.1
+revision            0
+categories-append   devel databases
+license             BSD
+
+python.versions     39 310 311 312 313
+
+maintainers         {stromnov @stromnov} openmaintainer
+
+description         Python wrapper for hiredis
+long_description    ${description}
+
+homepage            https://github.com/pietern/hiredis-py
+
+checksums           rmd160  6ef8770947f4f66cfea4a45a73091822cc61e98c \
+                    sha256  5a5f64479bf04dd829fe7029fad0ea043eac4023abc6e946668cbbec3493a78d \
+                    size    89096

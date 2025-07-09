@@ -1,0 +1,38 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           golang 1.0
+
+go.setup            github.com/variantdev/vals 0.40.1 v
+go.offline_build    no
+revision            0
+
+description         \
+    Helm-like configuration values loader with support for various sources
+
+long_description    \
+    ${name} is a tool for managing configuration values and secrets. \
+    It supports various backends including Vault, AWS SSM Parameter Store, \
+    AWS Secrets Manager, AWS S3, GCP Secrets Manager, Google Sheets, \
+    SOPS-encrypted files and Terraform State.
+
+categories          sysutils
+installs_libs       no
+license             Apache-2
+maintainers         {gmail.com:herby.gillot @herbygillot} \
+                    openmaintainer
+
+checksums           rmd160  d159dbc8181ce8bcfa9b955cd2c98886247794d8 \
+                    sha256  3eb7a45d02f2dba39418ac44bec48069b23c5dc14b358c14a0e857abaf3b4117 \
+                    size    107612
+
+build.cmd           "go mod tidy && go build"
+
+build.pre_args-append \
+    -ldflags \" -X main.version=${github.tag_prefix}${version} \"
+
+build.args          ./cmd/${name}
+
+destroot {
+    xinstall -m 0755 ${worksrcpath}/${name} ${destroot}${prefix}/bin/
+}

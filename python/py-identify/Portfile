@@ -1,0 +1,34 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           python 1.0
+
+name                py-identify
+version             2.6.12
+revision            0
+
+categories-append   devel
+platforms           {darwin any}
+supported_archs     noarch
+license             MIT
+maintainers         {reneeotten @reneeotten} openmaintainer
+
+description         File identification library for Python
+long_description    {*}${description}
+
+homepage            https://github.com/pre-commit/identify
+
+checksums           rmd160  2de1a3def8b73cb2bd70c78f1d17ea1d1d05719d \
+                    sha256  d8de45749f1efb108badef65ee8386f0f7bb19a7f26185f74de6367bffbaf0e6 \
+                    size    99254
+
+python.versions     39 310 311 312 313
+
+if {${name} ne ${subport}} {
+    post-destroot {
+        set docdir ${prefix}/share/doc/${subport}
+        xinstall -d ${destroot}${docdir}
+        xinstall -m 0644 -W ${worksrcpath} README.md LICENSE \
+            ${destroot}${docdir}
+    }
+}

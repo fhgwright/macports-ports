@@ -1,0 +1,40 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           boost 1.0
+PortGroup           github 1.0
+
+github.setup        vslavik xmlwrapp 0.9.1 v
+revision            0
+categories          devel
+maintainers         nomaintainer
+license             BSD
+
+description         a modern style C++ library for working with XML data
+long_description    ${name} is {*}${description}. \
+                    It provides a simple and easy to use interface for the \
+                    very powerful libxml2 XML parser and the libxslt XSLT \
+                    engine. This Portfile also installs libxsltwrapp which is \
+                    part of the xmlwrapp package.
+
+homepage            https://vslavik.github.io/xmlwrapp/
+
+checksums           rmd160  35820425205f40b7768f6b8f36ae43b03d8e5c53 \
+                    sha256  96c6229ce246edf9e48a8b566addd970a19eb9d4b51688afd104077e72679f75 \
+                    size    1634662
+
+github.tarball_from releases
+
+depends_build-append \
+                    path:bin/pkg-config:pkgconfig
+
+depends_lib-append  port:libxml2 \
+                    port:libxslt \
+                    port:xz \
+                    port:zlib
+
+compiler.cxx_standard   2011
+
+configure.args      --disable-docs \
+                    --disable-silent-rules \
+                    --disable-tests

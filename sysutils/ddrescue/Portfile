@@ -1,0 +1,32 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem      1.0
+PortGroup       gnu_info 1.0
+
+name            ddrescue
+version         1.29.1
+revision        0
+categories      sysutils
+license         GPL-2+
+maintainers     {@aeiouaeiouaeiouaeiouaeiouaeiou outlook.com:aeioudev} {raimue @raimue}
+description     GNU ddrescue is a data recovery tool.
+
+long_description \
+                ${description} It copies data from one file or block device (hard disc, \
+                cdrom, etc) to another, trying hard to rescue data in case of \
+                read errors.
+
+homepage        https://www.gnu.org/software/ddrescue/ddrescue.html
+master_sites    gnu:ddrescue
+
+use_lzip        yes
+
+checksums       rmd160  10771c106b33fc35bb09515c5e85ef1b28be2d3e \
+                sha256  ddd7d45df026807835a2ec6ab9c365df2ef19e8de1a50ffe6886cd391e04dd75 \
+                size    97623
+
+variant universal {}
+configure.args  CXX="${configure.cxx}" \
+                CPPFLAGS="${configure.cppflags}" \
+                CXXFLAGS="${configure.cxxflags} [get_canonical_archflags cxx]" \
+                LDFLAGS="${configure.ldflags} [get_canonical_archflags ld]"

@@ -1,0 +1,29 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           github 1.0
+
+github.setup        tcsh-org tcsh 6_24_15 TCSH
+github.tarball_from archive
+version             [string map {_ .} ${github.version}]
+revision            0
+categories          shells
+license             BSD
+maintainers         nomaintainer
+
+description         C shell with file name completion and command line editing
+
+long_description    \
+    Tcsh is a version of the Berkeley C-Shell, with the addition of: a  \
+    command line editor, command and file name completion, listing, etc.\
+    and a bunch of small additions to the shell itself.
+
+homepage            https://www.tcsh.org/
+
+checksums           rmd160  ecf959d3325c646404bf311679b0e2d2eee1777b \
+                    sha256  341ec3455bf03b982797b5a599822a4c4380889efa5d97771b1d85387e647e3a \
+                    size    959551
+
+destroot.target     install install.man
+depends_lib         port:libiconv \
+                    port:ncurses

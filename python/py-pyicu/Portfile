@@ -1,0 +1,45 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           python 1.0
+
+name                py-pyicu
+python.rootname     PyICU
+version             2.14
+revision            1
+
+categories-append   textproc
+license             MIT
+maintainers         nomaintainer
+
+description         Python extension wrapping the ICU C++ API
+long_description    {*}${description}
+
+homepage            https://gitlab.pyicu.org/main/pyicu
+
+checksums           rmd160  49cee664cbeb37d04ddbc3e30f34a6b852304e2e \
+                    sha256  acc7eb92bd5c554ed577249c6978450a4feda0aa6f01470152b3a7b382a02132 \
+                    size    263912
+
+python.versions     39 310 311 312 313
+
+if {${name} ne ${subport}} {
+    # fix naming issue on case-sensitive filesystems
+    worksrcdir      pyicu-${version}
+
+    depends_lib-append  path:lib/pkgconfig/icu-uc.pc:icu
+
+    # ICU requires C++17
+    compiler.cxx_standard 2017
+
+    depends_test-append port:py${python.version}-six
+
+    test.run            yes
+
+    post-destroot {
+        set docdir ${prefix}/share/doc/${subport}
+        xinstall -d ${destroot}${docdir}
+        xinstall -m 0644 -W ${worksrcpath} README.md \
+            CHANGES ${destroot}${docdir}
+    }
+}

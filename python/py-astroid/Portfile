@@ -1,0 +1,40 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           python 1.0
+
+name                py-astroid
+version             3.3.10
+revision            0
+
+categories-append   devel
+license             LGPL-2.1+
+supported_archs     noarch
+platforms           {darwin any}
+
+python.versions     39 310 311 312 313
+
+maintainers         {stromnov @stromnov} openmaintainer
+
+description         Rebuild a new abstract syntax tree from Python's ast.
+
+long_description    The aim of this module is to provide a common \
+                    base representation of python source code for \
+                    projects such as pychecker, pyreverse, pylint... \
+                    Well, actually the development of this library is \
+                    essentially governed by pylint's needs.
+
+homepage            https://github.com/pylint-dev/astroid
+
+checksums           rmd160  c1414b4dc7a7ca56ece5a9b61a99b926c64ef2bd \
+                    sha256  c332157953060c6deb9caa57303ae0d20b0fbdb2e59b4a4f2a6ba49d0a7961ce \
+                    size    398941
+
+if {${name} ne ${subport}} {
+    depends_build-append \
+                    port:py${python.version}-wheel
+
+    if {${python.version} < 311} {
+        depends_lib-append  port:py${python.version}-typing_extensions
+    }
+}

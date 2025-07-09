@@ -1,0 +1,32 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           perl5 1.0
+
+perl5.branches      5.28 5.30 5.32 5.34
+perl5.setup         Alien-cmake3 0.09
+revision            0
+checksums           rmd160  d73c29835ff8c82382dd9447be681d1545b0152a \
+                    sha256  6d4b33c4eaa7b42d54aabdfca934af063e030ebcff834a3083cda1a7ab7ca3c0 \
+                    size    20318
+
+license             {Artistic-1 GPL}
+maintainers         nomaintainer
+description         Alien::cmake3 - Find or download or build cmake 3
+long_description    {*}${description}
+
+platforms           {darwin any}
+supported_archs     noarch
+
+if {${perl5.major} != ""} {
+    depends_build-append \
+                    port:p${perl5.major}-extutils-makemaker \
+                    port:p${perl5.major}-path-tiny \
+                    port:p${perl5.major}-test-simple
+
+    # cmake is a library dependency because Alien-cmake3 makes cmake
+    # available to other perl modules.
+    depends_lib-append \
+                    path:bin/cmake:cmake \
+                    port:p${perl5.major}-alien-build
+}

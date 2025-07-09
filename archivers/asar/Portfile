@@ -1,0 +1,35 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           npm 1.0
+PortGroup           github 1.0
+
+name                asar
+version             4.0.0
+revision            0
+
+categories          archivers devel
+license             MIT
+maintainers         {i0ntempest @i0ntempest} openmaintainer
+
+description         Simple extensive tar-like archive format with indexing
+long_description    ${name} is a simple extensive archive format, it works like tar that concatenates all \
+                    files together without compression, while having random access support.
+
+homepage            https://www.electronjs.org/docs/latest/tutorial/asar-archives
+
+npm.rootname        @electron/${name}
+distname            ${name}-${version}
+
+checksums           rmd160  030a2809e7e94922d79553b0e5516488556ab40d \
+                    sha256  646c1ac65e0e43589749e336486606c1270d12879b22034f9078d370fd104ec3 \
+                    size    22421
+
+platform darwin {
+    if {${os.major} <= 20} {
+        # 11.0-
+        npm.nodejs_version \
+                    18
+        npm.version 9
+    }
+}

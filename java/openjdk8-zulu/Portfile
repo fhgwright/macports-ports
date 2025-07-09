@@ -1,0 +1,106 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem       1.0
+
+set feature 8
+name             openjdk${feature}-zulu
+categories       java devel
+maintainers      {breun.nl:nils @breun} openmaintainer
+
+# JVMMinimumSystemVersion in Contents/Info.plist is set to macOS 10.6.0 for x86_64:
+# /usr/libexec/PlistBuddy -c "Print :JavaVM:JVMMinimumSystemVersion" Contents/Info.plist
+# Mapping to Darwin version: https://trac.macports.org/wiki/PortfileRecipes#compare-osx-darwin-version
+platforms        { darwin any >= 10 }
+
+# This port uses prebuilt binaries; 'NoMirror' makes sure MacPorts doesn't mirror/distribute these third-party binaries
+license          GPL-2 NoMirror
+# This port uses prebuilt binaries for a particular architecture; they are not universal binaries
+universal_variant no
+
+supported_archs  x86_64 arm64
+
+# https://www.azul.com/downloads/?version=java-8-lts&os=macos&package=jdk#zulu
+version      ${feature}.86.0.25
+revision     0
+
+set openjdk_version ${feature}.0.452
+
+description  Azul Zulu Community OpenJDK ${feature} (Long Term Support)
+long_description Azul® Zulu® is a Java Development Kit (JDK), and a compliant implementation of the Java Standard Edition (SE)\
+                 specification that contains all the Java components needed to build and run Java SE applications. Zulu has been\
+                 verified by passing all tests of the OpenJDK Community Technology Compatibility Kit (TCK) as available for each\
+                 respective Java SE version.
+
+master_sites https://cdn.azul.com/zulu/bin/
+
+if {${configure.build_arch} eq "x86_64"} {
+    distname     zulu${version}-ca-jdk${openjdk_version}-macosx_x64
+    checksums    rmd160  32bb7f4a0d582cfaca0c9f0d191ac7cf5289a0e1 \
+                 sha256  0cb3d9b8c4285cd7e518e047975ec8eded90f61cd6ea0dea2d499ed4402e2ca0 \
+                 size    106917218
+} elseif {${configure.build_arch} eq "arm64"} {
+    distname     zulu${version}-ca-jdk${openjdk_version}-macosx_aarch64
+    checksums    rmd160  75a96cd46062164fb0e4175498ef9c7c6d02e21e \
+                 sha256  796dbb0d13ac1bea1198e53e52ac576df25a1c5c43449a563fc0b7d7759935fc \
+                 size    104723196
+}
+
+worksrcdir   ${distname}/zulu-${feature}.jdk
+
+configure.cxx_stdlib libstdc++
+
+homepage     https://www.azul.com/downloads/
+
+livecheck.type      regex
+livecheck.url       https://cdn.azul.com/zulu/bin/
+livecheck.regex     zulu(${feature}\.\[0-9\.\]+)-ca-jdk\[0-9\.\]+-macosx_.*\.tar\.gz
+
+use_configure    no
+build {}
+
+variant Applets \
+    description { Advertise the JVM capability "Applets".} {}
+
+variant BundledApp \
+    description { Advertise the JVM capability "BundledApp". This is required by some java-based app bundles to recognize and use the JVM.} {}
+
+variant JNI \
+    description { Advertise the JVM capability "JNI". This is required by some java-based app bundles to recognize and use the JVM.} {}
+
+variant WebStart \
+    description { Advertise the JVM capability "WebStart".} {}
+
+patch {
+    foreach var { Applets BundledApp JNI WebStart } {
+        if {[variant_isset ${var}]} {
+            reinplace -E "s|^(\[\[:space:\]\]*<string>)CommandLine(</string>)|\\1${var}\\2\\\n\\1CommandLine\\2|" ${worksrcpath}/Contents/Info.plist
+        }
+    }
+}
+
+test.run    yes
+test.cmd    Contents/Home/bin/java
+test.target
+test.args   -version
+
+# macOS Java tools expect to find Java virtual machines under /Library/Java/JavaVirtualMachines, which is not under ${prefix}.
+destroot.violate_mtree yes
+
+set jvms /Library/Java/JavaVirtualMachines
+set jdk ${jvms}/${name}
+
+destroot {
+    xinstall -m 755 -d ${destroot}${prefix}${jdk}
+    copy ${worksrcpath}/Contents ${destroot}${prefix}${jdk}
+
+    # macOS Java tools expect to find Java virtual machines under /Library/Java/JavaVirtualMachines, so let's create a symlink there
+    xinstall -m 755 -d ${destroot}${jvms}
+    ln -s ${prefix}${jdk} ${destroot}${jdk}
+}
+
+notes "
+If you have more than one JDK installed you can make ${name} the default\
+by adding the following line to your shell profile:
+
+    export JAVA_HOME=${jdk}/Contents/Home
+"

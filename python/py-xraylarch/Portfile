@@ -1,0 +1,84 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           python 1.0
+
+name                py-xraylarch
+version             0.9.81
+revision            0
+
+categories-append   science
+platforms           {darwin any}
+supported_archs     noarch
+license             BSD
+maintainers         {nist.gov:joe.fowler @joefowler} openmaintainer
+
+description         Larch is a system for analyzing X-ray data from synchrotron beamlines.
+long_description    Larch is a open-source library and set of applications for processing and \
+    analyzing X-ray absorption and fluorescence spectroscopy data and X-ray fluorescence and \
+    diffraction image data from synchrotron beamlines. It aims to be a complete analysis \
+    toolkit for X-ray absorption fine-structure spectroscopy (XAFS) including X-ray \
+    absorption near-edge spectroscopy (XANES) and extended X-ray absorption fine-structure \
+    spectroscopy (EXAFS). It also supports visualization and analysis tools for X-ray \
+    fluorescence (XRF) spectra and XRF and X-ray diffraction (XRD) images as collected at \
+    scanning X-ray microprobe beamlines.
+
+homepage            https://xraypy.github.io/xraylarch
+
+checksums           rmd160  47733be47724c790e047f08e8332f02e6623476a \
+                    sha256  34ca8da369176d89ff89e1d969972c139cd6a2a8a8b602a5afaac1ca52425108 \
+                    size    21485459
+
+python.versions     39 310 311 312
+
+if {${name} ne ${subport}} {
+    depends_build-append \
+                    port:py${python.version}-setuptools_scm
+
+    depends_run-append \
+                    port:py${python.version}-asteval \
+                    port:py${python.version}-charset-normalizer \
+                    port:py${python.version}-dill \
+                    port:py${python.version}-h5py \
+                    port:py${python.version}-imageio \
+                    port:py${python.version}-fabio \
+                    port:py${python.version}-hdf5plugin \
+                    port:py${python.version}-lmfit \
+                    port:py${python.version}-matplotlib \
+                    port:py${python.version}-mp-api \
+                    port:py${python.version}-numpy \
+                    port:py${python.version}-numexpr \
+                    port:py${python.version}-numdifftools \
+                    port:py${python.version}-pandas \
+                    port:py${python.version}-packaging \
+                    port:py${python.version}-Pillow \
+                    port:py${python.version}-psutil \
+                    port:py${python.version}-pycifrw \
+                    port:py${python.version}-pyFAI \
+                    port:py${python.version}-pymatgen \
+                    port:py${python.version}-pyqt5 \
+                    port:py${python.version}-pyqtgraph \
+                    port:py${python.version}-pyqt5-webengine \
+                    port:py${python.version}-pyshortcuts \
+                    port:py${python.version}-requests \
+                    port:py${python.version}-scikit-image \
+                    port:py${python.version}-scikit-learn \
+                    port:py${python.version}-scipy \
+                    port:py${python.version}-silx \
+                    port:py${python.version}-sqlalchemy \
+                    port:py${python.version}-sqlalchemy-utils \
+                    port:py${python.version}-tabulate \
+                    port:py${python.version}-termcolor \
+                    port:py${python.version}-toml \
+                    port:py${python.version}-uncertainties \
+                    port:py${python.version}-xraydb \
+                    port:py${python.version}-yaml
+
+    # currently pyXY-wxpython-4.0 fails to build on macOS 15; make it a variant for now
+    variant gui description "Build with wxPython GUI" {
+        depends_run-append \
+                    port:py${python.version}-wxmplot \
+                    port:py${python.version}-wxpython-4.0 \
+                    port:py${python.version}-wxutils \
+    }
+}

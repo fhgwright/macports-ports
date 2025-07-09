@@ -1,0 +1,25 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           npm 1.0
+
+npm.nodejs_version  22
+
+name                bun
+version             1.2.18
+maintainers         {johnlindop.com:git @JLindop} openmaintainer
+revision            0
+
+description         JavaScript runtime built from scratch to serve the modern JavaScript ecosystem
+
+long_description    Bun is an all-in-one JavaScript runtime & toolkit designed for \
+                    speed, complete with a bundler, test runner, and Node.js-compatible \
+                    package manager
+
+categories          devel
+homepage            https://bun.sh
+license             MIT
+
+checksums           rmd160  7aceebfde49033091343741e914545892d95dcae \
+                    sha256  48bccb43b95fcaa18ae7662a33bafc369e88192d6643c837955084cd72d28900 \
+                    size    5674

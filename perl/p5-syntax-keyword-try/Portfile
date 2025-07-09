@@ -1,0 +1,27 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           perl5 1.0
+
+perl5.branches      5.28 5.30 5.32 5.34
+perl5.setup         Syntax-Keyword-Try 0.30 ../../authors/id/P/PE/PEVANS
+revision            0
+license             {Artistic-1 GPL}
+maintainers         {devans @dbevans} openmaintainer
+description         Syntax::Keyword::Try - a try/catch/finally syntax for perl
+long_description    {*}${description}
+
+checksums           rmd160  6947c61bea6b994adfbfdacc05aff20c95bf16a6 \
+                    sha256  f068f0b9c71fff8fef6d8a9e9ed6951cb7a52b976322bd955181cc5e7b17e692 \
+                    size    45489
+
+if {${perl5.major} != ""} {
+    depends_build-append \
+                    port:p${perl5.major}-extutils-cbuilder \
+                    port:p${perl5.major}-test-simple
+
+    depends_lib-append \
+                    port:p${perl5.major}-xs-parse-keyword
+
+    perl5.use_module_build
+}

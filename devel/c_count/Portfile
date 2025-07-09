@@ -1,0 +1,28 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+PortSystem 1.0
+
+name            c_count
+version         7.24
+categories      devel
+maintainers     {toby @tobypeterson}
+description     counts C-language source statements
+long_description \
+    c_count counts lines, statements, other simple measures of C/C++ source programs. \
+    It isn't lex/yacc based, and is easily portable to a variety of systems.
+homepage        https://invisible-island.net/c_count/
+platforms       darwin
+
+master_sites    https://invisible-island.net/archives/${name}/ \
+                https://invisible-mirror.net/archives/${name}/
+extract.suffix  .tgz
+
+checksums       rmd160  a3a1ddb2b19700fe1b2e813e4d66768a349092fd \
+                sha256  d76360132670a612c0d7ad2d4da30c841047e6098acda2c96f1f630ea5cb77fb \
+                size    118248
+
+configure.args  --mandir=\\\${prefix}/share/man
+
+destroot.destdir \
+                prefix=${destroot}${prefix}
+
+conflicts       sloccount

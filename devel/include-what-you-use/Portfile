@@ -1,0 +1,51 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           github 1.0
+PortGroup           cmake 1.1
+PortGroup           compiler_blacklist_versions 1.0
+
+github.setup        include-what-you-use include-what-you-use 0.24
+github.tarball_from archive
+revision            0
+categories          devel
+license             NCSA
+maintainers         {makr @mohd-akram} openmaintainer
+
+description         A tool for use with clang to analyze #includes in C and C++ \
+                    source files
+
+long_description    {*}${description}
+
+checksums           rmd160  8b5d1075b68b31e09aabb3cd3c889198d0f7c91e \
+                    sha256  897b4c864a983f493c8efef4a1a9a2d429fd7ead1011f7a41743ed7b6dbe8c2e \
+                    size    821159
+
+set llvm_version    20
+set llvm_dir        ${prefix}/libexec/llvm-${llvm_version}
+
+depends_build-append    port:python313
+depends_lib-append      port:clang-${llvm_version}
+
+cmake.install_rpath-append  ${llvm_dir}/lib
+
+configure.args-append   -DLLVM_DIR=${llvm_dir}/lib/cmake/llvm \
+                        -DClang_DIR=${llvm_dir}/lib/cmake/clang \
+                        -DPython3_EXECUTABLE=${prefix}/bin/python3.13
+
+# CMake Error at /opt/local/libexec/llvm-18/lib/cmake/llvm/CheckCompilerVersion.cmake:37 (message):
+#  Host Apple Clang version must be at least 10.0
+compiler.blacklist-append { clang <= 1100 }
+
+post-destroot {
+    # Move the binary next to clang so it picks up its include directory one
+    # level above. Run it via xcrun so it picks up system include directories.
+    xinstall -d ${destroot}${llvm_dir}/bin
+    move ${destroot}${prefix}/bin/${name} ${destroot}${llvm_dir}/bin
+    system -W "${destroot}${prefix}/bin" "
+        echo '#!/bin/sh\nexec xcrun ${llvm_dir}/bin/${name} \
+            -Xiwyu --mapping_file=${llvm_dir}/include/c++/v1/libcxx.imp \
+            \"$@\"' >${name} &&
+        chmod +x ${name}
+    "
+}

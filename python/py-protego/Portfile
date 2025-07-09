@@ -1,0 +1,26 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem              1.0
+PortGroup               python 1.0
+
+name                    py-protego
+version                 0.4.0
+maintainers             {khindenburg @kurthindenburg} openmaintainer
+platforms               {darwin any}
+supported_archs         noarch
+
+description             Protego is a pure-Python `robots.txt` parser with support \
+                        for modern conventions.
+long_description        {*}${description}
+license                 BSD
+homepage                https://pypi.python.org/pypi/Protego
+
+checksums               rmd160  7624fc1b6e43be786fc1731a847296ded42a78e2 \
+                        sha256  93a5e662b61399a0e1f208a324f2c6ea95b23ee39e6cbf2c96246da4a656c2f6 \
+                        size    3246425
+
+python.versions         39 310 311 312 313
+
+if {${name} ne ${subport}} {
+    test.run            yes
+}

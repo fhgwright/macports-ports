@@ -1,0 +1,38 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           compiler_blacklist_versions 1.0
+PortGroup           github 1.0
+PortGroup           tree_sitter 1.0
+
+github.setup        tree-sitter-grammars tree-sitter-markdown 0.5.0 v
+github.tarball_from archive
+revision            0
+epoch               1
+
+description         A set of tree-sitter parsers for Markdown
+
+long_description    {*}${description}
+
+categories          devel
+license             MIT
+maintainers         {amake @amake} openmaintainer
+
+checksums           rmd160  8582b36c12a8a825d2873e9ec25b2c2572a80253 \
+                    sha256  14c2c948ccf0e9b606eec39b09286c59dddf28307849f71b7ce2b1d1ef06937e \
+                    size    419516
+
+patchfiles-append   common.mak.patch
+patch.pre_args-replace \
+    -p0 -p1
+
+build {
+    system -W ${worksrcpath} "make all"
+}
+
+destroot {
+    xinstall -m 0755 -W ${worksrcpath}/tree-sitter-markdown-inline libtree-sitter-markdown-inline.dylib ${destroot}${prefix}/lib
+    xinstall -m 0755 -W ${worksrcpath}/tree-sitter-markdown libtree-sitter-markdown.dylib ${destroot}${prefix}/lib
+}
+
+github.livecheck.branch  split_parser

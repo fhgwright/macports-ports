@@ -1,0 +1,26 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           python 1.0
+
+name                py-sgp4
+version             2.24
+revision            0
+categories-append   science
+platforms           darwin
+license             MIT
+maintainers         {mps @Schamschula} openmaintainer
+homepage            https://github.com/brandon-rhodes/python-sgp4
+
+description         Most recent SGP4 satellite tracking algorithm in Python.
+long_description    \
+    This Python package computes the position and velocity of an \
+    earth-orbiting satellite, given the satellite's TLE orbital elements \
+    from a source like Celestrak.  Algorithm described in paper \
+    AIAA 2006-6753\; see http://goo.gl/OaVlLh
+
+checksums           rmd160  a8bbd499ee499bea655cc464881f100184c55747 \
+                    sha256  5655249f276ea23fbdae9e881ab01d82420285b45dc76d0da4f424e3647f8352 \
+                    size    180085
+
+python.versions     39 310 311 312 313

@@ -1,0 +1,40 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           github          1.0
+PortGroup           legacysupport   1.1
+
+github.setup        vifm vifm 0.14.2 v
+github.tarball_from archive
+revision            0
+
+homepage            https://vifm.info
+
+description         ncurses based file manager with vi like keybindings
+
+long_description    Vifm is a ncurses based file manager with vi like \
+                    keybindings. If you use vi, vifm gives you complete \
+                    keyboard control over your files without having to \
+                    learn a new set of commands.
+
+categories          sysutils
+installs_libs       no
+license             GPL-2+
+maintainers         {gmail.com:herby.gillot @herbygillot} \
+                    openmaintainer
+
+checksums           rmd160  9ca1b3b05b2246121a541a11b9c9be27993cb7cb \
+                    sha256  f0e06b50d756ab621a4b7494598a02c5911d422dc69e14f27017883672a72301 \
+                    size    2477513
+
+depends_lib         port:libmagic \
+                    port:ncurses
+
+configure.args      --without-gtk \
+                    --with-libmagic \
+                    --without-X11
+
+test.run            yes
+test.target         check
+
+github.livecheck.regex {([0-9.]+)}

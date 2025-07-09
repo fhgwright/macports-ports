@@ -1,0 +1,40 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           golang 1.0
+
+go.setup            github.com/golang/tools 0.34.0 v
+go.offline_build    no
+epoch               7
+revision            0
+
+name                go-tools
+categories          devel
+license             BSD
+maintainers         {ciserlohn @ci42} \
+                    {@enckse voidedtech.com:enckse} \
+                    {gmail.com:herby.gillot @herbygillot} \
+                    openmaintainer
+description         Various packages and tools that support the Go programming language.
+long_description    {*}${description}
+
+checksums           rmd160  37746bddb089c86aab29f47188fdaeaabaf91b4c \
+                    sha256  ed3063f864a4c3e12f02dc4553d087b22b3b5f09f881e977613772e3f2324ab9 \
+                    size    8171250
+
+build.cmd           \
+    sh -c \"${go.bin} build -o ./bin/ ./cmd/... && \
+        cd ./cmd/auth && ${go.bin} build -o ../../bin ./...\"
+
+destroot {
+    set dp_bin ${destroot}${prefix}/bin
+    xinstall -m 0755 {*}[glob ${worksrcpath}/bin/*] ${dp_bin}
+
+    # Rename bundle binary to avoid conflict with Ruby
+    # See: https://trac.macports.org/ticket/57787
+    move ${dp_bin}/bundle ${dp_bin}/gotools-bundle
+}
+
+notes "
+    The go-tools bundle binary is available as gotools-bundle
+"

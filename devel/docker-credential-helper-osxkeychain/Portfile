@@ -1,0 +1,38 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           golang 1.0
+
+go.setup            github.com/docker/docker-credential-helpers 0.8.2 v
+# Delete this on next update to use golang PortGroup's default ('archive')
+github.tarball_from tarball
+revision            0
+name                docker-credential-helper-osxkeychain
+categories          devel
+platforms           darwin
+license             Apache-2
+maintainers         {emcrisostomo @emcrisostomo} \
+                    openmaintainer
+description         Docker credential helper for macOS
+long_description    docker-credential-helpers is a suite of programs to use \
+                    native stores to keep Docker credentials safe.  This \
+                    port installs the macOS keychain credential helper.
+
+checksums           rmd160  d54db845f3de7c2420361b04b3c6a7a6e2baeb52 \
+                    sha256  23bb43aafa143ea49ce5728b1647938668dd92ddbece2168dcd5529d8b50ccc6 \
+                    size    283861
+
+set docker.helper   docker-credential-osxkeychain
+set credentials.Version ${version}
+set credentials.Package ${go.package}
+
+build.pre_args      -o bin/${docker.helper} -trimpath -ldflags \
+                    "\"-s -w -X '${go.package}/credentials.Version=${credentials.Version}' \
+                    -X '${go.package}/credentials.Package=${go.package}'\""
+build.args          ./osxkeychain/cmd/
+
+destroot {
+    xinstall -m 755 ${worksrcpath}/bin/${docker.helper} ${destroot}${prefix}/bin/
+}
+
+github.livecheck.regex  {([^"r]+)}

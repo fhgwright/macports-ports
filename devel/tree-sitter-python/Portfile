@@ -1,0 +1,27 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           github 1.0
+PortGroup           tree_sitter 1.0
+
+github.setup        tree-sitter tree-sitter-python 0.23.6 v
+# Change github.tarball_from to 'releases' or 'archive' next update
+github.tarball_from tarball
+revision            0
+
+description         A tree-sitter parser for Python
+
+long_description    {*}${description}
+
+categories          devel
+license             MIT
+maintainers         {amake @amake} openmaintainer
+
+checksums           rmd160  b6b9f74f820f226d0a504d5bdd06b0fcb911e8c5 \
+                    sha256  a0ef8332bcccbd20810298215ddd367942ba72bb577f408c2c9b1dcca3cbfd06 \
+                    size    269646
+
+worksrcdir          ${worksrcdir}/src
+
+# parser.c: error: ‘for’ loop initial declaration used outside C99 mode
+configure.cflags-append -std=c99

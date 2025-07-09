@@ -1,0 +1,36 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:et:sw=4:ts=4:sts=4
+
+PortSystem      1.0
+PortGroup       makefile 1.0
+PortGroup       github 1.0
+
+github.setup    ColinIanKing stress-ng 0.19.02 V
+github.tarball_from \
+                archive
+revision        0
+categories      benchmarks sysutils
+maintainers     {i0ntempest @i0ntempest} openmaintainer
+license         GPL-2
+
+checksums       rmd160  41654efd479880b4d70af1b34f4395a8a3056e6d \
+                sha256  15a07030a14bbfd5991e9ba3fbfbc24ed3ae72a2c946b033c06b820bc16f41c4 \
+                size    6792119
+
+description     System stress test utility 
+long_description \
+                stress-ng will stress test a computer system in various selectable ways. \
+                It was designed to exercise various physical subsystems of a computer as \
+                well as the various operating system kernel interfaces.
+
+depends_lib-append \
+                port:mesa \
+                path:lib/libjpeg.dylib:libjpeg-turbo \
+                port:zlib \
+                port:judy
+
+post-patch {
+    reinplace "s|BINDIR=/usr/bin|BINDIR=${prefix}/bin|" ${worksrcpath}/Makefile
+    reinplace "s|MANDIR=/usr/share/man/man1|MANDIR=${prefix}/share/man/man1|" ${worksrcpath}/Makefile
+    reinplace "s|JOBDIR=/usr/share/stress-ng/example-jobs|JOBDIR=${prefix}/share/stress-ng/example-jobs|" ${worksrcpath}/Makefile
+    reinplace "s|BASHDIR=/usr/share/bash-completion/completions|BASHDIR=${prefix}/share/bash-completion/completions|" ${worksrcpath}/Makefile
+}

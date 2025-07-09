@@ -1,0 +1,37 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim: fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           python 1.0
+
+name                py-path
+version             17.1.0
+revision            0
+categories-append   devel
+license             MIT
+supported_archs     noarch
+platforms           {darwin any}
+
+python.versions     39 310 311 312 313
+
+maintainers         {stromnov @stromnov} openmaintainer
+
+description         Object-oriented file system path manipulation
+
+long_description    path (aka path pie, formerly path.py) implements\
+                    path objects as first-class entities, allowing\
+                    common operations on files to be invoked on those\
+                    path objects directly.
+
+homepage            https://github.com/jaraco/path
+
+checksums           rmd160  d34f87af2474751ef013782548bd9aab34bcd3b7 \
+                    sha256  d41e05ed4fa1d4f6d702df3c1e0a1a255d7b544287432456455dc7c51e5f98e9 \
+                    size    50081
+
+if {${name} ne ${subport}} {
+    depends_build-append \
+                        port:py${python.version}-setuptools_scm
+    depends_test-append port:py${python.version}-more-itertools
+    test.run            yes
+    test.target         test_path.py
+}

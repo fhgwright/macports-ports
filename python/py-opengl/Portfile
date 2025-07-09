@@ -1,0 +1,38 @@
+PortSystem          1.0
+PortGroup           python 1.0
+
+name                py-opengl
+version             3.1.9
+categories-append   graphics
+platforms           {darwin any}
+supported_archs     noarch
+license             BSD
+maintainers         {jmr @jmroot} openmaintainer
+
+description         Python binding to OpenGL
+long_description    PyOpenGL is the cross platform Python binding to OpenGL \
+                    and related APIs. The binding is created using the \
+                    standard ctypes library and is provided under an \
+                    extremely liberal BSD-style Open-Source licenses.
+
+homepage            http://pyopengl.sourceforge.net/
+
+python.rootname     pyopengl
+
+checksums           md5    f3b334fd5a855e17a644aa1924a9320d \
+                    rmd160 2cf0097fb00c608a88298065a22dadd3af991481 \
+                    sha256 28ebd82c5f4491a418aeca9672dffb3adbe7d33b39eada4548a5b4e8c03f60c8
+
+python.versions     27 39 310 311 312 313
+
+if {$subport ne $name} {
+    depends_lib     port:py${python.version}-opengl-accelerate \
+                    port:py${python.version}-tkinter
+    if {${python.version} >= 30} {
+        depends_lib-append port:py${python.version}-Pillow
+    } else {
+        depends_lib-append path:${python.pkgd}/PIL:py${python.version}-Pillow
+    }
+    patchfiles      pillow-compat.diff
+    test.run        yes
+}

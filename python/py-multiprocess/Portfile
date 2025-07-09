@@ -1,0 +1,28 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           python 1.0
+
+name                py-multiprocess
+version             0.70.17
+revision            0
+platforms           {darwin any}
+license             BSD
+maintainers         nomaintainer
+supported_archs     noarch
+
+description         better multiprocessing and multithreading in python
+long_description    {*}${description}
+
+homepage            https://pypi.org/project/multiprocess
+
+checksums           rmd160  a92c1732263f882ad3d197151afb89af8636bd33 \
+                    sha256  4ae2f11a3416809ebc9a48abfc8b14ecce0652a0944731a1493a3c1ba44ff57a \
+                    size    1785744
+
+python.versions     39 310 311 312
+
+if {${name} ne ${subport}} {
+    depends_lib-append \
+                    port:py${python.version}-dill
+}

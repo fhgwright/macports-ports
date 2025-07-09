@@ -1,0 +1,50 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           openssl 1.0
+
+name                redwax-tool
+version             0.9.9
+revision            1
+
+set domain          https://redwax.eu
+homepage            ${domain}/rt/
+
+description         The universal certificate conversion tool.
+
+long_description    \
+    {*}${description} Read certificates and keys from your chosen sources, \
+    filter the certificates and keys you're interested in, write those \
+    certificates and keys to the destinations of your choice.
+
+categories          security devel
+installs_libs       no
+license             Apache-2
+maintainers         {gmail.com:herby.gillot @herbygillot} \
+                    openmaintainer
+
+checksums           rmd160  3484c73c4e025f2dd0ca8fad5adf069a8df21702 \
+                    sha256  800f58591defeba9529f82a4c06e3d97b578fc7513ac15d7975b8308baf5b6ef \
+                    size    456614
+
+master_sites        ${domain}/dist/rt/
+
+use_autoreconf      yes
+autoreconf.args     -fvi
+
+depends_build-append \
+                    bin:pkg-config:pkgconfig
+
+depends_lib-append  port:apr \
+                    port:apr-util \
+                    port:expat \
+                    port:nss \
+                    port:p11-kit \
+                    port:libical \
+                    port:ldns \
+                    port:unbound
+
+configure.args-append \
+                    --with-openssl --with-nss --with-p11-kit --with-libical --with-ldns \
+                    --with-unbound --with-keychain \
+                    --with-bash-completion-dir=${prefix}/share/bash-completion/completions

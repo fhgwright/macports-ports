@@ -1,0 +1,39 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           python 1.0
+
+name                pre-commit
+python.rootname     pre_commit
+version             4.2.0
+revision            0
+
+categories-append   devel
+supported_archs     noarch
+platforms           {darwin any}
+license             MIT
+maintainers         {reneeotten @reneeotten} openmaintainer
+
+description         A framework for managing and maintaining multi-language pre-commit hooks.
+long_description    {*}${description}
+
+homepage            https://github.com/pre-commit/pre-commit
+
+checksums           rmd160  b744599b476542ef3a0137444fb2a83f0b7122f2 \
+                    sha256  601283b9757afd87d40c4c4a9b2b5de9637a8ea02eaff7adc2d0fb4e04841146 \
+                    size    193424
+
+python.default_version 313
+
+depends_lib-append  port:py${python.version}-cfgv \
+                    port:py${python.version}-identify \
+                    port:py${python.version}-nodeenv \
+                    port:py${python.version}-yaml \
+                    port:py${python.version}-virtualenv
+
+post-destroot {
+    set docdir ${prefix}/share/doc/${subport}
+    xinstall -d ${destroot}${docdir}
+    xinstall -m 0644 -W ${worksrcpath} README.md LICENSE \
+        ${destroot}${docdir}
+}

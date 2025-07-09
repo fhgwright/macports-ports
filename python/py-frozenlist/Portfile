@@ -1,0 +1,32 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           python 1.0
+
+name                py-frozenlist
+version             1.6.0
+license             Apache-2
+maintainers         {toby @tobypeterson} openmaintainer
+description         list-like structure which implements collections.abc.MutableSequence
+long_description    frozenlist.FrozenList is a list-like structure which implements \
+                    collections.abc.MutableSequence. The list is mutable until \
+                    FrozenList.freeze is called, after which list modifications \
+                    raise RuntimeError
+
+homepage            https://github.com/aio-libs/frozenlist
+
+checksums           rmd160  88227af912522c1774e598b4a8747f3b8f1b298e \
+                    sha256  b99655c32c1c8e06d111e7f41c06c29a5318cb1835df23a45518e02a47c63b68 \
+                    size    42831
+
+python.versions     39 310 311 312 313
+
+if {${name} ne ${subport}} {
+    depends_build-append    port:py${python.version}-cython \
+                            port:py${python.version}-expandvars
+
+    if {${python.version} < 311} {
+        depends_build-append \
+                            port:py${python.version}-tomli
+    }
+}

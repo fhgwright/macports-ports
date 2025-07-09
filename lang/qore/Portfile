@@ -1,0 +1,46 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+
+PortGroup           github 1.0
+github.setup        qorelanguage qore 2.1.1 release-
+github.tarball_from releases
+
+PortGroup           cmake 1.1
+
+categories          lang
+license             {LGPL-2.1 MIT}
+maintainers         {davidnichols @davidnich} openmaintainer
+use_bzip2           yes
+description         multi-threaded embeddable scripting language
+long_description    Qore is a scripting language designed for multi-threading and SMP scalability
+homepage            http://qore.org
+
+checksums           rmd160 9487db8cb20ff8b9acb00d6eb96113d4327c2564 \
+                    sha256 2441f2a0a530a9dff6223eb0b4035859b7372ce240b5de9e3253b2c44682cb2e \
+                    size 39113490
+
+compiler.cxx_standard  2017
+
+depends_build-append \
+                    port:bison \
+                    port:flex \
+                    port:pkgconfig
+
+depends_lib-append  path:lib/libssl.dylib:openssl \
+                    port:pcre2 \
+                    port:zlib \
+                    port:bzip2 \
+                    port:gmp \
+                    port:mpfr \
+                    port:tbb
+
+compiler.thread_local_storage yes
+
+configure.args-append -DSINGLE_COMPILATION_UNIT=1
+
+# check_function_exists doesn't catch tbb's function, enforce it
+configure.args-append \
+                    -DCMAKE_INCLUDE_PATH="${prefix}/include\;${prefix}/libexec/tbb/include" \
+                    -DCMAKE_LIBRARY_PATH="${prefix}/lib\;${prefix}/libexec/tbb/lib" \
+                    -DHAVE_TBBMALLOC=ON

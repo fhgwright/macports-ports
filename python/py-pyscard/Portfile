@@ -1,0 +1,28 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           python 1.0
+
+name                py-pyscard
+version             2.2.2
+license             GPL
+maintainers         {amake @amake} openmaintainer
+
+description         Smartcard module for Python.
+long_description    {*}${description}
+
+homepage            https://pyscard.sourceforge.io/
+
+checksums           rmd160  a8f6390a9987c35e8d7c4d9f125eb2ed5c02e80a \
+                    sha256  c77481fb86f4a17bc441d7b36551c1d36a9d3a48c4bb30ab8118886e6f275081 \
+                    size    156637
+
+python.versions     39 310 311 312
+
+if {${name} ne ${subport}} {
+    depends_lib-append \
+        port:swig-python
+
+    patchfiles-append  0001-Remove-requirement-provided-by-MacPorts.patch
+    patch.pre_args-replace  -p0 -p1
+}

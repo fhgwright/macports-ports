@@ -1,0 +1,57 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           github 1.0
+PortGroup           cmake 1.1
+
+github.setup        IlyaGrebnov libbsc 3.3.9 v
+github.tarball_from archive
+name                bsc
+revision            0
+categories          archivers devel
+maintainers         {i0ntempest @i0ntempest} openmaintainer
+license             Apache-2
+
+description         High performance block-sorting data compressor
+long_description    ${name} is a high performance file compressor based on lossless, block-sorting data\
+                    compression algorithms. lib${name} is a library based on ${name}, it uses the same\
+                    algorithms as ${name} and enables you to compress memory blocks.
+
+checksums           rmd160  7c7c9ef74bdfcaec5ba53e13e00fafac114a5bc9 \
+                    sha256  d287535feaf18a05c3ffc9ccba3ee4eacd7604224b4648121d7388727160f107 \
+                    size    194539
+
+# https site has a misconfigured cert
+homepage            http://${github.project}.com
+
+compiler.cxx_standard \
+                    2011
+
+configure.args-append \
+                    -DBSC_ENABLE_OPENMP=OFF \
+                    -DBSC_ENABLE_CUDA=OFF \
+                    -DBSC_ENABLE_NATIVE_COMPILATION=OFF \
+                    -DBSC_BUILD_SHARED_LIB=ON
+
+variant openmp description {enable parallelism support using OpenMP} {
+    compiler.openmp_version \
+                    4.5
+    compiler.blacklist-append \
+                    {macports-clang-[0-9].*}
+
+    configure.args-replace \
+                    -DBSC_ENABLE_OPENMP=OFF \
+                    -DBSC_ENABLE_OPENMP=ON
+    if {[string match *clang* ${configure.compiler}]} {
+        configure.ldflags-append \
+                    -L${prefix}/lib/libomp -lomp
+    }
+}
+
+variant native description {Force local build and optimize for CPU} {
+    configure.args-replace \
+                    -DBSC_ENABLE_NATIVE_COMPILATION=OFF \
+                    -DBSC_ENABLE_NATIVE_COMPILATION=ON
+}
+
+default_variants    +openmp

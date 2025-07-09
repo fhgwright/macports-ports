@@ -1,0 +1,40 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           github 1.0
+
+github.setup        onetrueawk awk 20250116
+# Change github.tarball_from to 'releases' or 'archive' next update
+github.tarball_from tarball
+checksums           rmd160  95b199a8ff448c0f4b5a16ad0a1a816624a175a6 \
+                    sha256  26916546ae132a1c9c3e2ad4374f1c6ae7fd582bee88aec4d6a02271c92fbfca \
+                    size    1845793
+
+name                nawk
+categories          lang
+license             BSD
+maintainers         {toby @tobypeterson} openmaintainer
+
+description         the one true awk
+
+long_description    Kernighan's canonical implementation of awk.
+
+depends_build       port:bison
+
+patchfiles          patch-makefile
+
+configure {
+    reinplace "s|__CFLAGS__|${configure.cflags} [get_canonical_archflags]|" ${worksrcpath}/makefile
+    reinplace s|__CC__|${configure.cc}| ${worksrcpath}/makefile
+    reinplace s|__PREFIX__|${prefix}| ${worksrcpath}/makefile
+}
+
+use_parallel_build  no
+build.target
+
+destroot {
+    xinstall ${worksrcpath}/a.out ${destroot}${prefix}/bin/nawk
+    xinstall ${worksrcpath}/awk.1 ${destroot}${prefix}/share/man/man1/nawk.1
+}
+
+test.run            yes

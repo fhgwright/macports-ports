@@ -1,0 +1,29 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           golang 1.0
+
+go.setup            github.com/charmbracelet/gum 0.16.0 v
+go.offline_build    no
+revision            0
+
+description         A tool for glamorous shell scripts
+
+long_description    {*}${description}
+
+categories          devel sysutils
+installs_libs       no
+license             MIT
+maintainers         {gmail.com:herby.gillot @herbygillot} \
+                    openmaintainer
+
+checksums           rmd160  d3e7e393c0f21a496de939037997ddb19ea89c36 \
+                    sha256  cedcb16ee99149236dd1b0aa786a76fa49ae37da87d0a9a065d4db16a05a5496 \
+                    size    71841
+
+build.pre_args-append \
+    -ldflags \"-X main.Version=${version}\"
+
+destroot {
+    xinstall -m 0755 ${worksrcpath}/${name} ${destroot}${prefix}/bin/
+}

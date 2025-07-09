@@ -1,0 +1,39 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           python 1.0
+
+name                py-metpy
+version             1.7.0
+revision            0
+categories          python science
+license             BSD
+maintainers         {mps @Schamschula} openmaintainer
+description         MetPy is a collection of tools in Python for reading, visualizing \
+                    and performing calculations with weather data.
+long_description    {*}${description}
+supported_archs     noarch
+platforms           {darwin any}
+homepage            https://github.com/Unidata/MetPy
+
+python.versions     39 310 311 312 313
+
+checksums           rmd160  fdc39c399376f31708c8d2d9aa35b9edd5c7cc4d \
+                    sha256  aad7e03dc735cf8bfd870d16aca24920a707152de6caa24dbaf4da695c6f6ae4 \
+                    size    13364884
+
+if {${name} ne ${subport}} {
+    depends_build-append \
+                    port:py${python.version}-setuptools_scm
+
+    depends_lib-append  \
+                    port:py${python.version}-matplotlib \
+                    port:py${python.version}-numpy \
+                    port:py${python.version}-pandas \
+                    port:py${python.version}-pint \
+                    port:py${python.version}-pooch \
+                    port:py${python.version}-pyproj \
+                    port:py${python.version}-scipy \
+                    port:py${python.version}-traitlets \
+                    port:py${python.version}-xarray
+}

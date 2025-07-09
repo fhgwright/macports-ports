@@ -1,0 +1,36 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           golang 1.0
+
+go.setup            github.com/hahwul/dalfox 2.9.3 v
+go.package          github.com/hahwul/dalfox/v2
+revision            0
+
+homepage            https://dalfox.hahwul.com
+
+description         \
+    DalFox is an powerful open source XSS scanning tool & parameter analyzer
+
+long_description    \
+    DalFox is an powerful open source XSS scanning tool and parameter \
+    analyzer and utility that speeds up the process of detecting and \
+    verifying XSS flaws. It comes with a powerful testing engine, many niche \
+    features for the cool hacker
+
+categories          security
+installs_libs       no
+license             MIT
+maintainers         {gmail.com:herby.gillot @herbygillot} \
+                    openmaintainer
+
+checksums           rmd160  80bce751fb3cb91c945923e5328745be949d6e00 \
+                    sha256  4f0d746e887a42132ccbcea73450748a4f025d81faaa6817ce617bb0372105fd \
+                    size    4380075
+
+# Allow Go to fetch deps while building
+go.offline_build no
+
+destroot {
+    xinstall -m 0755 ${worksrcpath}/${name} ${destroot}${prefix}/bin/
+}

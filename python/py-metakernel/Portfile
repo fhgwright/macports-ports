@@ -1,0 +1,32 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           python 1.0
+
+name                py-metakernel
+version             0.30.3
+revision            0
+categories-append   devel science
+license             BSD
+maintainers         {mps @Schamschula} openmaintainer
+description         A Jupyter/IPython kernel template
+long_description    ${description} which includes core magic functions (including \
+                    help, command and file path completion, parallel and distributed \
+                    processing, downloads, and much more).
+supported_archs     noarch
+platforms           {darwin any}
+homepage            https://github.com/Calysto/metakernel
+
+checksums           rmd160  e8a74164be3d7164baba33b43a174df08065f8d4 \
+                    sha256  9ebc8d4d872202ad7ac64a56e07226d8d3c5ce45b5b420d0401f547c750a475d \
+                    size    191762
+
+python.versions     39 310 311 312 313
+
+if {${name} ne ${subport}} {
+    python.pep517_backend \
+                    hatch
+
+    depends_lib-append  \
+                    port:py${python.version}-notebook
+}

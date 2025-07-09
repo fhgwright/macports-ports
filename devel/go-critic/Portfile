@@ -1,0 +1,35 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           golang 1.0
+
+go.setup            github.com/go-critic/go-critic 0.12.0 v
+go.offline_build    no
+revision            0
+
+homepage            https://go-critic.com
+
+description         The most opinionated Go source code linter for code audit.
+
+long_description    {*}${description} Highly extensible Go source code \
+                    linter providing checks currently missing from other \
+                    linters.
+
+categories          devel
+installs_libs       no
+license             MIT
+maintainers         {gmail.com:herby.gillot @herbygillot} \
+                    openmaintainer
+
+checksums           rmd160  781f94884bfa2a6939e1504f3eefbf94cbe4ec60 \
+                    sha256  e981f7135bd0a21de3e94c05f5d393e6cf8c499c86251c94b1b9b11e9dcce153 \
+                    size    180927
+
+build.cmd           make
+build.pre_args-append \
+                    GOCRITIC_VERSION=${version}
+build.args          build-release
+
+destroot {
+    xinstall -m 0755 ${worksrcpath}/bin/gocritic ${destroot}${prefix}/bin/
+}

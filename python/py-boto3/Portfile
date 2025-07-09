@@ -1,0 +1,36 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           python 1.0
+
+name                py-boto3
+version             1.35.51
+revision            0
+
+supported_archs     noarch
+platforms           {darwin any}
+license             Apache-2
+maintainers         {emcrisostomo @emcrisostomo} \
+                    {judaew @judaew} openmaintainer
+
+description         The AWS SDK for Python
+long_description    Boto3 is the Amazon Web Services (AWS) Software \
+                    Development Kit (SDK) for Python, which allows Python \
+                    developers to write software that makes use of services \
+                    like Amazon S3 and Amazon EC2.
+
+homepage            https://github.com/boto/boto3
+
+checksums           rmd160  b9acad4c59a5c2bcd493e9fdd748c8f31285379f \
+                    sha256  a57c6c7012ecb40c43e565a6f7a891f39efa990ff933eab63cd456f7501c2731 \
+                    size    110968
+
+python.versions     39 310 311 312 313
+
+if {${name} ne ${subport}} {
+    depends_run-append      port:py${python.version}-botocore \
+                            port:py${python.version}-jmespath \
+                            port:py${python.version}-s3transfer
+
+    livecheck.type          none
+}

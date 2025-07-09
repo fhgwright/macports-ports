@@ -1,0 +1,30 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           octave 1.0
+
+octave.setup        sourceforge octave image 2.16.1
+revision            0
+license             GPL-3+ MIT FreeBSD
+maintainers         {mps @Schamschula} openmaintainer
+description         The Octave-forge Image package provides functions \
+                    for processing images. The package also provides \
+                    functions for feature extraction, image \
+                    statistics, spatial and geometric transformations, \
+                    morphological operations, linear filtering, and \
+                    much more.
+long_description    {*}${description}
+
+checksums           rmd160  03ea923e5d2ca32346a45afa7f22102ea6e9b83e \
+                    sha256  34a84f755261f6c8d882d08b07567464ea25dc1515072ef6886f2b26ebf6f0a7 \
+                    size    459001
+
+compiler.cxx_standard \
+                    2011
+
+depends_lib-append  port:octave-signal
+
+patchfiles-append   patch-src_connectivity.cc.diff
+
+configure.env-append \
+                    "PREFIX_BIN=${prefix}/bin"

@@ -1,0 +1,41 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+
+name                ncdc
+version             1.24.1
+categories          net chat
+maintainers         nomaintainer
+license             MIT
+
+description         Ncurses Direct Connect
+
+long_description    Modern and lightweight direct connect client with a \
+                    friendly ncurses interface.
+
+homepage            https://dev.yorhel.nl/ncdc
+master_sites        https://dev.yorhel.nl/download/
+
+checksums           rmd160  1ef94ffb761cec7eef49ef36a648c9f6f24ddaa9 \
+                    sha256  2a8ab9ad7d43f018fc73ba8babd689dfa44aba8cec53b88e4770185cb97778f7 \
+                    size  377704
+
+depends_build       port:pkgconfig
+
+depends_lib         port:sqlite3 \
+                    port:ncurses \
+                    path:lib/pkgconfig/glib-2.0.pc:glib2 \
+                    port:bzip2 \
+                    port:zlib \
+                    port:libmaxminddb \
+                    path:lib/pkgconfig/gnutls.pc:gnutls
+
+# Build with GeoIP support
+configure.args-append    --with-geoip
+
+use_parallel_build  yes
+
+livecheck.type      regex
+livecheck.url       [lindex ${master_sites} 0]
+livecheck.regex     >${name}-(\[0-9.\]+)${extract.suffix}<
+

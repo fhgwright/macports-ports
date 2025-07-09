@@ -1,0 +1,57 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           golang 1.0
+
+go.setup            github.com/tailscale/tailscale 1.82.4 v
+go.package          tailscale.com
+go.offline_build    no
+revision            0
+
+homepage            https://tailscale.com
+
+description         The easiest, most secure way to use WireGuard and 2FA.
+
+long_description    {*}${description}. A secure network that just works. \
+                    Zero config VPN. Installs on any device in minutes, \
+                    manages firewall rules for you, and works from anywhere.
+
+categories          net
+installs_libs       no
+license             BSD
+maintainers         {gmail.com:herby.gillot @herbygillot} \
+                    openmaintainer
+
+checksums           rmd160  3492a0e3c772c04badc662599343c4bddd3ed5de \
+                    sha256  9b059aed441cea724a9ef4c75555a83b2bf1899d1540d4287b4bc74f363d1563 \
+                    size    3793659
+
+startupitem.create  yes
+startupitem.executable \
+                    ${prefix}/bin/${name}d
+
+build.pre_args-append \
+    -ldflags \" \
+        -X tailscale.com/version.Long=${version}    \
+        -X tailscale.com/version.Short=${version}   \
+        -X tailscale.com/version.GitCommit=non-git  \
+    \"
+
+build.args-append   -o _build ./cmd/${name} ./cmd/${name}d
+
+post-extract {
+    file mkdir ${worksrcpath}/_build
+}
+
+destroot {
+    xinstall -m 0755 \
+        {*}[glob ${worksrcpath}/_build/*] ${destroot}${prefix}/bin/
+}
+
+notes "
+After launching the Tailscale service for the first time using the steps below (port load), run:
+
+    ${name} up
+"
+
+github.livecheck.regex {([0-9.]+)}

@@ -1,0 +1,49 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=portfile:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           python 1.0
+PortGroup           github 1.0
+
+github.setup        CoreSecurity impacket 0_12_0 impacket_
+# Change github.tarball_from to 'releases' or 'archive' next update
+github.tarball_from tarball
+version             [string map {_ .} ${github.version}]
+revision            1
+
+maintainers         {i0ntempest @i0ntempest} openmaintainer
+
+categories          net devel python
+description         Impacket is a collection of Python classes focused on \
+                    providing access to network packets.
+long_description    {*}${description} Impacket allows Python developers to craft \
+                    and decode network packets in simple and consistent manner. \
+                    It includes support for low-level protocols such as IP, UDP \
+                    and TCP, as well as higher-level protocols such as NMB and \
+                    SMB. Impacket is highly effective when used in conjunction \
+                    with a packet capture utility or package such as Pcapy. \
+                    Packets can be constructed from scratch, as well as parsed \
+                    from raw data. Furthermore, the object oriented API makes \
+                    it simple to work with deep protocol hierarchies.
+
+platforms           {darwin any}
+supported_archs     noarch
+license             Apache-1.1
+
+python.default_version \
+                    313
+
+depends_build-append \
+                    port:py${python.version}-setuptools
+depends_run-append  port:py${python.version}-asn1 \
+                    port:py${python.version}-charset-normalizer \
+                    port:py${python.version}-flask \
+                    port:py${python.version}-ldap3 \
+                    port:py${python.version}-openssl \
+                    port:py${python.version}-pycryptodomex \
+                    port:py${python.version}-six
+
+homepage            https://www.secureauth.com/labs/open-source-tools/impacket/
+
+checksums           rmd160  1c35e744b57c8ba07a0ad76922c2c6d6bd444fa4 \
+                    sha256  e76b0f60401b4364376e3e5a1087be8098ca9d70f81724f7eecdd711bb0776a0 \
+                    size    1585643

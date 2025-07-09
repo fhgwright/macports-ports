@@ -1,0 +1,34 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           python 1.0
+
+name                py-responses
+version             0.25.7
+revision            0
+
+categories-append   devel
+platforms           {darwin any}
+supported_archs     noarch
+license             Apache-2
+maintainers         {petr @petrrr} openmaintainer
+
+description         A utility library for mocking out the requests library
+long_description    {*}${description}
+
+homepage            https://github.com/getsentry/responses
+
+checksums           rmd160  5e60cb12c17a7bc69f0cf2d7349e5af859a43a8b \
+                    sha256  8ebae11405d7a5df79ab6fd54277f6f2bc29b2d002d0dd2d5c632594d1ddcedb \
+                    size    79203
+
+python.versions     39 310 311 312 313
+
+if {${name} ne ${subport}} {
+    depends_lib-append \
+                    port:py${python.version}-requests \
+                    port:py${python.version}-urllib3 \
+                    port:py${python.version}-six
+
+    test.run        yes
+}

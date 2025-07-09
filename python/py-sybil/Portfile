@@ -1,0 +1,42 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           python 1.0
+
+name                py-sybil
+version             9.1.0
+revision            0
+maintainers         {khindenburg @kurthindenburg} openmaintainer
+supported_archs     noarch
+platforms           {darwin any}
+license             MIT
+
+description         Automated testing for the examples in your documentation.
+long_description    This library provides a way to test examples in your \
+                    documentation by parsing them from the documentation \
+                    source and evaluating the parsed examples as part of \
+                    your normal test run. Integration is provided for the \
+                    three main Python test runners.
+
+homepage            https://github.com/simplistix/sybil
+
+checksums           rmd160  4aed7776e61375a8314e1d0dbbed2a17e36d6753 \
+                    sha256  c63c14c9843c62fa994c777eb48c0632f62be5c499ecbe05c1d130157ed6a6ca \
+                    size    84284
+
+python.versions     39 310 311 312 313
+
+if {${name} ne ${subport}} {
+    depends_build-append \
+                    port:py${python.version}-setuptools
+
+    if (0) {
+    # py-seedir missing
+    test.run        yes
+    depends_test-append \
+        port:py${python.version}-mypy \
+        port:py${python.version}-testfixtures
+    }
+
+    livecheck.type  none
+}

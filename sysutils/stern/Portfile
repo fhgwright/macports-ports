@@ -1,0 +1,39 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           golang 1.0
+
+go.setup            github.com/stern/stern 1.32.0 v
+# Delete this on next update to use golang PortGroup's default ('archive')
+github.tarball_from tarball
+maintainers         {breun.nl:nils @breun} openmaintainer
+platforms           darwin
+categories          sysutils
+license             Apache-2
+
+description         Multi pod and container log tailing for Kubernetes
+
+long_description    Stern allows you to tail multiple pods on Kubernetes and \
+                    multiple containers within the pod. Each result is color \
+                    coded for quicker debugging.
+
+checksums           rmd160  69dd4405d3aa3993679fd4987cb3f97486b5c8dd \
+                    sha256  1f9d41ad5977bc2b04188375ebf1d9915c90a746b666d2e0333bca982248bf62 \
+                    size    63992
+
+set go_ldflags      "-s -w -X ${go.package}/cmd.version=${version}"
+build.args          -ldflags \"${go_ldflags}\" -o bin/${name}
+
+# FIXME: This port currently can't be built without allowing go mod to fetch
+# dependencies during the build phase. See
+# https://trac.macports.org/ticket/61192
+go.offline_build no
+
+test.run    yes
+test.cmd    bin/stern
+test.target
+test.args   --version
+
+destroot {
+    xinstall -m 755 ${worksrcpath}/bin/${name} ${destroot}${prefix}/bin/${name}
+}

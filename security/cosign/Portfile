@@ -1,0 +1,39 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           golang 1.0
+
+go.setup            github.com/sigstore/cosign 2.5.0 v
+revision            0
+
+categories          security
+maintainers         {judaew @judaew} openmaintainer
+license             Apache-2
+
+description         Container Signing
+long_description    \
+    Container Signing, Verification and Storage in an OCI registry. Cosign \
+    aims to make signatures invisible infrastructure.
+
+checksums           rmd160  ff3d96a649b547caf9492d2dfb20548ca575c1ee \
+                    sha256  35beac6937e310dd08800d6077832682490d4d23bc349f60b786f4be74a68c7f \
+                    size    896846
+
+# FIXME: This port currently can't be built without allowing go mod to fetch
+go.offline_build no
+
+build.cmd           make
+build.pre_args      GIT_VERSION="${version}" \
+                    GIT_TAG="build from tarball" GIT_HASH="" GIT_TREESTATE=""
+build.target        cosign
+
+destroot {
+    xinstall -m 0755 ${worksrcpath}/cosign ${destroot}${prefix}/bin/
+
+    xinstall -d ${destroot}${prefix}/share/doc/${name}
+    xinstall -m 0644 -W ${worksrcpath} \
+        CHANGELOG.md COPYRIGHT.txt LICENSE \
+        ${destroot}${prefix}/share/doc/${name}
+}
+
+github.livecheck.regex  "(\\d+(?:\\.\\d+)+)"

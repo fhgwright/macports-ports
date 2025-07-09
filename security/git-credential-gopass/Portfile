@@ -1,0 +1,30 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           golang 1.0
+
+go.setup            github.com/gopasspw/git-credential-gopass 1.15.15 v
+go.offline_build    no
+revision            0
+
+categories          security
+installs_libs       no
+license             MIT
+maintainers         {@sikmir disroot.org:sikmir} \
+                    {gmail.com:herby.gillot @herbygillot} \
+                    openmaintainer
+
+description         Gopass git-credentials helper
+long_description    {*}${description}
+homepage            https://www.gopass.pw
+
+checksums           rmd160  ee599adec00751fbf6ff09669c0b8cb33a5a8ab4 \
+                    sha256  7d06c4f7b007992f46515be73d095299b7fa46eb27ee6c4bad9f692d01a4b4d4 \
+                    size    18143
+
+build.cmd           ${go.bin} mod tidy \&\& ${go.bin} build
+build.args          -ldflags '-X main.version=${version}'
+
+destroot {
+    xinstall -m 0755 ${worksrcpath}/${name} ${destroot}${prefix}/bin/
+}

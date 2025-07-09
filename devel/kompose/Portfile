@@ -1,0 +1,34 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem              1.0
+PortGroup               golang 1.0
+
+go.setup                github.com/kubernetes/kompose 1.35.0 v
+go.offline_build        no
+revision                0
+maintainers             {emcrisostomo @emcrisostomo} \
+                        {gmail.com:herby.gillot @herbygillot} \
+                        openmaintainer
+categories              devel
+
+description             Go from Docker Compose to Kubernetes
+
+long_description        {*}${name} is a tool to help users who are \
+                        familiar with docker-compose move to Kubernetes \
+                        kompose takes a Docker Compose file and translates \
+                        it into Kubernetes resources.
+homepage                https://kompose.io/
+license                 Apache-2
+
+checksums               rmd160  7096833f4255113ea5c076931c0153a83431f8fc \
+                        sha256  62c29b8f57e20335bea5c129d56a7dafc50ddca334ede6f44e6f46f5fe676e4a \
+                        size    17992643
+
+build.cmd               make
+build.target            bin
+
+destroot {
+    xinstall -m 755 ${worksrcpath}/${name} ${destroot}${prefix}/bin/
+}
+
+test.run                yes

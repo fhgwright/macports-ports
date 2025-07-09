@@ -1,0 +1,49 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem      1.0
+PortGroup       github 1.0
+PortGroup       makefile 1.0
+
+github.setup    funtoo keychain 2.9.5
+github.tarball_from archive
+revision        0
+categories      sysutils security
+license         GPL-2
+platforms       any
+supported_archs noarch
+maintainers     {khindenburg @kurthindenburg} openmaintainer
+description     A user-friendly front-end to ssh-agent(1)
+
+long_description \
+    Keychain is a shell script which acts as user-friendly front-end to \
+    ssh-agent(1), allowing you to have one long-running ssh-agent \
+    process per system rather than per login session.
+
+homepage        https://www.funtoo.org/Keychain
+
+checksums           rmd160  b9c3c6f46e09573fce2739af5a97b58a6aff7878 \
+                    sha256  c883f26db616bc1c81ba5ef3832c7ad912f3e8bd0baf6aaff981164c538a1411 \
+                    size    42685
+
+depends_build-append    bin:pod2man:perl5
+
+# Patch keychain's path to pick up any MacPorts binaries, such as
+# ssh-agent.
+post-patch {
+    reinplace \
+        -E "s#PATH:-/usr/bin:#PATH:-${prefix}/bin:/usr/bin:#" \
+        ${worksrcpath}/keychain.sh
+}
+
+destroot {
+    xinstall -m 755 ${worksrcpath}/keychain ${destroot}${prefix}/bin
+    xinstall -m 444 ${worksrcpath}/keychain.1 ${destroot}${prefix}/share/man/man1
+}
+
+# Remove after a few releases
+notes "
+    The 2.9.x series is the first release in over 7 years.  Check the man
+page and homepage for more info.
+"
+
+github.livecheck.regex {([0-9.]+)}

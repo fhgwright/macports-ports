@@ -1,0 +1,69 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           github 1.0
+PortGroup           compiler_blacklist_versions 1.0
+
+github.setup        libimobiledevice libplist 2.7.0
+revision            0
+categories          textproc devel
+license             LGPL-2.1
+maintainers         {ijackson @JacksonIsaac} {i0ntempest @i0ntempest} openmaintainer
+
+description         Library for working with Apple Binary and XML Property Lists
+long_description    ${description}
+
+homepage            https://www.libimobiledevice.org/
+
+checksums           rmd160  034873c101d8bbf38f434ea259f0a05306a9a962 \
+                    sha256  7ac42301e896b1ebe3c654634780c82baa7cb70df8554e683ff89f7c2643eb8b \
+                    size    484474
+
+depends_build-append \
+                    port:pkgconfig
+
+# https://trac.macports.org/ticket/68238
+compiler.blacklist-append \
+                    *gcc-4.0 *gcc-4.2 {clang < 421}
+
+configure.args      --disable-silent-rules \
+                    --without-cython
+
+subport libplist-devel {
+    github.setup    libimobiledevice libplist 44099d4b79c8d6a7d599d652ebef62db8dae6696
+    version         20241203
+    revision        0
+
+    github.tarball_from \
+                    archive
+
+    checksums       rmd160  4d33204b564220fc839a2cfeb40d514fd7e7a0e2 \
+                    sha256  8aee958bf4039c8864f8b8cce822708f7e5d44b8214ed4e7f8e2ae1dd9e14b7b \
+                    size    225046
+
+    conflicts       libplist
+
+    depends_build-append \
+                    port:autoconf \
+                    port:automake \
+                    port:libtool
+
+    # Adhere devel port to libimobiledevice's versioning system
+    # This is handled in the stable port with a release tarball
+    #
+    # See https://github.com/libimobiledevice/libimobiledevice-glue/commit/0e7b8b42ce4cbeb32eb3103b0ff97916cb273d78
+    pre-configure {
+        system -W ${worksrcpath} "echo ${version} > .tarball-version"
+    }
+
+    configure.cmd   ./autogen.sh
+
+    livecheck.url   ${github.homepage}/commits/${github.livecheck.branch}.atom
+}
+
+if {${subport} eq ${name}} {
+    github.tarball_from \
+                    releases
+    use_bzip2       yes
+    conflicts       libplist-devel
+}

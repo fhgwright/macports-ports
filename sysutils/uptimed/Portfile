@@ -1,0 +1,51 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           github 1.0
+
+github.setup        rpodgorny uptimed 0.4.6 v
+revision            0
+checksums           rmd160  6ee71ef925584e97c00eac9b176fb505888774af \
+                    sha256  48656498ac30c59b902e98dc5e411e97cbb96278a01946bdf0941d8da72b2ae1 \
+                    size    56796
+
+categories          sysutils
+license             GPL-2
+maintainers         nomaintainer
+
+description         uptime record daemon
+
+long_description    uptimed is an uptime record daemon keeping track \
+                    of the highest uptimes a computer system ever had.
+
+github.tarball_from archive
+
+# No configure script in tarball.
+use_autoreconf      yes
+autoreconf.cmd      ./autogen.sh
+autoreconf.args
+
+depends_build-append \
+                    port:autoconf \
+                    port:automake \
+                    port:libtool
+
+patchfiles          patch-Makefile.am.diff \
+                    patch-etc-uptimed.conf-dist.diff \
+                    patch-libuptimed-urec.h.diff \
+                    patch-src-uptimed.c.diff
+
+post-patch {
+    reinplace -W ${worksrcpath} "s|@PREFIX@|${prefix}|g" \
+        etc/uptimed.conf-dist \
+        libuptimed/urec.h \
+        src/uptimed.c
+}
+
+post-destroot {
+    xinstall -d ${destroot}${prefix}/var/spool/uptimed
+    touch ${destroot}${prefix}/var/spool/uptimed/bootid
+}
+
+startupitem.create      yes
+startupitem.executable  ${prefix}/sbin/uptimed -f

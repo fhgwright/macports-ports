@@ -1,0 +1,34 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           golang 1.0
+
+go.setup            github.com/helmwave/helmwave 0.41.1 v
+go.offline_build    no
+revision            0
+
+homepage            https://helmwave.github.io
+
+description         Helmwave is like docker-compose for Helm
+
+long_description    Helmwave is helm-native tool for deploying your Helm \
+                    Charts via GitOps. HelmWave is like docker-compose for \
+                    Helm.
+
+checksums           rmd160  c6e4ce1fe9735cbc5edc2cc9e48b2bd1b7a46649 \
+                    sha256  7a75a43911e735e7fb15a17377bdbe21fd65d0c75e5f1fdf14af7dfa66234626 \
+                    size    209243
+
+categories          sysutils
+installs_libs       no
+license             MIT
+maintainers         {gmail.com:herby.gillot @herbygillot} \
+                    openmaintainer
+
+build.pre_args-append \
+    -ldflags \"-X ${go.package}/pkg/version.Version=${version}\"
+build.args          ./cmd/${name}
+
+destroot {
+    xinstall -m 0755 ${worksrcpath}/${name} ${destroot}${prefix}/bin/
+}

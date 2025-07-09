@@ -1,0 +1,23 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           perl5 1.0
+
+perl5.branches      5.28 5.30 5.32 5.34
+perl5.setup         Net-Patricia 1.23
+revision            0
+license             {GPL-2+ BSD}
+maintainers         luckie.org.nz:mjl openmaintainer
+description         Net::Patricia - Patricia Trie perl module for fast IP address lookups
+long_description    {*}${description}
+
+checksums           rmd160  9f9b15985263c2743ccc9c273249c1f0580eb0cf \
+                    sha256  3d23c44dfae73da027f02a2f52e5925b99d6f6ef4a005af6b3c65144319c7d52 \
+                    size    28761
+
+if {${perl5.major} != ""} {
+    depends_lib-append \
+                    port:p${perl5.major}-socket \
+                    port:p${perl5.major}-socket6 \
+                    port:p${perl5.major}-net-cidr-lite
+}

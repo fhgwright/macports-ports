@@ -1,0 +1,34 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           python 1.0
+
+name                py-napari-console
+python.rootname     napari_console
+version             0.1.3
+revision            0
+license             BSD
+maintainers         {mps @Schamschula} openmaintainer
+description         A plugin that adds a console to napari.
+long_description    {*}${description}
+supported_archs     noarch
+platforms           {darwin any}
+homepage            https://github.com/napari/napari-console
+
+python.versions     39 310 311 312 313
+
+checksums           rmd160  f43a1dacbaa7930b3fb94cf82416a59b191fbb67 \
+                    sha256  ba4f7e1cdca65a7924631372a5e58884e2e35a2b9092c79b98acb9c2dfe1254f \
+                    size    20010
+
+if {${name} ne ${subport}} {
+    depends_build-append  \
+                    port:py${python.version}-setuptools_scm
+
+    depends_lib-append  \
+                    port:py${python.version}-ipykernel \
+                    port:py${python.version}-ipython \
+                    port:py${python.version}-napari-plugin-engine \
+                    port:py${python.version}-qtconsole \
+                    port:py${python.version}-qtpy
+}

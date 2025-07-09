@@ -1,0 +1,31 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           golang 1.0
+
+go.setup            github.com/abhimanyu003/sttr 0.2.25 v
+go.offline_build    no
+revision            0
+
+description         Perform various operations on a string.
+
+long_description    \
+    ${name} is command line software that allows you to quickly run various \
+    transformation operations on strings.
+
+categories          textproc
+installs_libs       no
+license             MIT
+maintainers         {gmail.com:herby.gillot @herbygillot} \
+                    openmaintainer
+
+checksums           rmd160  66ce2969f3f3a2dae5c10f64e7ff87e80eea76fb \
+                    sha256  0369a28a944f3f2f3c5bde527572acafbeeeee1a5cf158c1dc8dd5e9f068e059 \
+                    size    1234825
+
+build.pre_args-append \
+    -ldflags \"-X main.version=${github.tag_prefix}${version}\"
+
+destroot {
+    xinstall -m 0755 ${worksrcpath}/${name} ${destroot}${prefix}/bin/
+}

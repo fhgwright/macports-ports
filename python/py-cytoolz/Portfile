@@ -1,0 +1,29 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           python 1.0
+
+name                py-cytoolz
+version             1.0.1
+revision            0
+categories-append   devel
+license             BSD
+
+python.versions     39 310 311 312 313
+
+maintainers         {stromnov @stromnov} openmaintainer
+
+description         Cython implementation of Toolz.
+long_description    {*}${description}
+
+homepage            https://github.com/pytoolz/cytoolz/
+
+checksums           rmd160  ff2a0e5ca5a6c102d33d69b56ebce1d422a6f5fc \
+                    sha256  89cc3161b89e1bb3ed7636f74ed2e55984fd35516904fc878cae216e42b2c7d6 \
+                    size    626652
+
+if {${name} ne ${subport}} {
+    depends_build-append \
+                        port:py${python.version}-cython
+    depends_lib-append  port:py${python.version}-toolz
+}

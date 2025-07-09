@@ -1,0 +1,35 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           cargo_fetch 1.0
+PortGroup           python 1.0
+PortGroup           legacysupport 1.1
+
+name                py-orjson
+version             3.10.18
+revision            0
+categories-append   devel
+license             MIT
+platforms           darwin
+supported_archs     arm64 x86_64
+
+python.versions     39 310 311 312 313
+
+maintainers         {toby @tobypeterson} openmaintainer
+
+description         orjson is a fast, correct JSON library
+long_description    {*}${description}. It benchmarks as the fastest \
+                    Python library for JSON and is more correct than \
+                    the standard json library or other third-party \
+                    libraries. It serializes dataclass, datetime, \
+                    numpy, and UUID instances natively.
+
+homepage            https://github.com/ijl/orjson
+
+checksums           ${distname}${extract.suffix} \
+                    rmd160  719a19bd7077beda5cbc8210612d8309a4700e7e \
+                    sha256  e8da3947d92123eda795b68228cafe2724815621fe35e8e320a9e9593a4bcd53 \
+                    size    5422810
+
+python.pep517           yes
+python.pep517_backend   maturin

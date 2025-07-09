@@ -1,0 +1,46 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           python 1.0
+
+name                py-lz4
+version             4.3.3
+revision            0
+
+license             BSD
+maintainers         nomaintainer
+
+description         LZ4 bindings for Python
+long_description    {*}${description}
+
+homepage            https://github.com/python-lz4/python-lz4
+
+checksums           rmd160  58a4c38cac30c9e887560b698dfdebc31893b456 \
+                    sha256  01fe674ef2889dbb9899d8a67361e0c4a2c833af5aeb37dd505727cf5d2a131e \
+                    size    171509
+
+python.versions     39 310 311 312 313
+
+if {${name} ne ${subport}} {
+    depends_build-append \
+                    port:py${python.version}-pkgconfig \
+                    port:py${python.version}-setuptools_scm
+
+    depends_lib-append \
+                    port:lz4
+
+    build.env-append \
+                    PYLZ4_EXPERIMENTAL=TRUE
+
+    depends_test-append \
+                    port:py${python.version}-psutil
+
+    test.run        yes
+
+    post-destroot {
+        set docdir ${prefix}/share/doc/${subport}
+        xinstall -d ${destroot}${docdir}
+        xinstall -m 0644 -W ${worksrcpath} README.rst LICENSE \
+            ${destroot}${docdir}
+    }
+}

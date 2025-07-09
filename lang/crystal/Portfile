@@ -1,0 +1,101 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           github 1.0
+PortGroup           makefile 1.0
+
+github.setup        crystal-lang crystal 1.16.3
+github.tarball_from archive
+revision            0
+categories          lang
+supported_archs     x86_64 arm64
+license             Apache-2
+maintainers         {makr @mohd-akram} openmaintainer
+
+description         Crystal programming language
+
+long_description    Crystal is a fast, compiled programming language with a \
+                    Ruby-inspired syntax.
+
+homepage            https://crystal-lang.org
+
+set llvm_version    20
+
+depends_build       path:bin/pkg-config:pkgconfig
+
+depends_lib         port:boehmgc \
+                    port:libffi \
+                    port:libiconv \
+                    port:llvm-${llvm_version} \
+                    port:pcre2
+
+# libraries used by the standard library
+# pkg-config is used when compiling user programs
+depends_run         port:gmp \
+                    port:libevent \
+                    port:libxml2 \
+                    port:libyaml \
+                    path:lib/libssl.dylib:openssl \
+                    port:zlib \
+                    path:bin/pkg-config:pkgconfig
+
+# dyld: Symbol not found: ____chkstk_darwin
+# bootstrap binaries use the libpthread
+# functions that were added in macOS 10.15
+platforms           {darwin >= 19}
+
+# Use a prebuilt version of Crystal to build itself
+set cr_ver          ${version}
+set cr_full_ver     ${cr_ver}-1
+
+master_sites-append https://github.com/crystal-lang/${name}/releases/download/${cr_ver}/:bootstrap
+distfiles-append    ${name}-${cr_full_ver}-${os.platform}-universal${extract.suffix}:bootstrap
+
+checksums           ${distname}${extract.suffix} \
+                    rmd160  180bb826984955a899a0c94701ab986fcb5af2f8 \
+                    sha256  eb222af4d2aa269ed0f6c731661431a4fd97713de13f2f0a7c71e26140ca9d23 \
+                    size    3720544 \
+                    ${name}-${cr_full_ver}-${os.platform}-universal${extract.suffix} \
+                    rmd160  b35370cddd2075628a6dc20c67cc91e11b76c176 \
+                    sha256  226e94ad2dfa594a1537b6d60a58c227effc382e018b5cad25daa67c1aba3a3e \
+                    size    59311351
+
+patchfiles          patch-static.diff
+
+post-patch {
+    file copy -force ${worksrcpath}/src/lib_c/x86_64-openbsd/c/iconv.cr \
+        ${worksrcpath}/src/lib_c/aarch64-darwin/c/iconv.cr
+    file copy -force ${worksrcpath}/src/lib_c/x86_64-openbsd/c/iconv.cr \
+        ${worksrcpath}/src/lib_c/x86_64-darwin/c/iconv.cr
+}
+
+configure.ldflags-append    -Wl,-rpath,${prefix}/libexec/llvm-${llvm_version}/lib
+
+set llvm_config     LLVM_CONFIG=llvm-config-mp-${llvm_version}
+
+compiler.cxx_standard  2014
+
+build.args          release=1 interpreter=1 FLAGS=--no-debug \
+                    CRYSTAL_CONFIG_LIBRARY_PATH=${prefix}/lib
+
+build.env           ${llvm_config} \
+                    CRYSTAL=${workpath}/${name}-${cr_full_ver}/bin/${name}
+
+post-build {
+    system -W ${worksrcpath} "${llvm_config} ${build.cmd} docs"
+}
+
+destroot.target-append  install_docs
+destroot.args       -o docs
+destroot.env        ${llvm_config}
+
+# https://github.com/crystal-lang/crystal/issues/15684
+post-destroot {
+    move ${destroot}${prefix}/share/docs ${destroot}${prefix}/share/doc/${name}
+    move ${destroot}${prefix}/share/examples \
+        ${destroot}${prefix}/share/doc/${name}
+}
+
+test.run            yes
+test.target         spec
+test.env            ${llvm_config}

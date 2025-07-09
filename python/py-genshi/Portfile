@@ -1,0 +1,30 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           python 1.0
+
+name                py-genshi
+python.rootname     Genshi
+version             0.7.9
+revision            0
+categories-append   textproc www
+platforms           {darwin any}
+supported_archs     noarch
+license             BSD
+
+python.versions     27 39 310 311 312
+
+maintainers         {stromnov @stromnov} openmaintainer
+
+description         Python toolkit for generation of output for the web
+
+long_description \
+   Genshi is a Python library that provides an integrated set of components \
+   for parsing, generating, and processing HTML, XML or other textual \
+   content for output generation on the web.
+
+homepage            https://genshi.edgewall.org
+
+checksums           rmd160  ea898fecc694d4f2ca058e0776981ddec9d5c6f2 \
+                    sha256  c76170a8b2dc18944e0915103c284cb889dfcee34e0e140ba3363c80f7541ad2 \
+                    size    269399

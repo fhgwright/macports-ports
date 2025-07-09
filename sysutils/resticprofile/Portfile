@@ -1,0 +1,35 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           golang 1.0
+
+go.setup            github.com/creativeprojects/resticprofile 0.30.0 v
+go.offline_build    no
+revision            0
+
+homepage            https://creativeprojects.github.io/resticprofile/
+
+description         Configuration profiles manager and scheduler for restic
+
+long_description    resticprofile is one of many automation tools for restic, \
+                    also called a wrapper. In a nutshell, resticprofile \
+                    provides a configuration file and a runner that will \
+                    generate all the necessary calls to restic. \
+                    Additionally, it can schedule a profile via a user agent or \
+                    a daemon in launchd
+
+categories          sysutils
+installs_libs       no
+license             GPL-3
+maintainers         {fsoj.de:lheise @lucaheise} \
+                    openmaintainer
+
+checksums           rmd160  337bd2dfd6e1dde53392d730161e3f0c8e93fb9a \
+                    sha256  97de82255458b653f5b6d76cc152b014f5d58e83ee81e652f05e8c0f5de402b8 \
+                    size    3748720
+
+depends_run         port:restic
+
+destroot {
+    xinstall -m 0755 ${worksrcpath}/${name} ${destroot}${prefix}/bin/
+}

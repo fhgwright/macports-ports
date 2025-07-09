@@ -1,0 +1,94 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem       1.0
+
+set feature 21
+name             openjdk${feature}-temurin
+categories       java devel
+maintainers      {breun.nl:nils @breun} openmaintainer
+
+# JVMMinimumSystemVersion in Contents/Info.plist is set to macOS 10.12.0 for x86_64:
+# /usr/libexec/PlistBuddy -c "Print :JavaVM:JVMMinimumSystemVersion" Contents/Info.plist
+# Mapping to Darwin version: https://trac.macports.org/wiki/PortfileRecipes#compare-osx-darwin-version
+platforms        {darwin any >= 16 }
+
+# This port uses prebuilt binaries; 'NoMirror' makes sure MacPorts doesn't mirror/distribute these third-party binaries
+license          GPL-2 NoMirror
+# This port uses prebuilt binaries for a particular architecture; they are not universal binaries
+universal_variant no
+
+# https://adoptium.net/temurin/releases/
+supported_archs  x86_64 arm64
+
+version      ${feature}.0.7
+set build    6
+revision     0
+
+description  Eclipse Temurin, based on OpenJDK ${feature} (Long Term Support until at least December 2029)
+long_description Eclipse Temurin provides secure, TCK-tested and compliant, production-ready Java runtimes.
+
+master_sites https://github.com/adoptium/temurin${feature}-binaries/releases/download/jdk-${version}%2B${build}/
+
+if {${configure.build_arch} eq "x86_64"} {
+    distname     OpenJDK${feature}U-jdk_x64_mac_hotspot_${version}_${build}
+    checksums    rmd160  c7ff61ad5d41492782fcabba33a627a26abb4ec3 \
+                 sha256  8e6d876f60bc8b7866e91222ba9f27a78e5102d7a4ce4a6e915f95fe539b66ed \
+                 size    193920354
+} elseif {${configure.build_arch} eq "arm64"} {
+    distname     OpenJDK${feature}U-jdk_aarch64_mac_hotspot_${version}_${build}
+    checksums    rmd160  9ee05daa3e193dc9db80c7e8942be824d268a53f \
+                 sha256  6fcb25f3f71a5ff245dec4ebe8bd5c643f179a5cd0a61c08e58a8c65914d2f97 \
+                 size    199692905
+}
+
+worksrcdir   jdk-${version}+${build}
+
+homepage     https://adoptium.net
+
+livecheck.type      regex
+livecheck.url       https://github.com/adoptium/temurin${feature}-binaries
+livecheck.regex     jdk-(${feature}\[\.0-9\]+)\+
+
+use_configure    no
+build {}
+
+variant Applets \
+    description { Advertise the JVM capability "Applets".} {}
+
+variant WebStart \
+    description { Advertise the JVM capability "WebStart".} {}
+
+patch {
+    foreach var { Applets WebStart } {
+        if {[variant_isset ${var}]} {
+            reinplace -E "s|^(\[\[:space:\]\]*<string>)CommandLine(</string>)|\\1${var}\\2\\\n\\1CommandLine\\2|" ${worksrcpath}/Contents/Info.plist
+        }
+    }
+}
+
+test.run    yes
+test.cmd    Contents/Home/bin/java
+test.target
+test.args   -version
+
+# macOS Java tools expect to find Java virtual machines under /Library/Java/JavaVirtualMachines, which is not under ${prefix}.
+destroot.violate_mtree yes
+
+set jvms /Library/Java/JavaVirtualMachines
+set jdk ${jvms}/jdk-${feature}-eclipse-temurin.jdk
+
+destroot {
+    xinstall -m 755 -d ${destroot}${prefix}${jdk}
+    copy ${worksrcpath}/Contents ${destroot}${prefix}${jdk}
+
+    # macOS Java tools expect to find Java virtual machines under /Library/Java/JavaVirtualMachines, so let's create a symlink there
+    xinstall -m 755 -d ${destroot}${jvms}
+    ln -s ${prefix}${jdk} ${destroot}${jdk}
+}
+
+notes "
+If you have more than one JDK installed you can make ${name} the default\
+by adding the following line to your shell profile:
+
+    export JAVA_HOME=${jdk}/Contents/Home
+"

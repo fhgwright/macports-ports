@@ -1,0 +1,16 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           perl5 1.0
+
+perl5.branches      5.28 5.30 5.32 5.34
+perl5.setup         Statistics-CaseResampling 0.16
+revision            0
+license             {Artistic-1 GPL}
+maintainers         {devans @dbevans} openmaintainer
+description         Statistics::CaseResampling - Efficient resampling and calculation of medians with confidence intervals
+long_description    {*}${description}
+
+checksums           rmd160  008c314b589f9f163644ef6d6f921977b6b076d7 \
+                    sha256  91357d42b6bf266e5f378365020953753a9bbf9b99f96c4b9ab25376a54a5b94 \
+                    size    58759

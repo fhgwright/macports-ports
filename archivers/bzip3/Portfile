@@ -1,0 +1,25 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           github 1.0
+
+github.setup        kspalaiologos bzip3 1.5.2
+github.tarball_from releases
+revision            0
+categories          archivers
+license             LGPL-3+
+
+maintainers         {@sech1p gmail.com:sech1piam} openmaintainer
+
+description         A better and stronger spiritual successor to BZip2.
+long_description    {*}${description}
+
+checksums           rmd160  ea8fac0e84a93a23bd1436cbfda8c2d2fab3bdc5 \
+                    sha256  9d10092a3842378e6d0b16992ee49f711304d88eb4efac80440338184d4b6276 \
+                    size    414230
+
+configure.args      --disable-silent-rules
+
+# https://trac.macports.org/ticket/66644
+configure.cflags-append \
+                    -std=c99

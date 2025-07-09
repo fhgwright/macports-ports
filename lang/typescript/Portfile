@@ -1,0 +1,47 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+
+name                typescript
+version             5.7.2
+revision            0
+checksums           rmd160  84bef253ec7c249c39192b832c9270958ead3df3 \
+                    sha256  6826f763112d55de0093fd94a4257cabadf1f40b387757e7c68485fc971e886b \
+                    size    4231797
+
+categories          lang
+maintainers         @goranmoomin openmaintainer
+license             Apache-2
+description         TypeScript is JavaScript with syntax for types
+long_description    TypeScript is a strongly typed programming language that \
+                    builds on JavaScript, giving you better tooling at any \
+                    scale.
+
+homepage            https://www.typescriptlang.org
+master_sites        https://registry.npmjs.org/${name}/-
+
+distfiles          ${distname}.tgz
+
+platforms           any
+supported_archs     noarch
+
+depends_lib-append  path:bin/node:nodejs22
+depends_build-append \
+                    path:bin/npm:npm10
+
+use_configure       no
+
+extract.mkdir       yes
+extract {
+    copy ${distpath}/${distname}.tgz ${worksrcpath}/${distname}.tgz
+}
+
+build {}
+
+destroot {
+    system -W ${worksrcpath} "npm install --global --prefix [shellescape ${destroot}${prefix}] ${distname}.tgz"
+}
+
+livecheck.type      regex
+livecheck.url       https://registry.npmjs.org/${name}
+livecheck.regex     {"latest":"(.*?)"}

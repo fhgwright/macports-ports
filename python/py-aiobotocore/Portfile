@@ -1,0 +1,35 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           python 1.0
+
+name                py-aiobotocore
+version             2.23.0
+revision            0
+categories-append   devel
+platforms           {darwin any}
+license             Apache-2
+supported_archs     noarch
+
+python.versions     39 310 311 312 313
+
+maintainers         {stromnov @stromnov} openmaintainer
+
+description         Async client for Amazon services
+long_description    {*}${description}
+
+homepage            https://github.com/aio-libs/aiobotocore
+
+checksums           rmd160  11f64ffbb9679162dd7a8be91819d79d45734d00 \
+                    sha256  0333931365a6c7053aee292fe6ef50c74690c4ae06bb019afdf706cb6f2f5e32 \
+                    size    115825
+
+if {${name} ne ${subport}} {
+    depends_lib-append  port:py${python.version}-aiohttp \
+                        port:py${python.version}-aioitertools \
+                        port:py${python.version}-botocore \
+                        port:py${python.version}-dateutil \
+                        port:py${python.version}-jmespath \
+                        port:py${python.version}-multidict \
+                        port:py${python.version}-wrapt
+}

@@ -1,0 +1,34 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           golang 1.0
+
+go.setup            github.com/charmbracelet/vhs 0.9.0 v
+go.offline_build    no
+revision            0
+
+description         Your CLI home video recorder
+
+long_description    \
+    {*}${description}. Write terminal GIFs as code for integration testing \
+    and demoing your CLI tools.
+
+categories          graphics sysutils
+installs_libs       no
+license             MIT
+maintainers         {gmail.com:herby.gillot @herbygillot} \
+                    openmaintainer
+
+checksums           rmd160  19d78ac818c9d8e5a7b7bdfe7b1b943a3c9a42bf \
+                    sha256  e8538a9019ddfa633ef7e0a6eb417b87fed0555d51b67dc59cb53493e179e20b \
+                    size    134905
+
+depends_run-append  path:bin/ffmpeg:ffmpeg \
+                    path:bin/ttyd:ttyd
+
+build.pre_args-append \
+    -ldflags \" -s -w -X main.Version=v${version} \"
+
+destroot {
+    xinstall -m 0755 ${worksrcpath}/${name} ${destroot}${prefix}/bin/
+}

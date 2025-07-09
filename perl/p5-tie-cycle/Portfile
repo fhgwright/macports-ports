@@ -1,0 +1,19 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           perl5 1.0
+
+perl5.branches      5.28 5.30 5.32 5.34
+perl5.setup         Tie-Cycle 1.231
+revision            0
+license             Artistic-2
+maintainers         nomaintainer
+description         Tie::Cycle - Cycle through a list of values via a scalar.
+long_description    {*}${description}
+
+platforms           {darwin any}
+supported_archs     noarch
+
+checksums           rmd160  1306309aee7851a8244ed1331ec3a69ce57b7786 \
+                    sha256  84553d26db09b7eb3f15d809d82242214b5e4e268834a26574cefa83dd25c755 \
+                    size    12675

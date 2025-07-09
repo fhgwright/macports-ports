@@ -1,0 +1,40 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           golang 1.0
+
+go.setup            github.com/golangci/golangci-lint 2.1.6 v
+revision            0
+
+homepage            https://golangci-lint.run
+
+description         Fast linters runner for Go.
+
+long_description    \
+    GolangCI-Lint is a fast linters runner for Go that runs linters in \
+    parallel, uses caching, and supports YAML configuration. It includes \
+    over 100 linters, integrates with major IDEs, has minimal false \
+    positives, and supports multiple output formats.
+
+categories          devel
+installs_libs       no
+license             GPL-3
+maintainers         {gmail.com:herby.gillot @herbygillot} \
+                    {@steenzout} \
+                    openmaintainer
+
+checksums           rmd160  e2c21330fbc733e38c3908569d589434571a27ce \
+                    sha256  0ae50c50dbc7603ed27a6f559dca194cb8851f030410c5635270866e78cb3400 \
+                    size    2350726
+
+build.args          -ldflags="-s -w -X main.version=${version} -X main.commit=${version}" \
+                    ./cmd/golangci-lint
+
+# FIXME: This port currently can't be built without allowing go mod to fetch
+# dependencies during the build phase. See
+# https://trac.macports.org/ticket/61192
+go.offline_build no
+
+destroot {
+    xinstall -m 0755 ${worksrcpath}/${name} ${destroot}${prefix}/bin/${name}
+}

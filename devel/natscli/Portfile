@@ -1,0 +1,26 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           golang 1.0
+
+go.setup            github.com/nats-io/natscli 0.2.3 v
+go.offline_build    no
+revision            0
+categories          devel
+maintainers         {@0x1DA117 danieltrautmann.com:me} openmaintainer
+license             Apache-2
+
+description         The NATS Command Line Interface
+
+long_description    A command line utility to interact with and manage NATS.
+
+build.args          -o ${worksrcpath}/nats/nats \
+                    ./nats
+
+destroot {
+    xinstall -m 0755 ${worksrcpath}/nats/nats ${destroot}${prefix}/bin/
+}
+
+checksums           rmd160  65a84eace517c9f97aa94c7c04b5f01235b09bfa \
+                    sha256  8f889526185f160265fb4988b7cad4d3dee36bedaede85ac859a134f2b1ba975 \
+                    size    290358

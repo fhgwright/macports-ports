@@ -1,0 +1,38 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           github 1.0
+
+github.setup        usbids usbids ce9a25a2d7d03f6d8151ffa04b83424f527c10bc
+version             2025.01.14
+revision            0
+checksums           rmd160  cfbc196aaa20f0e8d9bf2a8090464d96291fa18c \
+                    sha256  465acce2c6bb031aa8958ee9cffbb7940502f5b330eb9324c614118e6c76a8dc \
+                    size    267984
+
+categories          sysutils
+license             {GPL-2+ BSD}
+maintainers         nomaintainer
+supported_archs     noarch
+platforms           any
+
+description         The USB ID Repository
+long_description    This is a public repository of all known IDs used \
+                    in USB devices: IDs of vendors, devices, \
+                    subsystems and device classes. It is used in \
+                    various programs (e.g., The USB Utilities) to \
+                    display full human-readable names instead of \
+                    cryptic numeric codes.
+homepage            http://www.linux-usb.org/usb-ids.html
+github.tarball_from archive
+
+use_configure       no
+build {}
+destroot {
+    xinstall -m 644 ${worksrcpath}/usb.ids ${destroot}${prefix}/share
+}
+
+livecheck.version   ${version}
+livecheck.type      regex
+livecheck.url       ${github.raw}/master/usb.ids
+livecheck.regex     {Version: (\d{4}\.\d{2}\.\d{2})}

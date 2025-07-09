@@ -1,0 +1,27 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           github 1.0
+PortGroup           tree_sitter 1.0
+
+github.setup        tree-sitter tree-sitter-go 0.23.4 v
+# Change github.tarball_from to 'releases' or 'archive' next update
+github.tarball_from tarball
+revision            0
+
+description         A tree-sitter parser for Golang
+
+long_description    {*}${description}
+
+categories          devel
+license             MIT
+maintainers         {amake @amake} openmaintainer
+
+checksums           rmd160  e5f315aa2b503b6673f18708d39bfecdf6b2fe83 \
+                    sha256  39fb8c57710f756fb357a48ce8662aa8c0bb9e0f058ffc7f8f6a57189b964575 \
+                    size    205843
+
+worksrcdir          ${worksrcdir}/src
+
+# parser.c: error: ‘for’ loop initial declaration used outside C99 mode
+configure.cflags-append -std=c99

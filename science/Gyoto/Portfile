@@ -1,0 +1,191 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           active_variants 1.1
+PortGroup           boost 1.0
+PortGroup           compilers 1.0
+PortGroup           github 1.0
+
+github.setup        gyoto Gyoto 74a1bd863b5f2855044b656314297d85e346ef41
+version             2.0.2+20241208
+revision            0
+checksums           rmd160  48d5c661f4b0a957cd3b404a098b3ca2df999545 \
+                    sha256  ab91835e15f7e800c9fe013c27c430ee81fbd147ad36b915cc112bba2276d98c \
+                    size    2304295
+
+license             GPL-3+
+categories          science
+maintainers         {thibaut @paumard} openmaintainer
+description         General relativistic geodesic integration and ray-tracing
+long_description    Gyoto aims at providing a framework for computing orbits \
+                    and ray-traced images in General relativity. It consists \
+                    in a C++ shared library (libgyoto) and a utility programs \
+                    (gyoto). Gyoto can be extended with plug-ins. The py*-gyoto \
+                    Ports contains Python bindings for libgyoto.
+
+homepage            https://gyoto.obspm.fr
+github.tarball_from archive
+
+depends_build       path:share/pkgconfig/eigen3.pc:eigen3 \
+                    port:LORENE \
+                    path:bin/pkg-config:pkgconfig
+
+depends_lib         port:cfitsio \
+                    port:flint \
+                    port:udunits2 \
+                    port:xercesc3
+
+# xercesc3 requires C++11; notice that eigen3-devel needs C++14.
+compiler.cxx_standard   2011
+
+configure.args      --without-yorick \
+                    --with-lorene=${prefix}/lib/lorene \
+                    --with-xerces \
+                    --disable-doc \
+                    --with-cfitsio \
+                    --with-udunits-headers=-I${prefix}/include/udunits2/ \
+                    --with-udunits-libs=-L${prefix}/lib/ \
+                    --enable-release \
+                    --without-mpi \
+                    --without-python \
+                    --without-arblit \
+                    --without-aeae \
+                    --with-sosuffix=-mp-${version}
+
+if {[string match *clang* ${configure.cxx}] && ${configure.cxx_stdlib} ne ""} {
+    configure.ldflags-append    -stdlib=${configure.cxx_stdlib}
+}
+
+# When building from a git commit, reflect the version number that we chose in gyoto --version etc
+post-configure {
+    reinplace -W ${worksrcpath} "s|PACKAGE_STRING = Gyoto.*|PACKAGE_STRING = Gyoto ${version}|g" \
+        Makefile bin/Makefile lib/Makefile
+    reinplace -W ${worksrcpath} "s|PACKAGE_VERSION = .*|PACKAGE_VERSION = ${version}|g" \
+        Makefile bin/Makefile lib/Makefile
+}
+
+test.target         check check-lorene
+test.run            yes
+
+compilers.setup     -gcc
+compilers.enforce_c lorene
+
+if {![catch {set result [active_variants [boost::depends_portname] openmpi {}]}]} {
+  if {$result} {
+    default_variants +openmpi
+  } else {
+      if {[active_variants [boost::depends_portname] mpich {}]} {
+          default_variants +mpich
+      }
+  }
+}
+
+foreach nodot [list 39 310 311 312 313] wdot [list 3.9 3.10 3.11 3.12 3.13] {
+    subport py${nodot}-gyoto {
+        depends_build-append path:bin/doxygen:doxygen port:swig-python \
+                             port:py${nodot}-setuptools
+        depends_lib-append   port:python${nodot} port:py${nodot}-numpy
+        depends_run-append   port:Gyoto
+        compilers.enforce_c  Gyoto
+        categories-append    python
+        configure.args-delete --without-python
+        configure.args-append PYTHON=${prefix}/bin/python${wdot}
+        # When building from a git commit, reflect the version number that we chose in gyoto --version etc
+        post-configure {
+            reinplace -W ${worksrcpath} "s|PACKAGE_STRING = Gyoto.*|PACKAGE_STRING = Gyoto ${version}|g" \
+                Makefile bin/Makefile lib/Makefile python/Makefile
+            reinplace -W ${worksrcpath} "s|PACKAGE_VERSION = .*|PACKAGE_VERSION = ${version}|g" \
+                Makefile bin/Makefile lib/Makefile python/Makefile
+        }
+        use_parallel_build no
+        build.target  python plugins/python
+        destroot.cmd  PYTHONPATH=${frameworks_dir}/Python.framework/Versions/${wdot}:\$PYHTONPATH make
+        destroot.args -C python INSTALL_DATA=true prefix=${frameworks_dir}/Python.framework/Versions/${wdot}
+        post-destroot {
+            system -W ${worksrcpath}/plugins/python "${build.cmd} install DESTDIR=${destroot}"
+            xinstall -d ${destroot}${prefix}/share/doc/${subport}/examples
+            xinstall {*}[glob ${worksrcpath}/plugins/python/doc/examples/*] \
+                ${destroot}${prefix}/share/doc/${subport}/examples/
+            xinstall {*}[glob ${worksrcpath}/python/example*.py] \
+                ${destroot}${prefix}/share/doc/${subport}/examples/
+            file delete -force ${destroot}${prefix}/include/
+        }
+        test.run no
+    }
+}
+
+subport Gyoto {
+#    PortGroup conflicts_build 1.0
+#    conflicts_build ${name}
+    post-destroot {
+        xinstall -W ${worksrcpath}/python \
+            gyoto.i gyoto_std.i gyoto_lorene.i numpy.i \
+            ${destroot}${prefix}/include/Gyoto/
+        xinstall ${worksrcpath}/plugins/python/include/GyotoPython.h \
+            ${destroot}${prefix}/include/Gyoto/
+        xinstall -d ${destroot}${prefix}/share/doc/${subport}/examples/plugins
+        xinstall {*}[glob ${worksrcpath}/doc/examples/*] \
+            ${destroot}${prefix}/share/doc/${subport}/examples/
+        copy ${worksrcpath}/plugins/null \
+            ${destroot}${prefix}/share/doc/${subport}/examples/plugins/null
+        system \
+            -W ${destroot}${prefix}/share/doc/${subport}/examples/plugins/null \
+            "touch aclocal.m4 configure Makefile.in */Makefile.in"
+    }
+}
+
+compilers.enforce_c [boost::depends_portname]
+
+variant openmpi conflicts mpich \
+        description {Add MPI parallelization using OpenMPI} {
+        set c_variant [c_variant_name]
+        if {${c_variant} == ""} {
+            set mpi_port openmpi
+            set mpi_suffix mp
+        } else {
+            set mpi_port openmpi-${c_variant}
+            set mpi_suffix ${c_variant}
+        }
+        require_active_variants [boost::depends_portname] openmpi {}
+        depends_lib-append port:${mpi_port}
+        configure.args-delete --without-mpi
+        configure.args-append --with-mpi \
+            MPICC="mpicc-openmpi-${mpi_suffix}" \
+            MPICXX="mpicxx-openmpi-${mpi_suffix}" \
+            CC="mpicc-openmpi-${mpi_suffix}" \
+            CXX="mpicxx-openmpi-${mpi_suffix}"
+        build.args-delete CC="${configure.cc}"
+        build.args-append CC="mpicc-openmpi-${mpi_suffix}"
+        notes "
+    For multi-processing, wrap gyoto in mpirun-openmpi-${mpi_suffix}, e.g.:
+    $ mpirun-openmpi-${mpi_suffix} gyoto -P4 in.xml out.fits
+    "
+}
+
+variant mpich conflicts openmpi \
+        description {Add MPI parallelization using MPICH} {
+        set c_variant [c_variant_name]
+        if {${c_variant} == ""} {
+            set mpi_port mpich
+            set mpi_suffix mp
+        } else {
+            set mpi_port mpich-${c_variant}
+            set mpi_suffix ${c_variant}
+        }
+        require_active_variants [boost::depends_portname] mpich {}
+        depends_lib-append port:${mpi_port}
+        configure.args-delete --without-mpi
+        configure.args-append --with-mpi \
+            MPICC="mpicc-mpich-${mpi_suffix}" \
+            MPICXX="mpicxx-mpich-${mpi_suffix}" \
+            CC="mpicc-mpich-${mpi_suffix}" \
+            CXX="mpicxx-mpich-${mpi_suffix}"
+        build.args-delete CC="${configure.cc}"
+        build.args-append CC="mpicc-mpich-${mpi_suffix}"
+        notes "
+    +-- Gyoto Usage note ------------------------------------------------------
+    | For multi-processing, wrap gyoto in mpirun-mpich-${mpi_suffix}, e.g.:
+    |   $ mpirun-mpich-${mpi_suffix} gyoto -P4 in.xml out.fits
+    +--------------------------------------------------------------------------
+    "
+}

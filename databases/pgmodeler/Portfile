@@ -1,0 +1,55 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           github  1.0
+PortGroup           qt6     1.0
+PortGroup           compiler_blacklist_versions 1.0
+
+github.setup        pgmodeler pgmodeler 1.1.6 v
+github.tarball_from archive
+revision            0
+
+categories          databases
+license             GPL-3
+maintainers         {l2dy @l2dy} \
+                    {gmail.com:herby.gillot @herbygillot} \
+                    openmaintainer
+
+description         PostgreSQL Database Modeler
+
+long_description    pgModeler - {*}${description} - is an open source data \
+                    modeling tool designed for PostgreSQL.
+
+checksums           rmd160  95f5ea0c405b2147c749af864bb56fd0030546fb \
+                    sha256  4ffe1bb7ab96bf66b3188d0bd3bf378b5c4b670659739928a6c68482bf9fff6f \
+                    size    4203816
+
+compiler.cxx_standard \
+                    2011
+# src/databaseexplorerwidget.cpp:1761:88: error: chosen constructor is explicit in copy-initialization
+compiler.blacklist-append \
+                    {clang < 700}
+
+patchfiles          patch-${name}.pri.diff
+
+post-patch {
+    reinplace "s|@@PREFIX@@|${prefix}|g" ${worksrcpath}/${name}.pri
+}
+
+depends_lib-append  port:libxml2 \
+                    port:postgresql15
+
+qt6.depends_lib     qtsvg
+
+configure.cmd       [option qt6.dir]/bin/qmake
+
+configure.args-append \
+                    -r CONFIG+=release ${name}.pro
+configure.pre_args-replace \
+                    --prefix=${prefix} PREFIX=${applications_dir}/${name}.app/Contents
+
+github.livecheck.regex \
+                    {([0-9.]+)}
+
+destroot.args-append \
+                    INSTALL_ROOT=${destroot}

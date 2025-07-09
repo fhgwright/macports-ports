@@ -1,0 +1,100 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem       1.0
+
+set feature 8
+name             openjdk${feature}-corretto
+categories       java devel
+maintainers      {breun.nl:nils @breun} openmaintainer
+
+# JVMMinimumSystemVersion in Contents/Info.plist is set to macOS 10.6.0 for x86_64:
+# /usr/libexec/PlistBuddy -c "Print :JavaVM:JVMMinimumSystemVersion" Contents/Info.plist
+# Mapping to Darwin version: https://trac.macports.org/wiki/PortfileRecipes#compare-osx-darwin-version
+platforms        {darwin any >= 10 }
+
+# This port uses prebuilt binaries; 'NoMirror' makes sure MacPorts doesn't mirror/distribute these third-party binaries
+license          GPL-2 NoMirror
+
+# This port uses prebuilt binaries for a particular architecture; they are not universal binaries
+universal_variant no
+
+# https://github.com/corretto/corretto-8/releases
+supported_archs  x86_64 arm64
+
+version      ${feature}.452.09.1
+revision     0
+
+description  Amazon Corretto OpenJDK ${feature} (Long Term Support)
+long_description No-cost, multiplatform, production-ready distribution of OpenJDK from Amazon.
+
+master_sites https://corretto.aws/downloads/resources/${version}/
+
+if {${configure.build_arch} eq "x86_64"} {
+    distname     amazon-corretto-${version}-macosx-x64
+    checksums    rmd160  2cbb2e2c13b368282f82166982e79bb39e00a9ec \
+                 sha256  a0645f8b5f0f551a7fd521356d1f0e4dc4d9279fe9d23c6bca2c0ce19f3c7ac4 \
+                 size    118516353
+} elseif {${configure.build_arch} eq "arm64"} {
+    distname     amazon-corretto-${version}-macosx-aarch64
+    checksums    rmd160  bdcab9de758e572cb5abd4b2165d57606f32dba6 \
+                 sha256  66d064185b337bc1f104e7ccfb47644a48ca0c2b8ccbd1fdec308c0f6702078b \
+                 size    102949635
+}
+
+worksrcdir   amazon-corretto-${feature}.jdk
+
+homepage     https://aws.amazon.com/corretto/
+
+livecheck.type      regex
+livecheck.url       https://github.com/corretto/corretto-${feature}/releases
+livecheck.regex     amazon-corretto-(${feature}\.\[0-9\.\]+)-macosx-.*\.tar\.gz
+
+use_configure    no
+build {}
+
+variant Applets \
+    description { Advertise the JVM capability "Applets".} {}
+
+variant BundledApp \
+    description { Advertise the JVM capability "BundledApp". This is required by some java-based app bundles to recognize and use the JVM.} {}
+
+variant JNI \
+    description { Advertise the JVM capability "JNI". This is required by some java-based app bundles to recognize and use the JVM.} {}
+
+variant WebStart \
+    description { Advertise the JVM capability "WebStart".} {}
+
+patch {
+    foreach var { Applets BundledApp JNI WebStart } {
+        if {[variant_isset ${var}]} {
+            reinplace -E "s|^(\[\[:space:\]\]*<string>)CommandLine(</string>)|\\1${var}\\2\\\n\\1CommandLine\\2|" ${worksrcpath}/Contents/Info.plist
+        }
+    }
+}
+
+test.run    yes
+test.cmd    Contents/Home/bin/java
+test.target
+test.args   -version
+
+# macOS Java tools expect to find Java virtual machines under /Library/Java/JavaVirtualMachines, which is not under ${prefix}.
+destroot.violate_mtree yes
+
+set jvms /Library/Java/JavaVirtualMachines
+set jdk ${jvms}/${name}
+
+destroot {
+    xinstall -m 755 -d ${destroot}${prefix}${jdk}
+    copy ${worksrcpath}/Contents ${destroot}${prefix}${jdk}
+
+    # macOS Java tools expect to find Java virtual machines under /Library/Java/JavaVirtualMachines, so let's create a symlink there
+    xinstall -m 755 -d ${destroot}${jvms}
+    ln -s ${prefix}${jdk} ${destroot}${jdk}
+}
+
+notes "
+If you have more than one JDK installed you can make ${name} the default\
+by adding the following line to your shell profile:
+
+    export JAVA_HOME=${jdk}/Contents/Home
+"

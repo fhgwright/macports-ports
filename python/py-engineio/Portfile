@@ -1,0 +1,48 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim: fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           github 1.0
+PortGroup           python 1.0
+
+github.setup        miguelgrinberg python-engineio 4.10.1 v
+# Change github.tarball_from to 'releases' or 'archive' next update
+github.tarball_from tarball
+name                py-engineio
+revision            0
+
+supported_archs     noarch
+platforms           {darwin any}
+license             MIT
+maintainers         {judaew @judaew} openmaintainer
+
+description         Python Engine.IO server and client
+long_description    \
+    Python implementation of the Engine.IO realtime client and server.
+
+checksums           rmd160  a472280fa638acfc305b9528983d8c47c8bd9845 \
+                    sha256  cf416185026c3d60bc45eb1529059d669b67af007dbe1734a80ed9dce2e39a07 \
+                    size    317249
+
+python.versions     39 310 311
+
+if {${name} ne ${subport}} {
+    depends_build-append \
+                    port:py${python.version}-sphinx
+
+    depends_run-append \
+                    port:py${python.version}-aiohttp \
+                    port:py${python.version}-requests \
+                    port:py${python.version}-websocket-client
+
+    post-build {
+        system -W ${worksrcpath}/docs "make PYTHONPATH=${worksrcpath}/build/lib SPHINXBUILD=${prefix}/bin/sphinx-build-${python.branch} html man"
+    }
+
+    post-destroot {
+        set doc_build_dir ${worksrcpath}/docs/_build
+        file delete -force ${doc_build_dir}/html/.buildinfo \
+            ${doc_build_dir}/html/_sources
+        copy ${doc_build_dir}/html ${destroot}${prefix}/share/doc/${subport}
+        copy ${doc_build_dir}/man ${destroot}${python.prefix}
+    }
+}

@@ -1,0 +1,35 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           python 1.0
+
+# Remember to update libvirt and py-libvirt at the same time.
+name                py-libvirt
+version             11.0.0
+revision            0
+checksums           rmd160  d4b7845ef6a9be8b1fd7d17ccc23297945dc3c87 \
+                    sha256  cee825a53c6438c5bc84b4250b35493a8e504d5d8075d3d2069ffaf7090846f8 \
+                    size    241103
+
+license             MIT
+maintainers         {ryandesign @ryandesign} openmaintainer
+
+description         The libvirt virtualization API python binding
+long_description    The libvirt virtualization API python binding provides a \
+                    module that permits applications written in the Python \
+                    programming language to call the interface supplied by the \
+                    libvirt library, to manage the virtualization capabilities \
+                    of recent versions of Linux and other OSes.
+
+homepage            https://libvirt.org
+master_sites        ${homepage}/sources/python
+distname            libvirt-python-${version}
+livecheck.name      ${python.rootname}-python
+
+python.versions     39 310 311 312 313
+
+if {${name} ne ${subport}} {
+    depends_build       port:py${python.version}-setuptools \
+                        path:bin/pkg-config:pkgconfig
+    depends_lib         port:libvirt
+}
