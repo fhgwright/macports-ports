@@ -137,14 +137,74 @@ pre-pkg {
             ${resources_lang}/InstallationCheck.strings
     }
 
+    if {[variant_isset tigerok]} {
+        # Undo effect of description patch so matches below work
+        reinplace "s|10\\.4|10.5|" ${resources_lang}/Welcome.html
+    }
+
     reinplace "s|or newer ||" ${resources_lang}/Welcome.html
     if {${os.major} >= 16} {
         reinplace "s|Mac OS X 10\\.5|macOS ${mdt_major}|" ${resources_lang}/Welcome.html
     } elseif {${os.major} >= 12} {
         reinplace "s|Mac OS X 10\\.5|OS X ${mdt_major}|" ${resources_lang}/Welcome.html
-    } elseif {${os.major} > 9} {
+    } elseif {${os.major} != 9} {
         reinplace "s|10\\.5|${mdt_major}|" ${resources_lang}/Welcome.html
     }
+}
+
+variant tigerok description "Reenable Tiger support" {
+    # Tiger version is no longer official - use alternate version and site.
+    #
+    # To avoid interactions with betas, etc., we set the version explicitly
+    # here, and warn when it's inconsistent with the base version.
+    # This generates an ignorable lint warning.
+    #
+    long_description          [string map {10.5 10.4} ${long_description}]
+
+    set     tiger_auth        fhgwright
+    set     tiger_ver         2.11.0.0
+
+    # Override possible /testing
+    dist_subdir               ${name}
+
+    # Warn about version inconsistency
+    set     base_ver    [join [lrange [split ${github.version} .] 0 2] .]
+    set     t_base_ver  [join [lrange [split ${tiger_ver} .] 0 2] .]
+    if {${t_base_ver} != ${base_ver}} {
+        ui_warn "Tiger base version ${t_base_ver} mismatches base version ${base_ver}"
+    }
+
+    github.setup        ${tiger_auth} macports-base ${tiger_ver} tiger-
+    github.tarball_from archive
+    use_bzip2           no
+
+    checksums           rmd160  3a0eedea790d1619b2e678ab854845f3553e1531 \
+                        sha256  8b74da94c96ba168f7609f0b80d4616f0e130926a733787cd32971aa54a62e9f \
+                        size    31424970
+}
+
+platform darwin 8 {
+    default_variants-append +tigerok
+
+    # has ${prefix}/include ahead of /usr/include in default search path
+    compiler.blacklist apple-gcc-4.2
+}
+
+platform darwin 8 powerpc {
+    pre-configure {
+        set sdkrootpath /Developer/SDKs/MacOSX10.4u.sdk
+        if {[file exists ${sdkrootpath}]} {
+            # Supply architecture and sysroot flags to build MacPorts universal.
+            configure.cflags-append -isysroot ${sdkrootpath} -arch ppc -arch i386
+            configure.env-append "SHLIB_LDFLAGS=-Wl,-syslibroot,${sdkrootpath} -arch ppc -arch i386"
+        }
+    }
+}
+
+platform darwin 8 i386 {
+    # Supply architecture flags to build MacPorts universal.
+    configure.cflags-append -arch ppc -arch i386
+    configure.args-append SHLIB_LDFLAGS='-arch ppc -arch i386'
 }
 
 platform darwin {
