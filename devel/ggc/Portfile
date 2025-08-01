@@ -3,7 +3,7 @@
 PortSystem          1.0
 PortGroup           golang 1.0
 
-go.setup            github.com/bmf-san/ggc 3.0.0
+go.setup            github.com/bmf-san/ggc 3.0.1
 revision            0
 
 description         \
@@ -28,12 +28,20 @@ build.args-append   \
 
 destroot {
     xinstall -m 0755 ${worksrcpath}/${name} ${destroot}${prefix}/bin/
+    # Check ${worksrcpath}/tools/completions/ for all supported shells
+    set comp_path(bash) ${destroot}${prefix}/share/bash-completion/completions/${name}
+    set comp_path(fish) ${destroot}${prefix}/share/fish/completions/${name}.fish
+    set comp_path(zsh)  ${destroot}${prefix}/share/zsh/site-functions/_${name}
+    foreach shell {bash fish zsh} {
+        xinstall -d [file dirname $comp_path(${shell})]
+        xinstall -m 0644 ${worksrcpath}/tools/completions/${name}.${shell} $comp_path(${shell})
+    }
 }
 
 checksums           ${distname}${extract.suffix} \
-                        rmd160  7e77b24b87020ea9b161fbf97742326c288367e5 \
-                        sha256  376bc1b2428d3b5c598f3b0795cd63a292dd1052e48466835d55fd7fb26037c4 \
-                        size    1158702
+                        rmd160  e253e35f482a2d31007665749bb03d28a6afe655 \
+                        sha256  ce4a9770c271dda649e43472af6d1c5a11b828d4afd4355fd97a68c0a451eb7a \
+                        size    1160379
 
 go.vendors          gopkg.in/yaml.v3 \
                         lock    v3.0.1 \
