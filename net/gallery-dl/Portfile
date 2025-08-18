@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           github 1.0
 PortGroup           python 1.0
 
-github.setup        mikf gallery-dl 1.30.2 v
+github.setup        mikf gallery-dl 1.30.4 v
 github.tarball_from releases
 distname            gallery_dl-${github.version}
 
@@ -12,9 +12,9 @@ categories          net
 maintainers         {@akierig fastmail.de:akierig} openmaintainer
 revision            0
 
-checksums           rmd160  17feadcd2f59606b61845deae62771e343d7751f \
-                    sha256  30828ca52cd69dc49f594ede00b298d2a8efe49c6055e885379a6ca58285bd09 \
-                    size    582116
+checksums           rmd160  358c3b0bc30b00592e180077717a68ddc032e083 \
+                    sha256  806f3fed2c4deca5f8d02385f5eb384e3ed0385f2f04578e26cd504811889777 \
+                    size    587484
 
 description         command-line program to download image galleries and \
                     collections from several image hosting sites
