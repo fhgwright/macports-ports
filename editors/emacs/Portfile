@@ -116,7 +116,7 @@ platform darwin {
 
 if {$subport eq $name || $subport eq "emacs-app"} {
     version         30.2
-    revision        0
+    revision        2
     checksums       rmd160  fefdd3fcd453d733114f609a3e122b2529cc7410 \
                     sha256  1d79a4ba4d6596f302a7146843fe59cf5caec798190bcc07c907e7ba244b076d \
                     size    83059014
@@ -129,17 +129,17 @@ if {$subport eq "emacs-devel" || $subport eq "emacs-app-devel"} {
 
     # do not forget to check that configure hasn't introduce some suprises via
     # git diff [old]..[new] -- '**/configure.ac'
-    github.setup    emacs-mirror emacs d99354720be8655a58c8a09c5ae110f86ac9fb5d
+    github.setup    emacs-mirror emacs db3d6f06c389e06922964fb4869d19ba9040c16e
     github.tarball_from archive
     epoch           5
-    version         20250814
+    version         20250924
     revision        0
 
     master_sites    ${github.master_sites}
 
-    checksums       rmd160  1ac90ea0947dc4f965cd2e22d52f11712ad86395 \
-                    sha256  459c5535864ec8212f9f8604baf7675207e86fa40eab60300169354b87a59bb6 \
-                    size    52268769
+    checksums       rmd160  591d36fc54fc696d35e026f6d8a80d0230ed1394 \
+                    sha256  664d4fa8443c884ecbbddebfc799f9142dada9911eaff7b0fb116a4b0c63c2fe \
+                    size    52379510
 
     livecheck.type none
 
@@ -287,7 +287,7 @@ if {$subport eq "emacs-app" || $subport eq "emacs-app-devel"} {
 }
 
 variant nativecomp description {Builds emacs with native compilation support} {
-    set gcc_v                      14
+    set gcc_v                      15
     depends_lib-append             port:gcc${gcc_v}
     configure.args-replace         --with-native-compilation=no \
                                    --with-native-compilation=aot
@@ -329,12 +329,16 @@ variant treesitter description {Builds emacs with tree-sitter support} {
         port:tree-sitter-heex \
         port:tree-sitter-elixir \
         port:tree-sitter-lua \
-        port:tree-sitter-php
+        port:tree-sitter-php \
+        port:tree-sitter-phpdoc
 
     if {$subport eq "emacs-devel" || $subport eq "emacs-app-devel"} {
         depends_run-append \
             port:tree-sitter-markdown \
-            port:tree-sitter-go-work
+            port:tree-sitter-go-work \
+            port:tree-sitter-jsdoc \
+            port:tree-sitter-gitattributes \
+            port:tree-sitter-liquid
     }
 
     notes-append "

@@ -7,7 +7,12 @@ PortGroup           ruby 1.0
 # architectures.  Don't change it without preserving this property.
 # The choice of Ruby versions doesn't affect clients.
 #
-ruby.setup          asciidoctor 2.0.23 gem {} rubygems ruby33
+# The asciidoctor website still lists 3.3 as the highest compatible CRuby
+# version.  The documentation indicates that this version has a short-term
+# fix for an issue with CRuby 3.4, but there's no good reason to exercise
+# it, since having multiple versions of Ruby installed isn't very expensive.
+#
+ruby.setup          asciidoctor 2.0.25 gem {} rubygems ruby33
 name                asciidoctor
 revision            0
 
@@ -32,9 +37,9 @@ long_description    Asciidoctor is a fast, open source, Ruby-based \
                     content written in AsciiDoc.
 homepage            https://asciidoctor.org/
 
-checksums           rmd160  190d0301e8d719c74b400c73842bd0e4b6220521 \
-                    sha256  52208807f237dfa0ca29882f8b13d60b820496116ad191cf197ca56f2b7fddf3 \
-                    size    283136
+checksums           rmd160  0325ccaadc062cfaa452b62c2508aecf0011da57 \
+                    sha256  b06fe822b0910d4e25ea0f562fecfc7948e946e222efd9494849d27da4267d19 \
+                    size    284672
 
 # Use normal distfile location, instead of 'ruby'.
 dist_subdir         ${name}

@@ -4,25 +4,23 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                py-ruamel-yaml
-
-version             0.18.14
-checksums           rmd160  669a8ab59d89e4f18bee115c8741ef29cc3d3f74 \
-                    sha256  7227b76aaec364df15936730efbf7d72b30c0b79b1d578bbb8e3dcb2d81f52b7 \
-                    size    145511
+version             0.18.16
 revision            0
-
 license             MIT
-platforms           {darwin any}
-supported_archs     noarch
 maintainers         {michaelld @michaelld} openmaintainer
-
 description         YAML 1.2 loader/dumper package for Python
 long_description    {*}${description}. \
                     It is a derivative of Kirill Simonov’s PyYAML 3.11.
-
 homepage            https://yaml.readthedocs.io/
 
-python.versions     38 39 310 311 312 313
+platforms           {darwin any}
+supported_archs     noarch
+
+checksums           rmd160  35d8f6b0be2d7be7e56e03b919ab344c38ae4c04 \
+                    sha256  a6e587512f3c998b2225d68aa1f35111c29fad14aed561a26e73fab729ec5e5a \
+                    size    147269
+
+python.versions     38 39 310 311 312 313 314
 
 # project name on pypi uses "." not "-"
 python.rootname     [string map {- .} ${python.rootname}]

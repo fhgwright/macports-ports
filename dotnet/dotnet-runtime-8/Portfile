@@ -3,12 +3,11 @@
 PortSystem          1.0
 
 name                dotnet-runtime-8
-version             8.0.18
+version             8.0.21
 revision            0
 categories          dotnet
 license             MIT
-maintainers         {@tsabirgaliev gmail.com:tair.sabirgaliev} \
-                    {@judaew judaew} openmaintainer
+maintainers         @BjarneDMat {@judaew judaew} openmaintainer
 
 description         .NET is a cross-platform runtime for cloud, mobile, desktop, and IoT apps.
 
@@ -25,15 +24,15 @@ supported_archs     x86_64 arm64
 switch ${build_arch} {
     x86_64 {
         distname            dotnet-runtime-${version}-osx-x64
-        checksums           rmd160  f48394449421299a351a71eadfc2b279f45ef5dd \
-                            sha256  68992c0529dfe43880a9bede018840ef13c71ef3033938af0b7de6e37bb8d646 \
-                            size    30722097
+        checksums           rmd160  528363a4b2cb9dadaa6d3270ab6a14ae31b4208b \
+                            sha256  b64209db909fed48216a8088cc00d11b41c488df3aaae18781907ab2e0174182 \
+                            size    30725784
     }
     arm64 {
         distname            dotnet-runtime-${version}-osx-arm64
-        checksums           rmd160  85be9556ba75e454404a0f2f6829bb040ae532e8 \
-                            sha256  6601580286d38b7751d1b46151f898cb2900cfbcc211225e8ab21b4e7101dd2e \
-                            size    29072131
+        checksums           rmd160  da16d6dfdfbbcc5f8253a1ae26fd3634cfced0b0 \
+                            sha256  7225b12837fcf0de543eff33b96258b4f053e86d3462385d5f78f1a66ec2ce4f \
+                            size    29077023
     }
     default {
         known_fail yes

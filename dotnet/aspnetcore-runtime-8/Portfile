@@ -3,12 +3,11 @@
 PortSystem          1.0
 
 name                aspnetcore-runtime-8
-version             8.0.18
+version             8.0.21
 revision            0
 categories          dotnet
 license             MIT
-maintainers         {@tsabirgaliev gmail.com:tair.sabirgaliev} \
-                    {@judaew judaew} openmaintainer
+maintainers         @BjarneDMat {@judaew judaew} openmaintainer
 
 description         ASP.NET Core is a cross-platform .NET framework for building modern \
                     cloud-based web applications on Windows, Mac, or Linux.
@@ -26,15 +25,15 @@ supported_archs     x86_64 arm64
 switch ${build_arch} {
     x86_64 {
         distname            aspnetcore-runtime-${version}-osx-x64
-        checksums           rmd160  42d1d1157b07743b27be38c718f67355d39ae1f5 \
-                            sha256  bbd11511b9ae44a9243c6232c9def9f1f896897292737e1520f7062649a9a429 \
-                            size    41366476
+        checksums           rmd160  764660837dce19d7f52252a42e0cb75b0542b612 \
+                            sha256  0d43c30260f4c0b56fd7ae64baf3f16ec30950e960641eefeab5fdd80fef64ef \
+                            size    41370421
     }
     arm64 {
         distname            aspnetcore-runtime-${version}-osx-arm64
-        checksums           rmd160  1eb7b72ff3bd8ff2675e4c9055cf3e77a8330d48 \
-                            sha256  c93921f2219513120b038902d289934d8708ab31d336b54686fec41ee4030b62 \
-                            size    39453214
+        checksums           rmd160  151b61206fe681303cf7b34d70494decbf300772 \
+                            sha256  12d96fd163cfd1bb36720b7ce62f183cbcea8537672595a51b044f7393796402 \
+                            size    39464490
     }
     default {
         known_fail yes

@@ -24,25 +24,25 @@ subport ${name-ltr} {}
 
 if {${subport} eq ${name}} {
     # Latest version
-    github.setup    qgis QGIS 3_44_1 final-
+    github.setup    qgis QGIS 3_44_3 final-
     github.tarball_from archive
-    revision        1
+    revision        0
     set app_name    QGIS3
 
-    checksums       rmd160  98f2731a6d49f1b95dec7af6cd155d3e549a158b \
-                    sha256  0048cac8bb9e4e471b90efcfa02b5175d517050e256fb8ec4003e602e82433e4 \
-                    size    216242717
+    checksums       rmd160  bb203bf57ae265ad5ebf7534b3b528707ab08e3b \
+                    sha256  3bebfc0cf1bbd5b784724874f28b91d7af1d8a9b387267b3ba22334ab64f73db \
+                    size    216253453
 } else {
     # LTR version
-    github.setup    qgis QGIS 3_40_9 final-
+    github.setup    qgis QGIS 3_40_11 final-
     github.tarball_from archive
-    revision        1
+    revision        0
     set app_name    QGIS3-LTR
     description     {*}${description} (LTR)
 
-    checksums       rmd160  6cf0ca9fc5164438e23fd8fd6cf38caae6589e79 \
-                    sha256  bfd7fa44f7283f7e9fb2dc1a069ffb489221398842fb52a0463b0c5cfa29a30d \
-                    size    213300417
+    checksums       rmd160  67f3c32526c7dc3be97676c2ea129fffc4338030 \
+                    sha256  89eaab04f4166a9449d2270eecd12ae6ca1298d5618498880bcee72aed065483 \
+                    size    213360235
 }
 
 version             [string map {_ .} ${github.version}]
@@ -163,6 +163,7 @@ configure.args-append \
                     -DQWT_INCLUDE_DIR=${prefix}/libexec/qt5/lib/qwt.framework/Versions/Current/Headers \
                     -DQWT_LIBRARY=${prefix}/libexec/qt5/lib/qwt.framework/Versions/Current/qwt \
                     -DSPATIALINDEX_LIBRARY=${prefix}/lib/libspatialindex.dylib \
+                    -DUSE_CCACHE=OFF \
                     -DUSE_OPENCL=ON \
                     -DWITH_3D=ON \
                     -DWITH_BINDINGS=FALSE \

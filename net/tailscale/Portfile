@@ -3,7 +3,7 @@
 PortSystem          1.0
 PortGroup           golang 1.0
 
-go.setup            github.com/tailscale/tailscale 1.86.4 v
+go.setup            github.com/tailscale/tailscale 1.90.3 v
 go.package          tailscale.com
 go.offline_build    no
 revision            0
@@ -22,9 +22,9 @@ license             BSD
 maintainers         {gmail.com:herby.gillot @herbygillot} \
                     openmaintainer
 
-checksums           rmd160  d88f765afa13d39c5cf00034e282b0880912d631 \
-                    sha256  6500ba4a4bce8b903121167cc2755c669cf9e7c0edc64c48e75ee8c12596a031 \
-                    size    4142719
+checksums           rmd160  08f4588be778815f5fa9c5b773e49c1bc28d9ff2 \
+                    sha256  c880647144ee143b79e12512c1a432504380ea1a2b4aa0d5a53480d119cca3bc \
+                    size    4308925
 
 startupitem.create  yes
 startupitem.executable \

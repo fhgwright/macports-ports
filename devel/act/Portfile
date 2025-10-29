@@ -3,7 +3,7 @@
 PortSystem          1.0
 PortGroup           golang 1.0
 
-go.setup            github.com/nektos/act 0.2.80 v
+go.setup            github.com/nektos/act 0.2.82 v
 go.offline_build    no
 revision            0
 
@@ -19,9 +19,9 @@ maintainers         {gmail.com:herby.gillot @herbygillot} \
                     openmaintainer
 platforms           darwin linux
 
-checksums           rmd160  d4a7fd63a82053b5c56793c9286a1d223c059ac5 \
-                    sha256  617a34c78f8202e56be83c3e2407cd8a07c1cdf1062f3b184de7f25af91ac7ef \
-                    size    9302498
+checksums           rmd160  75c31444a7f3894013aee1f7e22a7750f8bb923d \
+                    sha256  9a346d558672a23822f5fbfc020547a2b96ed4945e6c36dc239d9ac545cd64a9 \
+                    size    9309139
 
 build.cmd           make
 build.pre_args      VERSION=${version}

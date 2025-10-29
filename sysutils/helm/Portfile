@@ -13,7 +13,7 @@ maintainers             {ogsite.net:sirn @sirn} @pedrohdz \
 subport helm_select     {}
 
 # *NOTE* Remember to update `latestVersion` on a version upgrade.
-set latestVersion       helm-3.18
+set latestVersion       helm-3.19
 
 set armAvailable        no
 
@@ -32,21 +32,38 @@ proc helmDistName {arch} {
     return [helmDistBase ${arch}]${extract.suffix}
 }
 
+subport helm-3.19 {
+    set baseVersion     3.19
+    set patchNumber     0
+    revision            1
+
+    set armAvailable    yes
+
+    checksums           [helmDistName arm64] \
+                        rmd160  20afe694e338c4ccc6ceeeff639db4969d3df964 \
+                        sha256  31513e1193da4eb4ae042eb5f98ef9aca7890cfa136f4707c8d4f70e2115bef6 \
+                        size    17058141 \
+                        [helmDistName amd64] \
+                        rmd160  ec3536cc6c9df1e6ea086c881e45cd8e9a85fefe \
+                        sha256  09a108c0abda42e45af172be65c49125354bf7cd178dbe10435e94540e49c7b9 \
+                        size    18364368
+}
+
 subport helm-3.18 {
     set baseVersion     3.18
-    set patchNumber     5
+    set patchNumber     6
     revision            0
 
     set armAvailable    yes
 
     checksums           [helmDistName arm64] \
-                        rmd160  78b06e15d1a5b63d49d0e8119bc6d65dadddf7b4 \
-                        sha256  32ce3f4910d5a96c1170f3f8f230d4c8b8bc007e5d47b085b8416cfe559d7925 \
-                        size    17025547 \
+                        rmd160  5d69dd4a40bfc122e4e66a567f308425ec8b59b4 \
+                        sha256  48e30d236a1f334c6acb78501be5a851eaa2a267fefeb1131b6484eb2f9f30d7 \
+                        size    17032674 \
                         [helmDistName amd64] \
-                        rmd160  887418b0b72587eb05d8db50863d911f98178de9 \
-                        sha256  3200c32cf19bf69b446e97c0060af39f018d2e441e418ad174ba39052f63fb15 \
-                        size    18333960
+                        rmd160  babb23fc9afc7b329d6baf0540a0d0b571242317 \
+                        sha256  80cad0470e38cf25731cdead7c32dfbeb887bc177bd6fa01e31b065722f8f06b \
+                        size    18340044
 }
 
 subport helm-3.17 {
@@ -366,7 +383,7 @@ if {${subport} == ${name}} {
     PortGroup           obsolete 1.0
 
     replaced_by         ${latestVersion}
-    version             3.18.5
+    version             3.19.0
     revision            0
 
 } elseif {${subport} == "helm_select"} {

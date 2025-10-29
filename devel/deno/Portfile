@@ -3,7 +3,7 @@
 PortSystem          1.0
 PortGroup           github 1.0
 
-github.setup        denoland deno 2.4.4 v
+github.setup        denoland deno 2.5.4 v
 github.tarball_from releases
 revision            0
 
@@ -29,14 +29,18 @@ maintainers         {gmail.com:herby.gillot @herbygillot} \
                     openmaintainer
 supported_archs     arm64 x86_64
 
+# https://trac.macports.org/ticket/73050
+# building from source is too complicated, legacysupport doesn't help
+platforms           {darwin >= 16}
+
 checksums           ${name}-x86_64-apple-darwin.zip \
-                    rmd160  549bae4237b0c49e94368839b134711f60b4eb1e \
-                    sha256  c986a55b9ad9bf5f62a98239dc31d03bd83e93bdbc9052fb9ebe360553bf88ef \
-                    size    42497806 \
+                    rmd160  1ef94d97d056242703ffa73cbb2cfc37759abf8a \
+                    sha256  bda20c2edb39d614830b9dc4a7dcbfaa0043ae5c246bae2f90b82e943a735e66 \
+                    size    43096233 \
                     ${name}-aarch64-apple-darwin.zip \
-                    rmd160  dd5fd4352cddb1599c63d1c00323f59dc91bde02 \
-                    sha256  aa6d97661f1edd5f74b70164be893171f57c213ad06a2e9e663fb803707645c0 \
-                    size    39852371
+                    rmd160  35529112ece1f20d143e16829d8b5e08cc75c395 \
+                    sha256  ff301a55e9f51306c02eb6da76ceba6ac98109fd11dbd7a1f5b71f5794ad725c \
+                    size    40466101
 
 if {${build_arch} eq "arm64"} {
     set release_arch aarch64

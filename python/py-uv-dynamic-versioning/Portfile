@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                py-uv-dynamic-versioning
-version             0.9.0
+version             0.11.2
 revision            0
 
 categories-append   devel
@@ -20,9 +20,9 @@ homepage            https://github.com/ninoseki/uv-dynamic-versioning
 
 distname            uv_dynamic_versioning-${version}
 
-checksums           rmd160  b05827f5aa300f8c623879331bccb573fe03bc84 \
-                    sha256  9280d361d634500b041423039780ec1e0993e630828d619c8f62c0bb058dc681 \
-                    size    38915
+checksums           rmd160  41836adf8e394781773466d25c0d051ca2149ee2 \
+                    sha256  4c785ea02e00b93896d015fd3613c451735af1715a7f5f52e8e4e1d76e6ec3c5 \
+                    size    40402
 
 python.versions     313
 

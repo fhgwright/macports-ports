@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                diffoscope
-version             302
+version             306
 revision            0
 
 categories          sysutils python
@@ -25,10 +25,10 @@ long_description    diffoscope will try to get to the bottom of what makes \
 
 homepage            https://diffoscope.org/
 
-checksums           md5 bae6f418516758910f3d38df45fee699 \
-                    rmd160 b720836e412fd76e9013bb06a5538a4c52c03d10 \
-                    sha256 7b5802d55a81dee59034d398cc6e0ee83b176281c1209d33df5bde29b586b328 \
-                    size   3188946
+checksums           md5 10515cc1cd94bfb220f0b0d240b9706f \
+                    rmd160 e5ffae5a94baafce71b7cc9d9cdfbe26ec33114f \
+                    sha256 2c489aba7334ab0d4a9946ac51fe1b17085621a5476b89950e9c4f1e612cbab3 \
+                    size   3189365
 
 python.default_version 313
 

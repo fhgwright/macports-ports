@@ -4,11 +4,11 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                google-cloud-sdk
-version             534.0.0
+version             545.0.0
 revision            0
 categories          devel python
 license             Apache-2
-maintainers         {breun.nl:nils @breun} openmaintainer
+maintainers         {breun @breun} openmaintainer
 description         Command-line interface for Google Cloud Platform products and services
 long_description    Google Cloud SDK is a set of tools for Google Cloud Platform. \
                     It contains gcloud, gsutil, and bq command-line tools, which you can \
@@ -20,21 +20,25 @@ platforms           {darwin any}
 supported_archs     i386 x86_64 arm64
 
 if { ${configure.build_arch} eq "i386" } {
-    distname        ${name}-${version}-darwin-x86
-    checksums       rmd160  ffd9f1bfdf4897b4a45452087345a0b9ffbd6ccf \
-                    sha256  2d1b72d767949f8a512de11b1c3786de177014f7cb58c607dfc142a2e85421fc \
-                    size    55074147
+    set arch_classifier x86
+    checksums       rmd160  97861acf884dbf6046964b3afaf4e249c241b489 \
+                    sha256  e2e39f876305731dc11c4a7e6b96a6344b58bbad402031cfb17667d13a7d570f \
+                    size    55800335
 } elseif { ${configure.build_arch} eq "x86_64" } {
-    distname        ${name}-${version}-darwin-x86_64
-    checksums       rmd160  a52db618a037e7a1aa6dac7734d53454e52e208a \
-                    sha256  7540683cd31ed0de3566df66a3f939d2960d77663f6129ef5f3e757e7dc4a40c \
-                    size    56606541
+    set arch_classifier x86_64
+    checksums       rmd160  b4fac4148d0276d9e26fad7e80ad84d76af07d83 \
+                    sha256  70e25f2a6e9e8c6dd160dc503ee882baeda6a9e7e7aba067e52e7e2ee4721e9b \
+                    size    57331611
 } elseif { ${configure.build_arch} eq "arm64" } {
-    distname        ${name}-${version}-darwin-arm
-    checksums       rmd160  98421782dfd851ff60ae7a61b19cf82fe89d785f \
-                    sha256  04f7f9452d955f4e64fd6730e0fbd83060b0caf7a4673e8c198b6152ffc81835 \
-                    size    56538945
+    set arch_classifier arm
+    checksums       rmd160  93add5d9bc293d14e160f5ad41541a0c222f5703 \
+                    sha256  0d3a9a25258c099e36c2c874eb0b01f54984837618be21bbdc5e8014bbe7a600 \
+                    size    57265819
+} else {
+    set arch_classifier invalid
 }
+
+distname            ${name}-${version}-darwin-${arch_classifier}
 
 homepage            https://cloud.google.com/sdk/
 master_sites        https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/
@@ -103,6 +107,7 @@ variant nomos description {Add Nomos CLI} { dict set variant_to_component nomos 
 variant package_go_module description {Add Artifact Registry Go Module Package Helper} { dict set variant_to_component package_go_module package-go-module }
 variant pkg description {Add pkg} { dict set variant_to_component pkg pkg }
 variant pubsub_emulator description {Add Cloud Pub/Sub Emulator} { dict set variant_to_component pubsub_emulator pubsub-emulator }
+variant spanner_cli description {Add Spanner CLI} { dict set variant_to_component spanner_cli spanner-cli }
 variant skaffold description {Add Skaffold} { dict set variant_to_component skaffold skaffold }
 variant terraform_tools description {Add Terraform Tools} { dict set variant_to_component terraform_tools terraform-tools }
 
@@ -170,8 +175,8 @@ destroot {
 
 notes "
     google-cloud-sdk zsh completions aren't loaded automatically.
-    You must source them manually in your .zshrc:
+    You must source them manually in your ~/.zshrc:
         source '${prefix}/libexec/google-cloud-sdk/completion.zsh.inc'"
 
-livecheck.url       https://cloud.google.com/sdk/docs/install-sdk
-livecheck.regex     {google-cloud-cli-([\d\.]+)-darwin}
+livecheck.url       https://cloud.google.com/sdk/docs/release-notes
+livecheck.regex     {([\d\.]+) \(\d{4}-\d{2}-\d{2}\)}
