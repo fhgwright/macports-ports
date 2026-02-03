@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                py-botocore
-version             1.40.23
+version             1.42.39
 revision            0
 
 supported_archs     noarch
@@ -20,11 +20,11 @@ long_description    A low-level interface to a growing number of Amazon Web \
 
 homepage            https://github.com/boto/botocore
 
-checksums           rmd160  eb2726e8f89e55d6dad60cc04f18e01bedb8d92c \
-                    sha256  de07cceaf9b142c183e165d303a0eee289c34d63f63e6b7a640406d6bacfb646 \
-                    size    14327014
+checksums           rmd160  893f2024c82d7ffbab3ed996ff0d00df04afabc9 \
+                    sha256  0f00355050821e91a5fe6d932f7bf220f337249b752899e3e4cf6ed54326249e \
+                    size    14914927
 
-python.versions     39 310 311 312 313
+python.versions     310 311 312 313 314
 
 if {${name} ne ${subport}} {
     depends_lib-append \

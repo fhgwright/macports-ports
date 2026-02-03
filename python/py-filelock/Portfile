@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                py-filelock
-version             3.19.1
+version             3.20.3
 revision            0
 
 platforms           {darwin any}
@@ -19,9 +19,9 @@ long_description    This package contains a single module, which implements \
 
 homepage            https://py-filelock.readthedocs.io/
 
-checksums           rmd160  6cc46b5f241cacdba0fe88ef8bde735f2358ed3b \
-                    sha256  66eda1888b0171c998b35be2bcc0f6d75c388a7ce20c3f3f37aa8e96c2dddf58 \
-                    size    17687
+checksums           rmd160  d875e69c8d9171ab697a6bf01ec32111946cb095 \
+                    sha256  18c57ee915c7ec61cff0ecf7f0f869936c7c30191bb0cf406f1341778d0834e1 \
+                    size    19485
 
 # keep version for Python 2.7, this is an (indirect) dependencies of py-virtualenv
 # See: <https://trac.macports.org/wiki/Python#VersionPolicy>

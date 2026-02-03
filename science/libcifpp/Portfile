@@ -5,7 +5,7 @@ PortGroup           github 1.0
 PortGroup           cmake 1.1
 PortGroup           legacysupport 1.1
 
-github.setup        PDB-REDO libcifpp 9.0.4 v
+github.setup        PDB-REDO libcifpp 9.0.6 v
 github.tarball_from archive
 revision            0
 
@@ -16,9 +16,9 @@ maintainers         {reneeotten @reneeotten} openmaintainer
 description         Library containing code to manipulate mmCIF and PDB files
 long_description    {*}${description}
 
-checksums           rmd160  26298b7e81f8cc5168b756bb0c2952f3687c6a98 \
-                    sha256  b7c3ac628c2ea78febf98f54fdd7a595773bddb07cbedcd55b9866b11a013aba \
-                    size    2733826
+checksums           rmd160  844adefd7688e78b2404ad9400c3fcab10c58315 \
+                    sha256  e6263a63404762671d6875de385e0c7ad869b0fe3fae41808003e00c94e7ed8c \
+                    size    2735142
 
 # Needed for std::filesystem
 legacysupport.newest_darwin_requires_legacy 18
@@ -39,5 +39,9 @@ configure.args-append \
 #   https://mmcif.wwpdb.org/dictionaries/ascii/mmcif_pdbx_v50.dic.gz --> mmcif_pdbx.dic
 #   https://github.com/ihmwg/ModelCIF/raw/master/dist/mmcif_ma.dic --> mmcif_ma.dic
 
+depends_build-append \
+                    path:bin/pkg-config:pkgconfig
+
 depends_lib-append  path:share/pkgconfig/eigen3.pc:eigen3 \
+                    port:pcre2 \
                     port:zlib

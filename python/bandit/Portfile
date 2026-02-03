@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                bandit
-version             1.8.6
+version             1.9.3
 revision            0
 
 license             Apache-2
@@ -24,15 +24,14 @@ long_description    {*}${description} Bandit is a tool designed to find \
 
 homepage            https://bandit.readthedocs.io/en/latest
 
-checksums           rmd160  f2e7aa562919e044c24a4242ee3c4eedacfeead9 \
-                    sha256  dbfe9c25fc6961c2078593de55fd19f2559f9e45b99f1272341f5b95dea4e56b \
-                    size    4240271
+checksums           rmd160  01af533c9d4565dd2825fd9b1228b95abfab64ee \
+                    sha256  ade4b9b7786f89ef6fc7344a52b34558caec5da74cb90373aed01de88472f774 \
+                    size    4242154
 
-python.default_version  313
+python.default_version  314
 
 depends_build-append \
-                    port:py${python.version}-pbr \
-                    port:py${python.version}-setuptools
+                    port:py${python.version}-pbr
 
 depends_run-append  port:py${python.version}-jschema_to_python \
                     port:py${python.version}-gitpython \

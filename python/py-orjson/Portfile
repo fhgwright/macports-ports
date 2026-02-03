@@ -6,7 +6,7 @@ PortGroup           python 1.0
 PortGroup           legacysupport 1.1
 
 name                py-orjson
-version             3.11.4
+version             3.11.6
 revision            0
 categories-append   devel
 license             MIT
@@ -27,9 +27,9 @@ long_description    {*}${description}. It benchmarks as the fastest \
 homepage            https://github.com/ijl/orjson
 
 checksums           ${distname}${extract.suffix} \
-                    rmd160  fb5ae23c98db0cdcc7376be4f10f9167108f531f \
-                    sha256  39485f4ab4c9b30a3943cfe99e1a213c4776fb69e8abd68f66b83d5a0b0fdc6d \
-                    size    5945188
+                    rmd160  2892bd1920312285b687c6dd57cacd14f931f718 \
+                    sha256  0a54c72259f35299fd033042367df781c2f66d10252955ca1efb7db309b954cb \
+                    size    6175856
 
 python.pep517           yes
 python.pep517_backend   maturin

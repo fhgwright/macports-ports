@@ -5,8 +5,9 @@ PortGroup           cmake 1.1
 PortGroup           openssl 1.0
 
 name                zeek
-version             8.0.3
+version             8.0.6
 revision            0
+
 categories          net security
 maintainers         {mps @Schamschula} openmaintainer
 license             BSD
@@ -21,9 +22,9 @@ long_description    {*}${description} Zeek is the new name for the long-establis
 homepage            https://www.zeek.org/
 master_sites        https://download.zeek.org/
 
-checksums           rmd160  f9c0fcc57b96f153aa1be933e617b75b5a33e0e3 \
-                    sha256  c178a85e502835cef9584e9a5cb049b4a6abc00bd2bd3c07d4bc3466e5df6eee \
-                    size    99613493
+checksums           rmd160  8daea4314a8b328f43add8b2e38f7cb402ef21b7 \
+                    sha256  7263baa298cc9cd116520b2937cd196882783dbbdf9d5619e9938b3f08a4abac \
+                    size    99778356
 
 subport ${name} {
     conflicts   ${name}-devel
@@ -32,12 +33,12 @@ subport ${name} {
 subport ${name}-devel {
     conflicts   ${name}
 
-    version         8.0.3
+    version         8.1.1
     revision        0
 
-    checksums       rmd160  f9c0fcc57b96f153aa1be933e617b75b5a33e0e3 \
-                    sha256  c178a85e502835cef9584e9a5cb049b4a6abc00bd2bd3c07d4bc3466e5df6eee \
-                    size    99613493
+    checksums       rmd160  136e5df08ace6ac7dbc63b7ab777f4184fddb562 \
+                    sha256  b5f9edd4a10412426e6414d2f851ba42ce1fa94b59ccbad4238519adae6fc065 \
+                    size    93427527
 }
 
 openssl.branch      3

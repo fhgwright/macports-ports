@@ -3,7 +3,7 @@
 PortSystem          1.0
 PortGroup           golang 1.0
 
-go.setup            github.com/ekristen/aws-nuke 3.56.2 v
+go.setup            github.com/ekristen/aws-nuke 3.63.3 v
 go.package          github.com/ekristen/aws-nuke/v3
 go.offline_build    no
 revision            0
@@ -20,11 +20,11 @@ license             MIT
 maintainers         {gmail.com:herby.gillot @herbygillot} \
                     openmaintainer
 
-checksums           rmd160  4f7b358b36fbcd5df3487e9a467b649584f1e7d5 \
-                    sha256  d43ab2e77994e5c9ec19651d998624cb9e68408dc0fa31aab2e6e830910f6fde \
-                    size    586165
+checksums           rmd160  d4b4e398d9b5ea49af6b2854262e0ed73f8fe317 \
+                    sha256  be7af50f73ac93436171e4b051793e00e926f9ee0711e7bc18d405f7ae2805e9 \
+                    size    623367
 
-set commit          37ea1123956ab868e3f04ee65d0f39d31f2f8be3
+set commit          1b0ad9d4a3a1e93a5b3238b72e525c8e9dcb5790
 
 build.args-append   \
     -ldflags \" \

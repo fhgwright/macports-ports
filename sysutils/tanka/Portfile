@@ -5,9 +5,9 @@ PortGroup           golang 1.0
 
 go.offline_build    no
 
-go.setup            github.com/grafana/tanka 0.32.0 v
+go.setup            github.com/grafana/tanka 0.36.3 v
 categories          sysutils
-maintainers         {@0xIDANT danieltrautmann.com:me} openmaintainer
+maintainers         nomaintainer
 license             Apache-2
 
 description         Flexible, reusable and concise configuration for Kubernetes
@@ -32,7 +32,7 @@ destroot {
 }
 
 checksums           ${distname}${extract.suffix} \
-                        rmd160  5e6f8c33529c6562265f66d32d3f7042fcd8f0e1 \
-                        sha256  5d328d3a499787b1eb5d20ddbe20119048636e972db6cd75a3bb83c415f1cce3 \
-                        size    1293910
+                        rmd160  7ff0a494d1a61a250d7a61103f4355b2770f60a4 \
+                        sha256  18472e35c36d56489464e113c720f32ab5c8e6ef57d14b55faa2e774dfa3f91b \
+                        size    1332823
 

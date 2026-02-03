@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                google-cloud-sdk
-version             545.0.0
+version             554.0.0
 revision            0
 categories          devel python
 license             Apache-2
@@ -21,19 +21,19 @@ supported_archs     i386 x86_64 arm64
 
 if { ${configure.build_arch} eq "i386" } {
     set arch_classifier x86
-    checksums       rmd160  97861acf884dbf6046964b3afaf4e249c241b489 \
-                    sha256  e2e39f876305731dc11c4a7e6b96a6344b58bbad402031cfb17667d13a7d570f \
-                    size    55800335
+    checksums       rmd160  c0ab70e476a0882e467edf536802ae1a6150eafd \
+                    sha256  4a46af3ace033d367fb67ed2a5d8d6169da142aa6b166cf971b8706213d2c1ba \
+                    size    56824677
 } elseif { ${configure.build_arch} eq "x86_64" } {
     set arch_classifier x86_64
-    checksums       rmd160  b4fac4148d0276d9e26fad7e80ad84d76af07d83 \
-                    sha256  70e25f2a6e9e8c6dd160dc503ee882baeda6a9e7e7aba067e52e7e2ee4721e9b \
-                    size    57331611
+    checksums       rmd160  b43d49b7da17efe17247cd6f2ce31545e85b843e \
+                    sha256  af64207054f02f343d6f4fad8edcbe505fc7ceadfb309c1723dcf5e8bf6e7d64 \
+                    size    58396129
 } elseif { ${configure.build_arch} eq "arm64" } {
     set arch_classifier arm
-    checksums       rmd160  93add5d9bc293d14e160f5ad41541a0c222f5703 \
-                    sha256  0d3a9a25258c099e36c2c874eb0b01f54984837618be21bbdc5e8014bbe7a600 \
-                    size    57265819
+    checksums       rmd160  d82c8ba6b94e85b9addc6737e45caa1a1310774e \
+                    sha256  2ac7ae9be8eeb25ae8cc07860bba2144205e03cea1fdd68ca6da3a5b8ffec7a1 \
+                    size    58323695
 } else {
     set arch_classifier invalid
 }
@@ -112,12 +112,6 @@ variant skaffold description {Add Skaffold} { dict set variant_to_component skaf
 variant terraform_tools description {Add Terraform Tools} { dict set variant_to_component terraform_tools terraform-tools }
 
 patch {
-    # Make sure the installer script will not attempt to install its own Python,
-    # even though `--install-python false` is passed to it.
-    # This is a workaround for https://issuetracker.google.com/issues/422318565
-    reinplace "s|python_manager.PromptAndInstallPythonOnMac|#python_manager.PromptAndInstallPythonOnMac|" \
-        ${worksrcpath}/lib/googlecloudsdk/core/updater/update_manager.py
-
     # Define the basic installation command
     set install_command "CLOUDSDK_CONFIG=${worksrcpath}/.config CLOUDSDK_PYTHON=${python.bin} ./install.sh \
         --usage-reporting false \

@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           github 1.0
 PortGroup           cmake 1.1
 
-github.setup        PDB-REDO dssp 4.5.6 v
+github.setup        PDB-REDO dssp 4.5.8 v
 github.tarball_from archive
 revision            0
 
@@ -15,17 +15,18 @@ maintainers         {reneeotten @reneeotten} openmaintainer
 description         DSSP automates protein secondary structure assignment.
 long_description    {*}${description}
 
-checksums           rmd160  04a8a384e097c89e4a863ae575ab74be818e878c \
-                    sha256  940062a5c97be30546af045020761dbba68d4ca64cbaf2343b3765c0bf1f10b3 \
-                    size    223229
+checksums           rmd160  b22b5fdf34850aafd888430f5de517fac0c257e2 \
+                    sha256  634bf8d8dd96954bd680da90f3dcb66b87189c13b12b52b61de8af9d597b74ac \
+                    size    225240
 
 compiler.cxx_standard 2020
 
-patchfiles          patch-version-CMakeLists.txt.diff
+patchfiles-append   patch-CMakeLists.txt.diff
 
 depends_lib-append  port:libcifpp \
                     port:libmcfp \
-                    port:zlib
+                    port:zlib \
+                    port:fast-float
 
 configure.args-append \
                     -DBUILD_SHARED_LIBS=ON \
