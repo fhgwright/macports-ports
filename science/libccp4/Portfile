@@ -25,11 +25,16 @@ checksums           sha256  cb813ae86612a0866329deab7cee96eac573d81be5b240341d40
                     rmd160  32d82bce34d5e7663a36fe9f9b8b55b527135104 \
                     size    937534
 
+patchfiles          patch-Makefile.in.diff
+
 depends_build-append \
                     path:bin/pkg-config:pkgconfig \
                     port:m4
 
 depends_lib-append  port:mmdb2
+
+configure.env-append \
+                    M4=${prefix}/bin/gm4
 
 configure.args-append \
                     --disable-silent-rules \
