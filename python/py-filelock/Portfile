@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                py-filelock
-version             3.20.3
+version             3.24.3
 revision            0
 
 platforms           {darwin any}
@@ -19,13 +19,13 @@ long_description    This package contains a single module, which implements \
 
 homepage            https://py-filelock.readthedocs.io/
 
-checksums           rmd160  d875e69c8d9171ab697a6bf01ec32111946cb095 \
-                    sha256  18c57ee915c7ec61cff0ecf7f0f869936c7c30191bb0cf406f1341778d0834e1 \
-                    size    19485
+checksums           rmd160  31a19145a4934aa4f3a4aff077130028a2c980da \
+                    sha256  011a5644dc937c22699943ebbfc46e969cdde3e171470a6e40b9533e5a72affa \
+                    size    37935
 
 # keep version for Python 2.7, this is an (indirect) dependencies of py-virtualenv
 # See: <https://trac.macports.org/wiki/Python#VersionPolicy>
-python.versions     27 39 310 311 312 313 314
+python.versions     27 310 311 312 313 314
 
 if {${name} ne ${subport}} {
     if {${python.version} == 27} {
@@ -47,9 +47,13 @@ if {${name} ne ${subport}} {
                     port:py${python.version}-hatch-vcs
 
         test.run    yes
+        test.env-append PYTHONPATH=${destroot}${python.pkgd}
 
         depends_test-append \
-                        port:py${python.version}-pytest-mock
+                        port:py${python.version}-pytest-asyncio \
+                        port:py${python.version}-pytest-mock \
+                        port:py${python.version}-pytest-timeout \
+                        port:py${python.version}-virtualenv
     }
 
     livecheck.type  none

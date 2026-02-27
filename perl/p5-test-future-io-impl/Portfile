@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           perl5 1.0
 
 perl5.branches      5.28 5.30 5.32 5.34
-perl5.setup         Test-Future-IO-Impl 0.17 ../../authors/id/P/PE/PEVANS
+perl5.setup         Test-Future-IO-Impl 0.19 ../../authors/id/P/PE/PEVANS
 revision            0
 license             {Artistic-1 GPL}
 maintainers         {devans @dbevans} openmaintainer
@@ -14,9 +14,9 @@ long_description    {*}${description}
 platforms           {darwin any}
 supported_archs     noarch
 
-checksums           rmd160  ce9e29fa610e5d9bb1ef7e5d4830dec5f7505025 \
-                    sha256  b7d7f591e01b854dc76d5bab01054dbacd54542ee37d297dbe39e3516eba87e2 \
-                    size    16392
+checksums           rmd160  b1dc525a8d8ebf8d5fa444d36ba59a1a5d748423 \
+                    sha256  53b9c5b6807726651fff4a18a5ce9c8c682ad3aabec94c4481c73d07e8cc6a23 \
+                    size    17125
 
 if {${perl5.major} != ""} {
     depends_lib-append \
