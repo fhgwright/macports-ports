@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                py-cachetools
-version             7.0.1
+version             7.0.3
 revision            0
 
 platforms           {darwin any}
@@ -18,9 +18,9 @@ long_description    This module provides various {*}${description}, including va
 
 homepage            https://github.com/tkem/cachetools
 
-checksums           rmd160  3ee16ced1ee65d683b3b29d90f78cb0b136e7006 \
-                    sha256  e31e579d2c5b6e2944177a0397150d312888ddf4e16e12f1016068f0c03b8341 \
-                    size    36126
+checksums           rmd160  0eec6abc890e8e81774024127f3574f04b8a803a \
+                    sha256  8c246313b95849964e54a909c03b327a87ab0428b068fac10da7b105ca275ef6 \
+                    size    37187
 
 python.versions     39 310 311 312 313 314
 

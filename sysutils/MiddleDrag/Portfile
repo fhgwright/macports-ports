@@ -5,7 +5,7 @@ PortGroup           github 1.0
 PortGroup           xcode 1.0
 PortGroup           xcodeversion 1.0
 
-github.setup        nullpointerdepressivedisorder MiddleDrag 1.4.2.3 v
+github.setup        nullpointerdepressivedisorder MiddleDrag 1.4.2.5 v
 github.tarball_from archive
 revision            0
 categories          sysutils
@@ -27,9 +27,9 @@ use_xcode           yes
 
 minimum_xcodeversions {24 16.4 25 16.4 26 16.4}
 
-checksums           rmd160 a6c52a104b81f8f9d5e83602f7a9010e50332a96 \
-                    sha256 61b1abf6a1eebcad246e6703ad3e5c86f6d7e84e94a0a8fa48fe16c04e7bc703 \
-                    size 4369769
+checksums           rmd160 4b61e16c9e865630bdcdab0237f55d82301cdfd0 \
+                    sha256 b0d0933aeb3941f61a0e3a0dfd5992522f9921ee33e28b60684aaf9ab19c9607 \
+                    size 4370021
 
 xcode.scheme        MiddleDrag
 xcode.configuration Release
