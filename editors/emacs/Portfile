@@ -44,6 +44,14 @@ depends_build-append  port:autoconf \
                       port:automake \
                       port:libtool
 
+# https://trac.macports.org/wiki/WimplicitFunctionDeclaration#strchr
+configure.checks.implicit_function_declaration.whitelist-append strchr
+
+# Avoid build failure if hdf4 is installed.
+# https://trac.macports.org/ticket/68414
+configure.cppflags-replace \
+                -I${prefix}/include -isystem${prefix}/include
+
 configure.args  --disable-silent-rules \
                 --without-ns \
                 --without-x \
@@ -73,7 +81,7 @@ pre-configure {
     system -W ${worksrcpath} "sh ./autogen.sh"
 }
 
-depends_build-append   port:pkgconfig \
+depends_build-append   path:bin/pkg-config:pkgconfig \
                        port:texinfo
 depends_lib-append     port:gmp \
                        path:lib/pkgconfig/gnutls.pc:gnutls \
@@ -116,7 +124,7 @@ platform darwin {
 
 if {$subport eq $name || $subport eq "emacs-app"} {
     version         30.2
-    revision        2
+    revision        3
     checksums       rmd160  fefdd3fcd453d733114f609a3e122b2529cc7410 \
                     sha256  1d79a4ba4d6596f302a7146843fe59cf5caec798190bcc07c907e7ba244b076d \
                     size    83059014
@@ -133,7 +141,7 @@ if {$subport eq "emacs-devel" || $subport eq "emacs-app-devel"} {
     github.tarball_from archive
     epoch           5
     version         20250924
-    revision        0
+    revision        1
 
     master_sites    ${github.master_sites}
 

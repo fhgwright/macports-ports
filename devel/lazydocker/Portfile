@@ -3,14 +3,14 @@
 PortSystem          1.0
 PortGroup           golang 1.0
 
-go.setup            github.com/jesseduffield/lazydocker 0.24.3 v
-set git-commit      f4fc366
+go.setup            github.com/jesseduffield/lazydocker 0.25.0 v
+set git-commit      2ebe384
 # This line is for displaying commit in CLI only
 revision            0
 
-checksums           rmd160  e5003a392959304a37107c8f6b207d8804cedff2 \
-                    sha256  d6676b678105517a183d878180b041f186cd45a5591a2a7f25f30d5c0ee17670 \
-                    size    13224822
+checksums           rmd160  e1fe050f6edd9aef3846a3e276118b8959e420ca \
+                    sha256  480234dec2dbe989462d177f1aa78debec972893ab5981d48d23d7aec8430a58 \
+                    size    13229558
 
 categories          devel
 installs_libs       no
