@@ -5,7 +5,7 @@ PortGroup           cmake 1.1
 PortGroup           gitea 1.0
 
 gitea.domain        git.skyjake.fi
-gitea.setup         gemini lagrange 1.19.4 v
+gitea.setup         gemini lagrange 1.20.4 v
 revision            0
 categories          net gemini
 license             BSD
@@ -14,9 +14,9 @@ maintainers         {@sikmir disroot.org:sikmir} openmaintainer
 description         A Beautiful Gemini Client
 long_description    {*}${description}
 
-checksums           rmd160  9fb75e92067c855ad0b43400c8fd8c425345b2d2 \
-                    sha256  11b79854d9c3fb8c300aa632f64348f6eb948305a14c222f4e7dde4b47f9c392 \
-                    size    8932063
+checksums           rmd160  4a8d3a9edd8da31c662ccfb6d4f5098452e7e853 \
+                    sha256  57fa800c7db4dfd14627bf88b4caa22449fd0429c3f29d72bfd2002f138a5baa \
+                    size    9830667
 
 worksrcdir          ${name}
 

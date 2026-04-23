@@ -10,7 +10,7 @@ legacysupport.newest_darwin_requires_legacy \
 legacysupport.use_mp_libcxx \
                     yes
 
-github.setup        emcrisostomo fswatch 1.18.3
+github.setup        emcrisostomo fswatch 1.19.1
 github.tarball_from releases
 
 categories          sysutils
@@ -26,9 +26,9 @@ long_description    A cross-platform file change monitor with multiple \
 
 homepage            https://emcrisostomo.github.io/fswatch/
 
-checksums           rmd160  ce1de769ff3b4fd5b4690c1f534c92395b7d034e \
-                    sha256  08b13c0e0f92bd5eee5a310bb58fc373f0cda8304f9decc34cfabc42adf8e9ca \
-                    size    815588
+checksums           rmd160  967430cbd4a1a26cc162e450840ed93d52a76c97 \
+                    sha256  b8736d41b6f108c8089ae38361ea9bdb035445caac3dcb413702bc567a42a91a \
+                    size    816007
 
 compiler.cxx_standard   2017
 configure.args      ac_cv_prog_AWK=/usr/bin/awk

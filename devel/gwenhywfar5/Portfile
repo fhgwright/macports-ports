@@ -36,7 +36,7 @@ depends_lib         path:lib/libssl.dylib:openssl \
 depends_build       port:libtool \
                     port:automake \
                     port:autoconf \
-                    port:pkgconfig
+                    path:bin/pkg-config:pkgconfig
 
 configure.args      --enable-static
 
@@ -52,11 +52,12 @@ subport gwenhywfar5-gtk3 {
         configure.args-append   --with-guis="gtk3 cpp" --disable-qt4 --disable-qt5
 }
 
-patchfiles          configure.ac.patch
+patchfiles          configure.ac.patch \
+                    implicit.patch
 
 pre-configure {
     system -W ${worksrcpath} "\
-        aclocal -Im4 -I${prefix}/share/aclocal && \
+        aclocal -Im4 -I${prefix}/share/gettext/m4 -I${prefix}/share/aclocal && \
         autoconf && \
         autoheader && \
         glibtoolize && \
@@ -67,7 +68,7 @@ pre-configure {
 if {$subport eq $name} {
     PortGroup       qt4 1.0
     configure.args-append \
-	--with-qt4-libs=${qt_libs_dir} \
+        --with-qt4-libs=${qt_libs_dir} \
         --with-qt4-includes=${qt_includes_dir} \
         --with-qt4-moc=${qt_moc_cmd} \
         --with-qt4-uic=${qt_uic_cmd} \

@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           muniversal 1.0
 
 name                nss
-version             3.121
+version             3.123
 revision            0
 
 set NSS_VMAJOR      [lindex [split ${version} .] 0]
@@ -27,9 +27,9 @@ set my_release      NSS_[string map {. _} ${version}]_RTM
 master_sites        https://ftp.mozilla.org/pub/security/nss/releases/${my_release}/src/ \
                     ftp://ftp.mozilla.org/pub/security/nss/releases/${my_release}/src/
 
-checksums           rmd160  d51471fb232fca5465b64e7c6216a29a72be17a7 \
-                    sha256  cb3a8f8781bea78b7b8edd3afb7a2cb58e4881bb0160d189a39b98216ba7632e \
-                    size    77644546
+checksums           rmd160  2201a26fb34db734de47e41363bab2039b909733 \
+                    sha256  2145113398a269779a7390515a1638800836b130248e33f93243268c026d4e49 \
+                    size    77762089
 
 use_configure       no
 

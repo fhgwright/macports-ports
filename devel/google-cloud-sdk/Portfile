@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                google-cloud-sdk
-version             560.0.0
+version             565.0.0
 revision            0
 categories          devel python
 license             Apache-2
@@ -21,19 +21,19 @@ supported_archs     i386 x86_64 arm64
 
 if { ${configure.build_arch} eq "i386" } {
     set arch_classifier x86
-    checksums       rmd160  cc7cfe56c491cc24a36747d2e032fdad44574118 \
-                    sha256  9849d03e2235437f4e28eee3372cf4473ae2941256833c61afbc5649d66709e8 \
-                    size    57371389
+    checksums       rmd160  77041304ff885c23b53620718471f32e4c993ce3 \
+                    sha256  f63cccd550f6fb3000dcccb3d0d8ee92b1a34894094912e141fdee8fda8f5159 \
+                    size    58605544
 } elseif { ${configure.build_arch} eq "x86_64" } {
     set arch_classifier x86_64
-    checksums       rmd160  e86d355107aa519c887ad7f0e6c7795aaa7aaa46 \
-                    sha256  ed9eca6ed8a995631b4067ffb464f0b8867d65bade4486ebb4a43c46b632fd12 \
-                    size    59012163
+    checksums       rmd160  47d9667180e86efba028554a103f4a48e9214fb9 \
+                    sha256  10b446c52ad9dfb70f0a8134bf37932610eb790e340960a1351fab35a7c9d9c3 \
+                    size    60262777
 } elseif { ${configure.build_arch} eq "arm64" } {
     set arch_classifier arm
-    checksums       rmd160  3122e9dd4622b33db005877a80a46e2060e1e664 \
-                    sha256  317518b8c9b9c17720c8d712a6a5cb3195e08583a9fa02a83cb0e0afca3c27f2 \
-                    size    58922397
+    checksums       rmd160  49e115474f242d19cfeb9be685ff2d86178a4a71 \
+                    sha256  8d1980d5d43041850b10c75409a755538d23459cb6815d2c9dd3a172ff03f0ac \
+                    size    60166391
 } else {
     set arch_classifier invalid
 }
@@ -49,26 +49,6 @@ worksrcdir          ${name}
 # glcoud (https://docs.cloud.google.com/sdk/docs/install-sdk#mac) and
 # gsutil (https://docs.cloud.google.com/storage/docs/gsutil_install#specifications)
 python.default_version 313
-
-post-patch {
-    # Default to the MacPorts Python binary
-    reinplace "s|CLOUDSDK_PYTHON=\$(order_python .*|CLOUDSDK_PYTHON=${python.bin}|" \
-        ${worksrcpath}/bin/bq \
-        ${worksrcpath}/bin/docker-credential-gcloud \
-        ${worksrcpath}/bin/git-credential-gcloud.sh \
-        ${worksrcpath}/bin/gcloud \
-        ${worksrcpath}/bin/gsutil \
-        ${worksrcpath}/bin/java_dev_appserver.sh
-
-    reinplace "s|^#!/usr/bin/env python$|#!${python.bin}|" \
-        ${worksrcpath}/bin/dev_appserver.py
-
-    # Disable updater
-    reinplace "s|\"disable_updater\": false|\"disable_updater\": true|" ${worksrcpath}/lib/googlecloudsdk/core/config.json
-}
-
-use_configure       no
-build               {}
 
 # MacPorts variants are not allowed to contain '-' and gcloud component names use both '-' and '_',
 # so each variant adds an explicit mapping from variant name to gcloud component name.
@@ -112,7 +92,8 @@ variant spanner_migration_tool description {Add Spanner migration tool} { dict s
 variant skaffold description {Add Skaffold} { dict set variant_to_component skaffold skaffold }
 variant terraform_tools description {Add Terraform Tools} { dict set variant_to_component terraform_tools terraform-tools }
 
-patch {
+use_configure       no
+build {
     # Define the basic installation command
     set install_command "CLOUDSDK_CONFIG=${worksrcpath}/.config CLOUDSDK_PYTHON=${python.bin} ./install.sh \
         --usage-reporting false \
@@ -137,6 +118,21 @@ patch {
 
     # Run installer script
     system -W ${worksrcpath} ${install_command}
+
+    # Default to the MacPorts Python binary
+    reinplace "s|CLOUDSDK_PYTHON=\$(order_python .*|CLOUDSDK_PYTHON=${python.bin}|" \
+        ${worksrcpath}/bin/bq \
+        ${worksrcpath}/bin/docker-credential-gcloud \
+        ${worksrcpath}/bin/git-credential-gcloud.sh \
+        ${worksrcpath}/bin/gcloud \
+        ${worksrcpath}/bin/gsutil \
+        ${worksrcpath}/bin/java_dev_appserver.sh
+
+    reinplace "s|^#!/usr/bin/env python$|#!${python.bin}|" \
+        ${worksrcpath}/bin/dev_appserver.py
+
+    # Disable updater
+    reinplace "s|\"disable_updater\": false|\"disable_updater\": true|" ${worksrcpath}/lib/googlecloudsdk/core/config.json
 }
 
 test.run    yes

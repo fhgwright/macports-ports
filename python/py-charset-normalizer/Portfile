@@ -4,15 +4,15 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                py-charset-normalizer
-version             3.4.4
+version             3.4.7
 revision            0
-distname            charset_normalizer-${version}
+
 categories-append   devel
 license             MIT
 supported_archs     noarch
 platforms           {darwin any}
 
-python.versions     36 39 310 311 312 313 314
+python.versions     36 310 311 312 313 314
 
 maintainers         {stromnov @stromnov} openmaintainer
 
@@ -21,9 +21,11 @@ long_description    {*}${description}
 
 homepage            https://github.com/ousret/charset_normalizer
 
-checksums           rmd160  346ec7f32839644a098ceb12619fc693ad3f8583 \
-                    sha256  94537985111c35f28720e43603b8e7b43a6ecfb2ce1d3058bbe955b73404e21a \
-                    size    129418
+distname            charset_normalizer-${version}
+
+checksums           rmd160  4eefa3045680a4041607b425dddd5f2c0f1de0b4 \
+                    sha256  ae89db9e5f98a11a4bf50407d4363e7b09b31e55bc117b4f7d80aab97ba009e5 \
+                    size    144271
 
 if {${name} ne ${subport}} {
     if {${python.version} == 36} {

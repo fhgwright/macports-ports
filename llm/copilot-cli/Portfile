@@ -1,0 +1,50 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           github 1.0
+
+github.setup        github copilot-cli 1.0.34 v
+
+categories          llm
+license             Restrictive/Distributable
+maintainers         {dports @drkp} openmaintainer
+description         GitHub Copilot CLI -- AI-powered coding assistant in the terminal
+long_description    GitHub Copilot CLI brings AI-powered coding assistance \
+                    directly to your command line, enabling you to build, \
+                    debug, and understand code through natural language \
+                    conversations. Powered by the same agentic harness as \
+                    GitHub's Copilot coding agent.
+
+homepage            https://docs.github.com/copilot/concepts/agents/about-copilot-cli
+
+supported_archs     arm64 x86_64
+platforms           {darwin >= 20}
+installs_libs       no
+
+use_configure       no
+build               {}
+
+# Pre-built binary -- architecture-specific distfiles
+if {${configure.build_arch} eq "arm64"} {
+    set arch_string     darwin-arm64
+    checksums           rmd160  691d647b4384ff4305797f48d024d1200f29bca0 \
+                        sha256  0d196dc67dc40300fa1046bf884e01a78b9fa4b51f98ce957450fe5d56547267 \
+                        size    55143893
+} else {
+    set arch_string     darwin-x64
+    checksums           rmd160  3388bb6fa8ce79d24f0cfbd2ba67dc1527cb4656 \
+                        sha256  16d387f6b007f38ca7990595a11d91d58cca81d8fd836952ed91d718890092f1 \
+                        size    58380821
+}
+
+dist_subdir         ${name}/${version}
+master_sites        https://github.com/github/copilot-cli/releases/download/v${version}/
+distname            copilot-${arch_string}
+
+extract.mkdir       yes
+
+destroot {
+    xinstall -m 0755 ${worksrcpath}/copilot ${destroot}${prefix}/bin/copilot
+}
+
+github.livecheck.regex {([0-9.]+)}

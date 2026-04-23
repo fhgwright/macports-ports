@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           npm 1.0
 
 name                gemini-cli
-version             0.33.2
+version             0.38.2
 revision            0
 
 categories          llm
@@ -21,9 +21,9 @@ homepage            https://geminicli.com
 npm.rootname        @google/${name}
 distname            ${name}-${version}
 
-checksums           rmd160  7836f00515f7fc7dc9a20167e3c640050c6f1f76 \
-                    sha256  4da4f451e79b5b7d8c70350906b7ff3b0e40433084547e93663376009942eda8 \
-                    size    4744173
+checksums           rmd160  64292b568becce0bd7071eb2edc4ed28b4e0aa37 \
+                    sha256  9b0c752cfe9375370e1812f37afffd97387b99df71e64cea53e588a25f4d688c \
+                    size    22946205
 
 post-destroot {
     set node_modules_dir ${destroot}${prefix}/lib/node_modules/${npm.rootname}/node_modules
@@ -35,13 +35,11 @@ post-destroot {
     }
     if {${os.platform} ne "linux"} {
         delete ${node_modules_dir}/clipboardy/fallbacks/linux
-        delete {*}[glob ${node_modules_dir}/tree-sitter-bash/prebuilds/linux*]
     }
     if {${os.platform} ne "windows"} {
         delete ${node_modules_dir}/clipboardy/fallbacks/windows
         delete {*}[glob ${node_modules_dir}/node-pty/prebuilds/win*]
         delete {*}[glob ${node_modules_dir}/node-pty/third_party/conpty/*/win*]
-        delete {*}[glob ${node_modules_dir}/tree-sitter-bash/prebuilds/win*]
     }
 
     # Remove binaries for other CPU architectures

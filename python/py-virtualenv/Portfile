@@ -5,8 +5,8 @@ PortGroup           python 1.0
 PortGroup           select 1.0
 
 name                py-virtualenv
-version             21.2.0
-revision            1
+version             21.2.4
+revision            0
 
 categories-append   devel
 platforms           {darwin any}
@@ -20,9 +20,9 @@ long_description    virtualenv is a tool to create isolated Python \
 
 homepage            https://virtualenv.pypa.io
 
-checksums           rmd160  e42f2f86895f7a9294503cb6912188c2d1454d76 \
-                    sha256  1720dc3a62ef5b443092e3f499228599045d7fea4c79199770499df8becf9098 \
-                    size    5840618
+checksums           rmd160  50099c83ce886e9f5870871a6f633a18fd7bd9d2 \
+                    sha256  b294ef68192638004d72524ce7ef303e9d0cf5a44c95ce2e54a7500a6381cada \
+                    size    5850742
 
 # keep Python version 2.7 here, other EOL Python versions can be removed
 # See <https://trac.macports.org/wiki/Python#VersionPolicy>

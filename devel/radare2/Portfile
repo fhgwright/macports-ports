@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           conflicts_build 1.0
 PortGroup           github 1.0
 
-github.setup        radareorg radare2 6.1.0
+github.setup        radareorg radare2 6.1.4
 github.tarball_from archive
 revision            0
 categories          devel
@@ -23,9 +23,9 @@ depends_lib         port:capstone \
 
 conflicts_build     ${name}
 
-checksums           rmd160  1eeea8c09345b09226575dd2ab683ef0ed727328 \
-                    sha256  52847eefc0fa9713b8c36e9afe45e0eee0e2d140e4f284c1ad43ae442f76a0a9 \
-                    size    11145251
+checksums           rmd160  61616c06a44658ce93e1d5a89a69f2c105afaeea \
+                    sha256  e025d623aa253e20b050164e65f140e437c110812a7b4c8b1b1342f692dfb452 \
+                    size    11251413
 
 configure.args-append \
                     --with-syscapstone \

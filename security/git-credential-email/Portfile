@@ -3,7 +3,7 @@
 PortSystem          1.0
 PortGroup           github 1.0
 
-github.setup        AdityaGarg8 git-credential-email 5.7.1 v
+github.setup        AdityaGarg8 git-credential-email 5.9.1 v
 github.tarball_from archive
 revision            0
 categories          security
@@ -15,9 +15,9 @@ description         git credential helpers for email providers
 long_description    Git credential helpers for Microsoft Outlook, Gmail, \
                     Yahoo, AOL and Proton Mail accounts.
 
-checksums           rmd160  d48534dd21c766bd0b7f042ab8378be59be21ba3 \
-                    sha256  a97b7999e8f6cc80184f94e44a5dc90cbb19cfa75886ef8915b57bf77428f4f8 \
-                    size    50433
+checksums           rmd160  4c864284fd46d5fba1770e8bb894c9726479da2a \
+                    sha256  d7d735489954b6b8e0dc6b0bee6685df8999813842fa9fcbeb0709333f52646c \
+                    size    55092
 
 set py_ver          3.14
 set py_ver_nodot    [string map {. {}} ${py_ver}]

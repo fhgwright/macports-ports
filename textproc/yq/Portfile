@@ -3,7 +3,7 @@
 PortSystem          1.0
 PortGroup           golang 1.0
 
-go.setup            github.com/mikefarah/yq 4.52.4 v
+go.setup            github.com/mikefarah/yq 4.53.2 v
 go.package          github.com/mikefarah/yq/v4
 go.offline_build    no
 revision            0
@@ -25,13 +25,13 @@ maintainers         {gmail.com:herby.gillot @herbygillot} \
                     openmaintainer
 
 checksums           ${distname}${extract.suffix} \
-                        rmd160  affbe9c22f3419de677750bf50cde45896894848 \
-                        sha256  8735165d0dc9a3348283dbcfd5916474ef30281f855909accc40395a5f851dea \
-                        size    354804 \
+                        rmd160  a3bbd9f0649cb99bd2899fbaa1fe09823a8c456c \
+                        sha256  1bc19bb8b1029148afa3465a9383f6dcccb1ecce28a0af1d81f07c93396ce37d \
+                        size    365230 \
                     ${name}_man_page_only${extract.suffix} \
-                        rmd160  fb35495c367fcec8b4ecd220b160a289081d7dc0 \
-                        sha256  11c0fac5fd0025a5101dcaf66fc98382e0736359bd74cdc3cc86282a3dc7e1a2 \
-                        size    47687
+                        rmd160  b7fe692017735a48ba7389617cce37a94ac9aff9 \
+                        sha256  4c43e5b95084e0da8b11294b903f6c1164a65f7580794b4d48a2e6653379034e \
+                        size    48526
 
 # use generated man page to avoid build depedency on pandoc
 master_sites-append https://github.com/mikefarah/yq/releases/download/v${version}/yq_man_page_only${extract.suffix}?dummy=:yqman

@@ -3,7 +3,7 @@
 PortSystem          1.0
 PortGroup           golang 1.0
 
-go.setup            github.com/ollama/ollama 0.18.0 v
+go.setup            github.com/ollama/ollama 0.21.0 v
 github.tarball_from archive
 revision            0
 
@@ -17,13 +17,19 @@ description         ${name} runs and manages LLMs
 long_description    Get up and running with large language models easily
 homepage            https://ollama.com
 
-checksums           rmd160  866082e9d3abe6710502451a43ce082756e056b9 \
-                    sha256  ca6da0134562a09b10b759fe06335b42438fa5e5a625a2bfd2e5655443f57593 \
-                    size    23267563
+checksums           rmd160  7a30d137edb2bfe11d803b9f0d9e9f91d632fd9b \
+                    sha256  4c23b1906e047b1ab6826e0c46692932b7bcd9e3ba24f130af076a02a0e90577 \
+                    size    26526302
 
 # See https://github.com/ollama/ollama/pull/6854
 patchfiles-append   patch-NO_MMAP_ENV.diff
 patch.args          -p1
+
+post-patch {
+    # Add ${prefix}/lib to libOllamaRoots (candidate directories for MLX dynamic libraries)
+    # Replacing binary path since we're not creating a bundle
+    reinplace "s|roots, exeDir|roots, filepath.FromSlash(\"${prefix}/lib\")|" ${worksrcpath}/x/mlxrunner/mlx/dynamic.go
+}
 
 go.offline_build    no
 build.post_args     -ldflags \"-s -w \
@@ -92,6 +98,15 @@ variant completion description "Install bash completion for ${name}" {
     # Use this until upstream has implemented proper shell completions
     depends_run-append \
                     port:ollama-bash-completion-plugin
+}
+
+variant mlx description "Support acceleration with Apple's MLX library" {
+    depends_lib-append  port:mlx-c
+}
+
+platform darwin arm {
+    default_variants-append \
+        +mlx
 }
 
 default_variants-append \
