@@ -162,7 +162,7 @@ variant tigerok description "Reenable Tiger support" {
     long_description          [string map {10.5 10.4} ${long_description}]
 
     set     tiger_auth        fhgwright
-    set     tiger_ver         2.12.4.0
+    set     tiger_ver         2.12.5.0
 
     # Override possible /testing
     dist_subdir               ${name}
@@ -178,9 +178,9 @@ variant tigerok description "Reenable Tiger support" {
     github.tarball_from archive
     use_bzip2           no
 
-    checksums           rmd160  9c7f26ba5e49471f78a83368675dabe3c15b03d7 \
-                        sha256  36aace6a5a62baca5e435c9a0ab04d2055e5f93cd238bb29d086ff6c170d49e5 \
-                        size    31498983
+    checksums           rmd160  8fd0dec17b214cc42aba3e3df50fffbdf5760c38 \
+                        sha256  70badec66cf215699c5b7d35be5c7012da04109225568f602d55b34839a10617 \
+                        size    31500773
 }
 
 platform darwin 8 {
