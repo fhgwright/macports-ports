@@ -26,7 +26,7 @@ checksums           md5     5e17f214dac07e179ca90d1eedef4291 \
                     sha256  1055241852f2b02068af4a625a5d32c087db193c12251928af2562ecd2239f18 \
                     size    4210626
 
-python.versions     27 37 310 311 312 313 314
+python.versions     27 36 37 38 39 310 311 312 313 314
 
 if {${name} ne ${subport}} {
     if {${python.version} == 27} {
@@ -38,7 +38,7 @@ if {${name} ne ${subport}} {
 
         depends_build-append \
                         port:py${python.version}-modulegraph
-    } elseif {${python.version} == 37} {
+    } elseif {${python.version} < 39} {
         version     5.4.0
         revision    1
         checksums   rmd160  388615fe1ee020bdbc0fc6556a47a94843578e9d \
