@@ -4,8 +4,7 @@ PortSystem          1.0
 PortGroup           perl5 1.0
 
 perl5.branches      5.28 5.30 5.32 5.34
-perl5.setup         URI 5.34 ../../authors/id/O/OA/OALDERS
-revision            0
+perl5.setup         URI 5.36 ../../authors/id/O/OA/OALDERS
 license             {Artistic-1 GPL}
 maintainers         nomaintainer
 description         URI - Uniform Resource Identifiers (absolute and relative)
@@ -14,9 +13,9 @@ long_description    {*}${description}
 platforms           {darwin any}
 supported_archs     noarch
 
-checksums           rmd160  a0d8f36fab137d82ee18aec619f5a4cf343d4d64 \
-                    sha256  de64c779a212ff1821896c5ca2bb69e74767d2674cee411e777deea7a22604a8 \
-                    size    134385
+checksums           rmd160  1885ba1624750e690c7644a5705b791f78392578 \
+                    sha256  32719e57413db6e18492e104707b95c2210df637614c512e7368c9ec3c2f783b \
+                    size    137403
 
 if {${perl5.major} != ""} {
     depends_build-append \

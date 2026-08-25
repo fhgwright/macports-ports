@@ -3,11 +3,11 @@
 PortSystem          1.0
 
 name                unbound
-version             1.24.2
+version             1.26.0
 revision            0
-checksums           rmd160  8ef84d915f64a8313752eec308224a708a9834dc \
-                    sha256  44e7b53e008a6dcaec03032769a212b46ab5c23c105284aa05a4f3af78e59cdb \
-                    size    6905018
+checksums           rmd160  45c398c17812ba1895b635ef8eec55de772b568e \
+                    sha256  77458a7156e275c0b7b17fabcb357cb12445d95cfcb26fb9bb7d5ecba45e0b63 \
+                    size    6945614
 
 categories          net
 license             BSD

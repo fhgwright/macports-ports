@@ -5,16 +5,14 @@ PortGroup           clang_dependency 1.0
 
 name                sqlite3
 # don't forget to update the checksums for sqlite3-tools when updating sqlite3
-version             3.53.0
-epoch               1
+version             3.53.4
 revision            0
+epoch               1
+
 categories          databases
 license             public-domain
-
 maintainers         {mps @Schamschula} openmaintainer
-
 description         an embedded SQL database engine
-
 long_description    SQLite3 is an SQL database engine in a C library. \
                     Programs that link the SQLite3 library can have SQL \
                     database access without running a separate RDBMS \
@@ -22,16 +20,15 @@ long_description    SQLite3 is an SQL database engine in a C library. \
                     command-line access program (sqlite3) that can be used \
                     to administer an SQLite3 database and which serves as \
                     an example of how to use the SQLite3 library.
-
 homepage            https://www.sqlite.org
 master_sites        ${homepage}/2026
 
 set padded_ver      [string range [subst [regsub -all {\.([0-9]+)} "${version}.0.0" {[format %02d \1]}]] 0 6]
 distname            sqlite-autoconf-${padded_ver}
 
-checksums           rmd160  0c89d3825e055f9b775158a65598455290e21a8b \
-                    sha256  851e9b38192fe2ceaa65e0baa665e7fa06230c3d9bd1a6a9662d02380d73365a \
-                    size    3274709
+checksums           rmd160  4634e868aa93d5d4032bd479aedf720d804406ed \
+                    sha256  0e9483900e92cd5de8fd48d16bf9200145a61f7fd5be542a5ac81d8a9516eb9c \
+                    size    3283177
 
 depends_lib         port:libedit \
                     port:ncurses \
@@ -90,7 +87,18 @@ if {${subport} eq ${name}} {
 }
 
 subport ${name}-tcl {
-    depends_lib             port:tcl \
+    PortGroup obsolete 1.0
+    version     3.53.3
+    revision    1
+    replaced_by ${name}-tcl8
+    # Can be removed after 2027-07-07
+}
+subport ${name}-tcl8 {}
+subport ${name}-tcl9 {}
+if {[string match *-tcl? $subport]} {
+    set tclport tcl[string index $subport end]
+    set tclshver [expr {$tclport eq "tcl8" ? "8.6" : "9.0"}]
+    depends_lib             port:${tclport} \
                             port:zlib
 
     configure.dir           ${worksrcpath}/tea
@@ -99,10 +107,15 @@ subport ${name}-tcl {
 
     configure.args          --exec-prefix=${prefix} \
                             --tcl-stubs \
-                            --with-tcl=${prefix}/lib 
+                            --with-tcl=${prefix}/lib/${tclport} \
+                            --with-tclsh=${prefix}/bin/tclsh${tclshver}
+    configure.env-append    autosetup_tclsh=${prefix}/bin/tclsh${tclshver}
 
-    configure.cppflags-prepend \
-                            -I${worksrcpath}
+    configure.cppflags      -I${worksrcpath} \
+                            -I${prefix}/include/${tclport} \
+                            -I${prefix}/include
+    configure.ldflags       -L${prefix}/lib/${tclport} \
+                            -L${prefix}/lib
 }
 
 subport ${name}-tools {
@@ -115,9 +128,9 @@ subport ${name}-tools {
 
     conflicts               sqlcipher-tools
 
-    checksums       rmd160  3c878d8014537fcc88336ede328c6f9acecb0d57 \
-                    sha256  fbc30cdbfcfa42c78fe7bddd3fd37ab8995369a31d39097a5d0633296c0b6e65 \
-                    size    14513779
+    checksums       rmd160  4228e2357efa086f1b2f626ef05f4c293deb1c6b \
+                    sha256  d18fa15aec74d8c17e1463f861095adc01b5ad190256acb4f91d22f0368d232b \
+                    size    14557315
 
     use_zip                 yes
 

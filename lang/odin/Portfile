@@ -3,7 +3,7 @@
 PortSystem          1.0
 PortGroup           github 1.0
 
-set ver             2026-04
+set ver             2026-08
 github.setup        odin-lang odin ${ver} dev-
 github.tarball_from archive
 version             0.[string map {- .} ${ver}]
@@ -26,9 +26,9 @@ set llvm_version    22
 depends_lib         port:llvm-${llvm_version} \
                     port:libiconv
 
-checksums           rmd160  8e2b22b613923b94d87402417b919c0336ee4d0b \
-                    sha256  955016112e1e59c2d5bb23b1aae07410634f0394d83dac3220462d94523ca624 \
-                    size    148837624
+checksums           rmd160  949ffa8f5e321522dcf458ce3ec9b01f353e6709 \
+                    sha256  52dd989d8fe0590c086c745c6ca90621525ac84aec57294358d055c4f09c0729 \
+                    size    151688548
 
 patchfiles          patch-build.diff patch-raylib.diff
 
@@ -36,7 +36,6 @@ patchfiles          patch-build.diff patch-raylib.diff
 compiler.cxx_standard   2017
 
 use_configure       no
-configure.ldflags-append    -Wl,-rpath,${prefix}/libexec/llvm-${llvm_version}/lib
 
 build.pre_args      release
 build.env           GIT_DATE=${ver} \
@@ -50,7 +49,15 @@ destroot {
     xinstall -d ${destroot}${prefix}/libexec/${name}
     copy ${worksrcpath}/${name} ${worksrcpath}/base ${worksrcpath}/core \
         ${worksrcpath}/vendor ${destroot}${prefix}/libexec/${name}
-    delete \
-        {*}[glob ${destroot}${prefix}/libexec/${name}/vendor/raylib/macos*/*.dylib]
+    fs-traverse f ${destroot}${prefix}/libexec/${name}/vendor {
+        if {[regexp {\.(dll|lib|so(\.[0-9]+)*|dylib)$} ${f}]} {
+            delete ${f}
+        }
+    }
+    if {${os.platform} ne "linux"} {
+        delete \
+            {*}[glob ${destroot}${prefix}/libexec/${name}/vendor/lua/*/linux/*.a] \
+            {*}[glob ${destroot}${prefix}/libexec/${name}/vendor/raylib/linux/*.a]
+    }
     ln -s ../libexec/${name}/${name} ${destroot}${prefix}/bin
 }

@@ -3,8 +3,9 @@
 PortSystem          1.0
 PortGroup           golang 1.0
 
-go.setup            github.com/turbot/steampipe 2.4.0 v
+go.setup            github.com/turbot/steampipe 2.4.5 v
 go.offline_build    no
+go.toolchain_min    1.26.5
 revision            0
 
 homepage            https://steampipe.io
@@ -22,9 +23,9 @@ license             AGPL-3
 maintainers         {gmail.com:herby.gillot @herbygillot} \
                     openmaintainer
 
-checksums           rmd160  dcab2c5aa6ff3732aa4b47b95ab466c62fe5d34d \
-                    sha256  dcbde3f1fa438bf0640b4ce71c6a34bdb889a4080945a428f3804136b091ff0d \
-                    size    592704
+checksums           rmd160  53d41a72db5ded294e4130374295997a40f456f0 \
+                    sha256  1226068715e480e8faa0eff37134741898a05222b360d85bd794ed9eae2bd216 \
+                    size    542303
 
 build.args          -ldflags '-X main.version=${version}'
 

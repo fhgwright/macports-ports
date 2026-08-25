@@ -8,10 +8,10 @@ PortGroup           muniversal 1.1
 
 # Please keep the harfbuzz and harfbuzz-devel ports as similar as possible.
 
-github.setup        harfbuzz harfbuzz 14.1.0
-checksums           rmd160  4f9c2cbe3b71a62a615dbe336e54f41fbdc88633 \
-                    sha256  ee0eb3a1da2c5a28147f12dff55f6c7d60aeeeb29ac7ef334eabe84c8476c105 \
-                    size    19499908
+github.setup        harfbuzz harfbuzz 14.2.1
+checksums           rmd160  291614dec3db67a0d7da5f5a3c6b0d2690d8c7e4 \
+                    sha256  a54a5d8e9380a41fbb762ce367bcbf7704792dfca0d93f1bbca86c5a57902e0e \
+                    size    19559952
 
 name                harfbuzz
 conflicts           harfbuzz-devel
@@ -78,7 +78,7 @@ configure.cflags-append     -DHB_NO_PRAGMA_GCC_DIAGNOSTIC_ERROR
 configure.cxxflags-append   -DHB_NO_PRAGMA_GCC_DIAGNOSTIC_ERROR
 
 if {${name} eq ${subport}} {
-    revision        1
+    revision        0
 
     gobject_introspection yes
 
@@ -132,7 +132,7 @@ if {${name} eq ${subport}} {
 }
 
 subport harfbuzz-icu {
-    revision        2
+    revision        0
 
     conflicts       harfbuzz-icu-devel
 

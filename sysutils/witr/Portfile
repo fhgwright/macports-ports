@@ -3,8 +3,8 @@
 PortSystem          1.0
 PortGroup           golang 1.0
 
-go.setup            github.com/pranshuparmar/witr 0.3.1 v
-set git-commit      c3a4eba5f06ce88a2260d33a909b81f5eb756cd2
+go.setup            github.com/pranshuparmar/witr 0.3.3 v
+set git-commit      86831e80c59c54e19c74cdbd126ed7ff6bcad756
 # This line is for displaying commit in CLI only
 revision            0
 categories          sysutils
@@ -17,11 +17,12 @@ long_description    ${name} exists to answer a single question: {*}${description
                     and what chain of systems is responsible for it existing right now,\
                     in a single, human-readable output or an interactive TUI dashboard.
 
-checksums           rmd160  e1171868ee44fd66146b1f961aa84bc876e4de60 \
-                    sha256  3e28aa5082b7e83e35e2e8d2b0be30732ac454ac261eb8f315ae8eb30810e6a5 \
-                    size    2791402
+checksums           rmd160  42886477ec7963ac8f753ba0d94c7c0173505d7a \
+                    sha256  af94fe23b01f4b7c672278228efb4a2df622170e0a4ef0e475be337bad11146a \
+                    size    2944954
 
 go.offline_build    no
+go.toolchain_min    1.25
 
 set time [clock format [clock seconds] -gmt true -format "%Y-%m-%dT%H:%M:%SZ"]
 build.args          -o ./${name}
@@ -29,7 +30,6 @@ build.post_args     -ldflags="-s -w \
                               -X '${go.package}/internal/version.Version=${github.tag_prefix}${version}' \
                               -X '${go.package}/internal/version.Commit=${git-commit}' \
                               -X '${go.package}/internal/version.BuildDate=${time}'"
-
 
 destroot {
     xinstall -m 0755 ${worksrcpath}/${name} ${destroot}${prefix}/bin/

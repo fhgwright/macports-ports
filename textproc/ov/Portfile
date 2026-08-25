@@ -3,8 +3,9 @@
 PortSystem          1.0
 PortGroup           golang 1.0
 
-go.setup            github.com/noborus/ov 0.52.0 v
+go.setup            github.com/noborus/ov 0.54.0 v
 go.offline_build    no
+go.toolchain_min    1.25.0
 revision            0
 
 description         Feature rich terminal pager
@@ -18,9 +19,9 @@ license             MIT
 maintainers         {gmail.com:herby.gillot @herbygillot} \
                     openmaintainer
 
-checksums           rmd160  62add318b79a6437b08a33ee0904f69805a746bf \
-                    sha256  0e119032077f14370e3dbf9eacd272e791784b9199e35b4abddc7bfe9f312ad4 \
-                    size    3834938
+checksums           rmd160  b313331773859e059fc3e9944616289adfe7363f \
+                    sha256  78248f48adb5deb6ca2e560b57583f0ae66ac5e71704b7dc0b35d2378e0df5ac \
+                    size    4116616
 
 build.cmd           make
 build.pre_args-append \

@@ -15,8 +15,7 @@ legacysupport.newest_darwin_requires_legacy 10
 name                gstreamer1
 set my_name         gstreamer
 # please only commit stable updates (even numbered releases)
-version             1.24.9
-revision            2
+version             1.28.6
 description         GStreamer is a library for constructing graphs of media-handling components.
 long_description    The applications it supports range from simple Ogg/Vorbis playback, audio/video \
                     streaming to complex audio (mixing) and video (non-linear editing) processing.
@@ -28,9 +27,9 @@ master_sites        https://gstreamer.freedesktop.org/src/${my_name}/
 distname            ${my_name}-${version}
 use_xz              yes
 
-checksums           rmd160  e1165d7db0474170c33ef1bfd769b6c6f23478d5 \
-                    sha256  ebf47b6beef508a00c8557d4c1f1713e5c7ef9ba70dac45deed80e182bcf260f \
-                    size    1863856
+checksums           rmd160  f2727ef04bcefa69c5c22d51e5eca4505a43dafd \
+                    sha256  62b6b9f0ad3147a6dd6420ac64a91180b14e990695bddd353b96041611d052ca \
+                    size    1955504
 
 set py_ver          3.14
 set py_ver_nodot    [string map {. {}} ${py_ver}]
@@ -40,9 +39,6 @@ depends_build-append \
                     port:bison \
                     port:flex \
                     port:gettext \
-                    port:gtk-doc \
-                    port:gzip \
-                    path:bin/perl:perl5 \
                     path:bin/pkg-config:pkgconfig \
                     port:python${py_ver_nodot}
 
@@ -73,13 +69,12 @@ post-patch {
 
 gobject_introspection   yes
 
-configure.env-append    PERL_PATH=${prefix}/bin/perl
-configure.cflags-append -funroll-loops -fstrict-aliasing -fno-common
-
 # Match blacklist used in gstreamer1-gst-plugins-base
 # error: redefinition of typedef ‘GstHarness’
+# fatal error: 'stdatomic.h' file not found
+compiler.c_standard 2011
 compiler.blacklist-append \
-                    *gcc-3.* *gcc-4.* {clang < 212}
+                    *gcc-3.* *gcc-4.* {clang < 700}
 
 configure.args-append \
                     -Dexamples=disabled \

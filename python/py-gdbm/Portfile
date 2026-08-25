@@ -114,43 +114,43 @@ subport py39-gdbm {
 }
 subport py310-gdbm {
     maintainers     {jmr @jmroot}
-    version         3.10.20
+    version         3.10.21
     revision        0
     homepage        https://docs.python.org/release/${version}/library/dbm.html
-    checksums       rmd160 d62fea99cb110fed3bf0ab202aa13540d28bde15 \
-                    sha256 de6517421601e39a9a3bc3e1bc4c7b2f239297423ee05e282598c83ec0647505
+    checksums       rmd160 c5df8990237481261c3d0c40fe8c0e656185b0a0 \
+                    sha256 a0da1e72132e950154eca0f6f47d5db828454700de20e5113667940d81e0db04
 }
 subport py311-gdbm {
     maintainers     {jmr @jmroot}
-    version         3.11.15
+    version         3.11.16
     revision        0
     homepage        https://docs.python.org/release/${version}/library/dbm.html
-    checksums       rmd160 3ae3a6c2c447c335a6495e1088649d84327b8842 \
-                    sha256 272179ddd9a2e41a0fc8e42e33dfbdca0b3711aa5abf372d3f2d51543d09b625
+    checksums       rmd160 97d017ef55d027ad278883e15ad5b5557c3a2c2b \
+                    sha256 91bcdebfdde239a003ae93738a7fce0f9230fee5c4bc2b86f6e6e8c6f98aabe8
 }
 subport py312-gdbm {
     maintainers     {jmr @jmroot}
-    version         3.12.13
+    version         3.12.14
     revision        0
     homepage        https://docs.python.org/release/${version}/library/dbm.html
-    checksums       rmd160 4c2fb4a15d8d8415056656838680f5c16ac7735c \
-                    sha256 c08bc65a81971c1dd5783182826503369466c7e67374d1646519adf05207b684
+    checksums       rmd160 ff293f27596019bc5c7d4719eb4cd996aacbc8d7 \
+                    sha256 5c8462af5790baf43a321a1559dbe0db06d1be4300fb85fb53c40060668e548a
 }
 subport py313-gdbm {
     maintainers     {jmr @jmroot}
-    version         3.13.13
+    version         3.13.15
     revision        0
     homepage        https://docs.python.org/release/${version}/library/dbm.html
-    checksums       rmd160 8dbbf88d3a65d93c43a44e430b440320ef409856 \
-                    sha256 2ab91ff401783ccca64f75d10c882e957bdfd60e2bf5a72f8421793729b78a71
+    checksums       rmd160 1fd3e1322317c6a96ac462f02db9bfbb173c350a \
+                    sha256 1e66a7945a48390ee4c2a4268a0e4185884059a13c4aab6d148aa208deea4a76
 }
 subport py314-gdbm {
     maintainers     {jmr @jmroot}
-    version         3.14.4
+    version         3.14.7
     revision        0
     homepage        https://docs.python.org/release/${version}/library/dbm.html
-    checksums       rmd160 5f7949e9ae43e221307d55a3c8f922dd4175020e \
-                    sha256 d923c51303e38e249136fc1bdf3568d56ecb03214efdef48516176d3d7faaef8
+    checksums       rmd160 94cfa8a811771fd445a4efb69eed1d93f31f5f41 \
+                    sha256 3b48dac8fb59f62eaa67ac83c1eb12bda1b7a08406dd286e252c11a66be27f81
 }
 
 

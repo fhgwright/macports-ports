@@ -8,7 +8,7 @@ PortGroup           cargo 1.0
 github.setup        rust-av Av1an 0.5.2 v
 github.tarball_from archive
 name                [string tolower ${github.project}]
-revision            0
+revision            1
 categories          multimedia
 maintainers         {i0ntempest @i0ntempest} openmaintainer
 license             GPL-3
@@ -38,9 +38,6 @@ depends_lib-append  port:libiconv \
                     port:vapoursynth
 depends_run-append  port:ffmpeg${ffmpeg_ver}
 # Note: currently not compatible with vapoursynth 73, check for each update
-
-#configure.pkg_config_path-prepend \
-                    ${prefix}/libexec/ffmpeg${ffmpeg_ver}/lib/pkgconfig
 
 archivefetch {
     # Don't use binary archive if ffmpeg has +no_symlink

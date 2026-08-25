@@ -3,21 +3,23 @@
 PortSystem          1.0
 
 name                algol68g
-version             3.11.1
+version             3.12.3
 revision            0
 categories          lang algol devel
 license             GPL-3
-maintainers         nomaintainer
+maintainers         {@Dave-Allured noaa.gov:dave.allured} \
+                    openmaintainer
+
 description         Algol 68 implementation as defined by the Revised Report
 long_description    Algol68G is an implementation of Algol 68 as defined by the Revised Report. \
                     It ranks among the most complete implementations of the language.
 
-homepage            https://jmvdveer.home.xs4all.nl/algol.html
-master_sites        https://jmvdveer.home.xs4all.nl
+homepage            https://algol68genie.nl/en/algol-68-genie/
+master_sites        https://algol68genie.nl
 
-checksums           rmd160  79e44bd3dae0d34ef44857a9fba44ece0d56dac2 \
-                    sha256  53004c643832b0b67d83aadf7392310a06f8a3ecdd98f413ece437b7970befa8 \
-                    size    680752
+checksums           rmd160  73232151ae7026869c6b54306ac64c34afb6bd63 \
+                    sha256  4d2e66f81ca2fb98f88e23ae41b475e7d40445f349b1088636782da320bd22b1 \
+                    size    681167
 
 extract.rename      yes
 
@@ -126,6 +128,6 @@ variant R description {Enable R support} {
                         -L${frameworks_dir}/R.framework/Versions/${r_branch}/Resources/lib
 }
 
+livecheck.url       ${master_sites}/en/algol-68-genie-source-code-repository/
 livecheck.type      regex
-livecheck.url       [lindex ${master_sites} 0]/en.download.algol-68-genie-current.html
 livecheck.regex     algol68g-(\[0-9.\]+)[quotemeta ${extract.suffix}]

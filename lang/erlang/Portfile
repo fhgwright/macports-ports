@@ -3,13 +3,12 @@
 PortSystem          1.0
 PortGroup           wxWidgets 1.0
 PortGroup           legacysupport 1.1
-PortGroup           compiler_blacklist_versions 1.0
 
 # strndup, TARGET_OS_OSX
 legacysupport.newest_darwin_requires_legacy 10
 
 name                erlang
-version             28.4.1
+version             29.0.3
 revision            0
 
 set doc_version     ${version}
@@ -46,17 +45,17 @@ distfiles           otp_src_${version}${extract.suffix}                    \
                     otp_doc_html_${doc_version}${extract.suffix}
 
 checksums           otp_src_${version}.tar.gz \
-                    rmd160  91c8f3b78f4a52b02747497b611847c18d5b9895 \
-                    sha256  fb2aa0bd8d4118a275895d4a0ea5b24e40e9e1e27a7b29e001377d7660fd9ecf \
-                    size    105181818 \
+                    rmd160  52cafceecdd0478797571afa578fc93848984346 \
+                    sha256  f920c660b16794bcb7270d1cbf680f7747c719650bcd6ac449508a32c2a8972a \
+                    size    106612967 \
                     otp_doc_man_${doc_version}.tar.gz \
-                    rmd160  b78a7e28ba96b848a31cf202b26697a895d3dbed \
-                    sha256  121056eb3bf81ef88614699ecb83591a7de77595e7e470acd6e3e30046ac5103 \
-                    size    1888440 \
+                    rmd160  52267e71494d0865cdca46adb92cee3a3d4f84d1 \
+                    sha256  a61c99df81a676da7aecc32e210b47ff407ac4f942230992bd81fa05366f5a0d \
+                    size    1932977 \
                     otp_doc_html_${doc_version}.tar.gz \
-                    rmd160  102d798de914bb8f5f36266a8126567eca52585b \
-                    sha256  2f46c7faba46c8c03b795444af937c4297aefc21499926886a211f7cb449193f \
-                    size    27721200
+                    rmd160  d1449e432393ab8212cd59e3fd7408f3715dbf0f \
+                    sha256  663c02f4fb09e3d737e176798a45b73cfc496984c5b72791d2dcb32cc431d348 \
+                    size    32509524
 
 worksrcdir          otp_src_${version}
 

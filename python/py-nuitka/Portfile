@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                py-nuitka
-version             4.0.7
+version             4.1.3
 revision            0
 categories-append   devel
 platforms           {darwin any}
@@ -20,9 +20,9 @@ long_description    ${description}
 
 homepage            http://nuitka.net/
 
-checksums           rmd160  32112d926d4735b1082d5111bb2ffc928e8dd2fb \
-                    sha256  26543bfed6009a466ae8608bdc643add81a497e8662e4aaf157cd00aa7fd5b9f \
-                    size    4421537
+checksums           rmd160  9499507b86cb99afa663c1006eb66cce3077f2dd \
+                    sha256  838ff8899dc2f0b652d4fcf6c5d7466cb7ad5abcb005668ac622d1e40f4d8a8d \
+                    size    4565475
 
 if {${name} ne ${subport}} {
     depends_lib-append  port:py${python.version}-zstd

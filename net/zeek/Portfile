@@ -5,7 +5,7 @@ PortGroup           cmake 1.1
 PortGroup           openssl 1.0
 
 name                zeek
-version             8.0.7
+version             8.0.10
 revision            0
 
 categories          net security
@@ -22,9 +22,9 @@ long_description    {*}${description} Zeek is the new name for the long-establis
 homepage            https://www.zeek.org/
 master_sites        https://download.zeek.org/
 
-checksums           rmd160  b087bd993114526f4efb50ad7a33389bc57e346a \
-                    sha256  16dc5706486b2f907632f219a4f6efd0ef2fa3179a159ca5b3c464eea7e5b10c \
-                    size    100068490
+checksums           rmd160  e34ddb0521d6d69e79b35c9f39a346ea947bbb8b \
+                    sha256  dbb1cb6c1eac27a8883ee4bd229a378b2f1253fa18e16cdeaaef8a00f124ddf1 \
+                    size    101045450
 
 subport ${name} {
     conflicts   ${name}-devel
@@ -33,17 +33,17 @@ subport ${name} {
 subport ${name}-devel {
     conflicts   ${name}
 
-    version         8.1.2
+    version         8.2.2
     revision        0
 
-    checksums       rmd160  8fa2968c4fdc063fdb05f184c32801b29cd37ed9 \
-                    sha256  5fc1f3d5182fea105f8de253e0fb10a05e9fcd0f49b2b8e6ace3aad9c864acb5 \
-                    size    93727442
+    checksums       rmd160  00e4d93f7928195e904691fa39018e424091d6c3 \
+                    sha256  a3b6d60ef6bec3eb12818fe32caec707f9b6d63053eaeee942e4ec9af64d862c \
+                    size    104120681
 }
 
 openssl.branch      3
 
-set python.version  313
+set python.version  314
 set python.branch   [string index ${python.version} 0].[string range ${python.version} 1 end]
 
 depends_build-append \

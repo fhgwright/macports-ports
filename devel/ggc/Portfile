@@ -3,8 +3,9 @@
 PortSystem          1.0
 PortGroup           golang 1.0
 
-go.setup            github.com/bmf-san/ggc 8.2.1 v
+go.setup            github.com/bmf-san/ggc 8.7.3 v
 go.offline_build    no
+go.toolchain_min    1.25.0
 revision            0
 
 description         \
@@ -24,12 +25,19 @@ license             MIT
 maintainers         {gmail.com:herby.gillot @herbygillot} \
                     openmaintainer
 
-checksums           rmd160  2b5e652431f1f27c6e360daebf99165ed7fa09a6 \
-                    sha256  36d3ceb5853a5985e3248e870d3c4ab4a5351777b3f03c2eeb5d994bf5dec62e \
-                    size    7552267
+checksums           rmd160  aab83224fb2efdb6ccd2c42e48ebf6a1be07fc92 \
+                    sha256  b1ccfb7996670c1f176c96cb66877168c24a17a0da04d92f9d4a5fdfbaad48ae \
+                    size    4887871
 
 build.args-append   \
     -ldflags \" -X main.version=${version} \"
+
+post-build {
+    foreach shell {bash fish zsh} {
+        system -W ${worksrcpath} \
+            "./${name} completion ${shell} > ${worksrcpath}/${name}.${shell}"
+    }
+}
 
 destroot {
     xinstall -m 0755 ${worksrcpath}/${name} ${destroot}${prefix}/bin/
@@ -39,6 +47,6 @@ destroot {
     set comp_path(zsh)  ${destroot}${prefix}/share/zsh/site-functions/_${name}
     foreach shell {bash fish zsh} {
         xinstall -d [file dirname $comp_path(${shell})]
-        xinstall -m 0644 ${worksrcpath}/tools/completions/${name}.${shell} $comp_path(${shell})
+        xinstall -m 0644 ${worksrcpath}/${name}.${shell} $comp_path(${shell})
     }
 }

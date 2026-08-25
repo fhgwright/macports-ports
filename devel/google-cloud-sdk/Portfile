@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                google-cloud-sdk
-version             565.0.0
+version             581.0.0
 revision            0
 categories          devel python
 license             Apache-2
@@ -21,19 +21,19 @@ supported_archs     i386 x86_64 arm64
 
 if { ${configure.build_arch} eq "i386" } {
     set arch_classifier x86
-    checksums       rmd160  77041304ff885c23b53620718471f32e4c993ce3 \
-                    sha256  f63cccd550f6fb3000dcccb3d0d8ee92b1a34894094912e141fdee8fda8f5159 \
-                    size    58605544
+    checksums       rmd160  b966cb72b71058f888f202272e750e35f08968cc \
+                    sha256  1ea341bda45b8b63ae51886d1b0b79198bde296b96306394f0d5f5ff6c7ac83f \
+                    size    60562945
 } elseif { ${configure.build_arch} eq "x86_64" } {
     set arch_classifier x86_64
-    checksums       rmd160  47d9667180e86efba028554a103f4a48e9214fb9 \
-                    sha256  10b446c52ad9dfb70f0a8134bf37932610eb790e340960a1351fab35a7c9d9c3 \
-                    size    60262777
+    checksums       rmd160  8d8c8508aecb911c638131c2ca44fb83c3478500 \
+                    sha256  0a1d266f4785977dba578a6cd2e3dce551d82dedf14b1ce1cb8d3728d5e0ee94 \
+                    size    62222458
 } elseif { ${configure.build_arch} eq "arm64" } {
     set arch_classifier arm
-    checksums       rmd160  49e115474f242d19cfeb9be685ff2d86178a4a71 \
-                    sha256  8d1980d5d43041850b10c75409a755538d23459cb6815d2c9dd3a172ff03f0ac \
-                    size    60166391
+    checksums       rmd160  40aae42285803e9daaa29fbeba19675915263d49 \
+                    sha256  5d5b79fc28c302ebbdffb83cddb50a138b3d364edccd70dfafee8969d3c44bdd \
+                    size    62128574
 } else {
     set arch_classifier invalid
 }
@@ -48,7 +48,7 @@ worksrcdir          ${name}
 # Most recent Python version that is compatible with both
 # glcoud (https://docs.cloud.google.com/sdk/docs/install-sdk#mac) and
 # gsutil (https://docs.cloud.google.com/storage/docs/gsutil_install#specifications)
-python.default_version 313
+python.default_version 314
 
 # MacPorts variants are not allowed to contain '-' and gcloud component names use both '-' and '_',
 # so each variant adds an explicit mapping from variant name to gcloud component name.
@@ -86,6 +86,7 @@ variant minikube description {Add Minikube} { dict set variant_to_component mini
 variant nomos description {Add Nomos CLI} { dict set variant_to_component nomos nomos }
 variant package_go_module description {Add Artifact Registry Go Module Package Helper} { dict set variant_to_component package_go_module package-go-module }
 variant pkg description {Add pkg} { dict set variant_to_component pkg pkg }
+variant preview description {Add gcloud CLI Preview Commands} { dict set variant_to_component preview preview }
 variant pubsub_emulator description {Add Cloud Pub/Sub Emulator} { dict set variant_to_component pubsub_emulator pubsub-emulator }
 variant spanner_cli description {Add Spanner CLI} { dict set variant_to_component spanner_cli spanner-cli }
 variant spanner_migration_tool description {Add Spanner migration tool} { dict set variant_to_component spanner_migration_tool spanner-migration-tool }

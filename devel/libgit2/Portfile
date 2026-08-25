@@ -11,9 +11,9 @@ conflicts           libgit2-devel
 set my_name         libgit2
 
 # don't forget to update py-pygit2 and libgit2-glib as well
-github.setup        libgit2 libgit2 1.9.0 v
+github.setup        libgit2 libgit2 1.9.6 v
 github.tarball_from archive
-revision            1
+revision            0
 epoch               1
 
 categories          devel
@@ -30,9 +30,9 @@ homepage            https://libgit2.org/
 
 dist_subdir         ${my_name}
 
-checksums           rmd160  cf1c29dbeaf0e0651bdee529af06ecc10c35aab7 \
-                    sha256  75b27d4d6df44bd34e2f70663cfd998f5ec41e680e1e593238bbe517a84c7ed2 \
-                    size    7660744
+checksums           rmd160  191dc24c339619b50fd4dfe816784ad00a053a99 \
+                    sha256  a88a42a4ea9bdab7aa8686eead3bf7d9c6dd74529caca16ab22eaa92433d31d9 \
+                    size    7769080
 
 depends_build-append \
                     path:bin/pkg-config:pkgconfig

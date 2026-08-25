@@ -3,7 +3,7 @@
 PortSystem          1.0
 PortGroup           golang 1.0
 
-go.setup            github.com/tw93/Mole 1.33.0 V
+go.setup            github.com/tw93/Mole 1.51.0 V
 name                [string tolower ${github.project}]-cleaner
 revision            0
 categories          sysutils
@@ -13,9 +13,9 @@ maintainers         {i0ntempest @i0ntempest} openmaintainer
 description         Deep clean and optimize your Mac
 long_description    ${github.project} is a Mac cleaning tool that can free up tens of GBs in one go.
 
-checksums           rmd160  c370cdf90be2e285308dee2ad23ea7bece8dbd20 \
-                    sha256  c6641d8c54bf253c740df5bc22b20bbeb321e91a92a57120cf42d2edd4050001 \
-                    size    575713
+checksums           rmd160  606b6b0aad92a7a2484302bd121f6eb1a306ef46 \
+                    sha256  9d5e4340c6e5fcfa7f73df30d2a46363600297f8d6ae159b08d4fcf740331852 \
+                    size    1727392
 
 depends_run-append  port:bash
 
@@ -32,8 +32,8 @@ post-patch {
 go.offline_build    no
 
 set time [clock format [clock seconds] -format %Y%m%dT%H%M%S]
-build.args-append   -ldflags=\"-X 'main.Version=v${version}' -X 'main.BuildTime=${time}'\"
-build.cmd           "cd ${worksrcpath}/cmd/analyze && ${build.cmd} -o ../../bin/analyze-go && cd ${worksrcpath}/cmd/status && ${build.cmd} -o ../../bin/status-go"
+build.cmd           "cd ${worksrcpath}/cmd/analyze && ${build.cmd} -o ../../bin/analyze-go -ldflags=\"-X 'main.Version=v${version}' -X 'main.BuildTime=${time}'\" &&\
+                     cd ${worksrcpath}/cmd/status && ${build.cmd} -o ../../bin/status-go -ldflags=\"-X 'main.Version=v${version}' -X 'main.BuildTime=${time}'\" "
 
 destroot {
     xinstall -m 755 ${worksrcpath}/[string tolower ${github.project}] ${destroot}${prefix}/bin
@@ -42,7 +42,7 @@ destroot {
     copy ${worksrcpath}/bin ${worksrcpath}/lib ${destroot}${script_dir}
     # All supported shells: bash, fish, zsh
     set comp_path(bash) ${destroot}${prefix}/share/bash-completion/completions/
-    set comp_path(fish) ${destroot}${prefix}/share/fish/completions/
+    set comp_path(fish) ${destroot}${prefix}/share/fish/vendor_completions.d/
     set comp_path(zsh)  ${destroot}${prefix}/share/zsh/site-functions/
     set comp_file(bash) [string tolower ${github.project}]
     set comp_file(fish) [string tolower ${github.project}].fish
@@ -50,6 +50,8 @@ destroot {
     set alt_comp_file(bash) mo
     set alt_comp_file(fish) mo.fish
     set alt_comp_file(zsh)  _mo
+    # Do not initialize the full runtime (causes silent failures)
+    reinplace {/\$ROOT_DIR\/lib\/core\/common\.sh/d} ${worksrcpath}/bin/completion.sh
     foreach shell {bash fish zsh} {
         xinstall -d $comp_path(${shell})
         system -W ${worksrcpath}/bin "./completion.sh ${shell} > $comp_path(${shell})$comp_file(${shell})"

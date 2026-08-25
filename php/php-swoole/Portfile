@@ -13,17 +13,17 @@ php.branches            5.3 5.4 5.5 5.6 7.0 7.1 7.2 7.3 7.4 8.0 8.1 8.2 8.3 8.4 
 php.pecl                yes
 
 if {[vercmp ${php.branch} >= 8.2]} {
-    version             6.2.0
+    version             6.2.2
     revision            0
-    checksums           rmd160  b8479770bc100c16e815d75346b641d1180dba4a \
-                        sha256  b66bf449440c1ba2727314e1e9c4c078978e7def21a02b729bbfec35601ae2ee \
-                        size    2598797
+    checksums           rmd160  aead2d9f5bc03048f326310de0830f4bf355bd91 \
+                        sha256  fb17fc898d02ee0f2b22f5e4dcb0ff96cd35fe8ef7a6d2c5af6cb365f3f9b438 \
+                        size    2600130
 } elseif {[vercmp ${php.branch} >= 8.1]} {
-    version             6.1.7
+    version             6.1.9
     revision            0
-    checksums           rmd160  098d8248139e2c741a2c16670a4d13917e950399 \
-                        sha256  7835a9983ab4837be35e8c54c1787fc465de06c14282c28581cf4716f518b9c0 \
-                        size    2413131
+    checksums           rmd160  dd84a7be72d8d3582a38c258a85e0f7bf9d6e986 \
+                        sha256  a9a9934ba9a7288f98c8f62d26fc80a07bd1091b8de0e60f470f0fb3fc7ba856 \
+                        size    2414098
 } elseif {[vercmp ${php.branch} >= 8.0]} {
     version             5.1.8
     revision            0

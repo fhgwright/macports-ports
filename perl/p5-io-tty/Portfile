@@ -4,13 +4,12 @@ PortSystem          1.0
 PortGroup           perl5 1.0
 
 perl5.branches      5.28 5.30 5.32 5.34
-perl5.setup         IO-Tty 1.27 ../../authors/id/T/TO/TODDR
-revision            0
+perl5.setup         IO-Tty 1.31 ../../authors/id/T/TO/TODDR
 maintainers         nomaintainer
 license             {Artistic-1 GPL}
 description         IO::Tty - Low-level allocate a pseudo-Tty, import constants
 long_description    {*}${description}
 
-checksums           rmd160  4112e145c45311b6c8efca0370f37a9028c16b9d \
-                    sha256  83459d10a2768df598b58e2ae5946e6c259456cb4eccf85f8652d0c7d8991f2c \
-                    size    36218
+checksums           rmd160  d4b384d7aa6160d809e4c9b71df0c997bcdc7926 \
+                    sha256  d597af221628571cbecf35b44520148c44798dfc8a9867774e60453f79d25ff7 \
+                    size    39131

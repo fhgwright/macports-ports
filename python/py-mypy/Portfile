@@ -5,7 +5,7 @@ PortGroup python 1.0
 PortGroup select 1.0
 
 name                py-mypy
-version             1.20.1
+version             2.3.1
 revision            0
 license             MIT
 maintainers         {toby @tobypeterson} openmaintainer
@@ -19,9 +19,9 @@ long_description    Add type annotations to your Python programs, and use mypy t
 
 homepage            https://www.mypy-lang.org
 
-checksums           rmd160  70767b250cac155aa59fc031d72de7395e4f051c \
-                    sha256  6fc3f4ecd52de81648fed1945498bf42fa2993ddfad67c9056df36ae5757f804 \
-                    size    3815892
+checksums           rmd160  f39e33608ac8f974b73c814217eb1bc4896f24d4 \
+                    sha256  47c1b1207258513a9d93495f69c8be9de73916186f0e52703e8c461b7a623419 \
+                    size    3992554
 
 python.versions     310 311 312 313 314
 
@@ -31,7 +31,8 @@ if {${name} ne ${subport}} {
     depends_lib-append      port:py${python.version}-mypy_extensions \
                             port:py${python.version}-typing_extensions \
                             port:py${python.version}-pathspec \
-                            port:py${python.version}-librt
+                            port:py${python.version}-librt \
+                            port:py${python.version}-ast_serialize
     depends_run-append      port:mypy_select
 
     if {${python.version} < 311} {

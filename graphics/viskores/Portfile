@@ -4,9 +4,10 @@ PortSystem          1.0
 PortGroup           cmake 1.1
 PortGroup           github 1.0
 
-github.setup        Viskores viskores 1.1.0 v
+github.setup        Viskores viskores 1.1.1 v
+# remove the revision in the hdf5 variant
 github.tarball_from archive
-revision            0
+revision            1
 
 categories          graphics science devel
 license             BSD
@@ -22,9 +23,9 @@ long_description    Viskores is a toolkit of scientific visualization algorithms
 
 homepage            https://viskores.org
 
-checksums           rmd160  e56a5f9ed785ad6a001d3511e62146031d783098 \
-                    sha256  24eb77decff0370789594a8064060d64b51ba0b9ae9d78c882daada4d8f19a20 \
-                    size    17158572
+checksums           rmd160  a79753dd1068570bc30bdee012e6233957ed21cb \
+                    sha256  2a6c7a9e036d1756f4f8a6a835a4cee91452197a22ddce755672370ccc296605 \
+                    size    17158357
 
 compiler.cxx_standard   2017
 compiler.thread_local_storage yes
@@ -46,13 +47,14 @@ variant openmp description {Enable OpenMP support} {
 
 variant tbb description {Enable Intel Threading Building Blocks support} {
     configure.args-append   -DViskores_ENABLE_TBB=ON
-    configure.env-append    TBB_ROOT=${prefix}/libexec/onetbb
     depends_lib-append      port:onetbb
 }
 
 variant hdf5 description {Enable HDF5 support} {
     configure.args-append   -DViskores_ENABLE_HDF5_IO=ON
     depends_lib-append      port:hdf5
+    # revbump due to hdf5 update, remove upon next update
+    incr revision
 }
 
 github.livecheck.regex {([0-9\.]+)}

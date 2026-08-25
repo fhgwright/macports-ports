@@ -1,12 +1,10 @@
 # -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
 
 PortSystem          1.0
-PortGroup           github 1.0
 PortGroup           python 1.0
 
-github.setup        Calysto metakernel 1.0.2 v
-github.tarball_from archive
 name                py-metakernel
+version             1.0.7
 revision            0
 
 categories-append   devel science
@@ -21,9 +19,9 @@ homepage            https://github.com/Calysto/metakernel
 supported_archs     noarch
 platforms           {darwin any}
 
-checksums           rmd160  a6243a8164dfd2a2a87b1925c66eb31f416667e0 \
-                    sha256  326e4a11eba96417bde1f6ee7d88ce1b66b5c9a96356d005862f8ca1b6a9d089 \
-                    size    462243
+checksums           rmd160  03d7c7fdb9af97c0f0ad4ea7a851add4496976f2 \
+                    sha256  499a0e399e353e0fb4a74e105ea2ad2aed89a15053a299f5fa93c027d721743a \
+                    size    238525
 
 python.versions     310 311 312 313 314
 

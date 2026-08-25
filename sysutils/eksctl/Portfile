@@ -3,8 +3,10 @@
 PortSystem          1.0
 PortGroup           golang 1.0
 
-go.setup            github.com/weaveworks/eksctl 0.225.0 v
+go.setup            github.com/eksctl-io/eksctl 0.230.0 v
+go.package          github.com/weaveworks/eksctl
 go.offline_build    no
+go.toolchain_min    1.26.5
 revision            0
 
 homepage            https://eksctl.io
@@ -23,9 +25,9 @@ maintainers         {@szczad gmail.com:szczad} \
                     {gmail.com:herby.gillot @herbygillot} \
                     openmaintainer
 
-checksums           rmd160  d05b2f49fe5ef287c3771600c0d99b7cb95a8a09 \
-                    sha256  2c3272d48a61fa5b56b9e8a4f27445693ce4c25b86b64a3cc4f7e47d5a0c69ac \
-                    size    12097860
+checksums           rmd160  ab068d02cf1a6f8c66bb483792676920333475ad \
+                    sha256  dc0dfa06aa180f2b8d2009cc00f4f0b03ace9a24340484a293aa0f60dc96290e \
+                    size    12123717
 
 build.cmd           make
 build.target        binary

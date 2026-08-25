@@ -10,13 +10,13 @@ if {(${os.platform} eq "darwin" && ${os.major} > 13) \
     || ${os.platform} ne "darwin"} {
     PortGroup       qt6 1.0
 
-    github.setup    Faster3ck converseen 0.15.2.3 v
+    github.setup    Faster3ck converseen 0.15.2.7 v
     github.tarball_from archive
     revision        0
 
-    checksums       rmd160  bf39704af08d4cb77f15ef068e1f951cfb12ebef \
-                    sha256  31215aea3678036cc0c480aad15d2f423b2b538827aa42f24d93a9e13c8ffca2 \
-                    size    979493
+    checksums       rmd160  a722b60e276957fd912c16f1f83dba66d9bd9275 \
+                    sha256  1e2be90695f802e038c385346c19fd438185aac4eda83124af71fbc2854871f2 \
+                    size    993583
 
     depends_lib-append \
                     port:ImageMagick7 \

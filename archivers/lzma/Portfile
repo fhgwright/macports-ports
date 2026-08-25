@@ -8,11 +8,11 @@ PortGroup       makefile 1.0
 legacysupport.newest_darwin_requires_legacy 16
 
 name            lzma
-version         26.00
+version         26.02
 revision        0
-checksums       rmd160  288a98a40ecd4f4ccf7de3f1097a149ed956b676 \
-                sha256  6b7d0c8ed1a67112d5337e4532ecdcb9fd2eab8b1f6bb54199f9b6a627b506cc \
-                size    1774522
+checksums       rmd160  96cfcb0f292b53f0c7c5a60c37c0bccbeca814ed \
+                sha256  2878c85f5f43a4a4e0952b1fd4e5fe097c1c143997a8047c7e1e788892aa9357 \
+                size    1780057
 
 categories      archivers
 license         public-domain

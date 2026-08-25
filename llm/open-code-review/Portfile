@@ -1,0 +1,32 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           golang 1.0
+
+go.setup            github.com/alibaba/open-code-review 1.10.0 v
+set git-commit      a662400
+go.offline_build    no
+go.toolchain_min    1.25.5
+
+categories          llm
+maintainers         @oytech openmaintainer
+license             Apache-2
+
+homepage            https://open-codereview.ai/
+description         Open Code Review is an AI-powered code review CLI tool.
+long_description    Open Code Review is an AI-powered code review CLI tool. \
+                    It reads Git diffs, sends changed files to a configurable LLM via an agent with tool-use capabilities, \
+                    and generates structured review comments with line-level precision. \
+                    The agent can read full file contents, search the codebase, inspect other changed files for context, \
+                    and produce deep reviews — not just surface-level diff feedback.
+
+checksums           rmd160  ca2ea53e9b27fa49ff3a61f7d67494ea06129a34 \
+                    sha256  04e7faf368911a75f45ed8f3fb431346d86ef52da74927d7f6906d89ca081f31 \
+                    size    5185125
+
+build.pre_args      -ldflags '-s -w -X main.Version=v${version} -X main.GitCommit=${git-commit}'
+build.args          ./cmd/opencodereview
+
+destroot {
+    xinstall -m 0755 ${worksrcpath}/opencodereview ${destroot}${prefix}/bin/ocr
+}

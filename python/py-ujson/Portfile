@@ -5,7 +5,7 @@ PortGroup           python 1.0
 
 # Note: update py-types-ujson to match
 name                py-ujson
-version             5.12.0
+version             5.13.0
 revision            0
 
 categories-append   devel
@@ -17,9 +17,9 @@ long_description    {*}${description}
 
 homepage            https://github.com/ultrajson/ultrajson
 
-checksums           rmd160  f0b52242b497bfa5cdb53f56cd0842b0647ccec1 \
-                    sha256  14b2e1eb528d77bc0f4c5bd1a7ebc05e02b5b41beefb7e8567c9675b8b13bcf4 \
-                    size    7158451
+checksums           rmd160  d0ff9dca20fcaeaa00440bf7070efb49ff4b581a \
+                    sha256  d62e3d7625384c08082abad81a077af587fdef2761bb14c3822f4234b8d07d75 \
+                    size    7166784
 
 python.versions     310 311 312 313 314
 

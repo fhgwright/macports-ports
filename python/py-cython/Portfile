@@ -6,7 +6,7 @@ PortGroup           select 1.0
 
 name                py-cython
 python.rootname     Cython
-version             3.2.4
+version             3.2.9
 revision            0
 categories-append   devel
 license             Apache-2
@@ -26,9 +26,9 @@ homepage            https://cython.org/
 
 distname            cython-${version}
 
-checksums           rmd160  3a83e82503faa7f4816af19f2c6756f5cf59bd9a \
-                    sha256  84226ecd313b233da27dc2eb3601b4f222b8209c3a7216d8733b031da1dc64e6 \
-                    size    3280291
+checksums           rmd160  fc538570010f83a400d774cb0a396584fec3b439 \
+                    sha256  d249c9022ab13286b17bd66f30609e800c5f95efeecb06168990c7a66cecde6c \
+                    size    3293493
 
 if {${name} ne ${subport}} {
     depends_lib-append \

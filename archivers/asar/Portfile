@@ -5,7 +5,7 @@ PortGroup           npm 1.0
 PortGroup           github 1.0
 
 name                asar
-version             4.2.0
+version             4.3.0
 revision            0
 
 categories          archivers devel
@@ -21,9 +21,9 @@ homepage            https://www.electronjs.org/docs/latest/tutorial/asar-archive
 npm.rootname        @electron/${name}
 distname            ${name}-${version}
 
-checksums           rmd160  aa6b4a216c08903d149f18770ef42bb9bdd06456 \
-                    sha256  9eaf6ea29e3b67be7dd52a575f6a74e3835dce57576fe7b2a31a70f7f19553bd \
-                    size    24614
+checksums           rmd160  1912940aa4bf743f2759013d18e677d59f8f5576 \
+                    sha256  b70596d9155d11f4e2b5ec84184a813e30568fd4dbaf6ea3d0edd5530c9ac1e1 \
+                    size    29971
 
 platform darwin {
     if {${os.major} <= 20} {

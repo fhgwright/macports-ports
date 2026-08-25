@@ -8,17 +8,17 @@ categories-append   databases devel
 maintainers         {ryandesign @ryandesign} {mathiesen.info:macintosh @BjarneDMat} openmaintainer
 license             Apache-2
 
-php.branches        5.4 5.5 5.6 7.0 7.1 7.2 7.3 7.4 8.0 8.1 8.2 8.3 8.4 8.5
+php.branches        5.4 5.5 5.6 7.0 7.1 7.2 7.3 7.4 8.0 8.1 8.2 8.3 8.4 8.5 8.6
 php.pecl            yes
 
 # https://www.mongodb.com/docs/drivers/compatibility/?driver-language=php&php-driver-framework=php-driver
 # https://pecl.php.net/package/mongodb
 if {[vercmp ${php.branch} >= 8.1]} {
-    version         2.2.1
+    version         2.3.3
     revision        0
-    checksums       rmd160  c2a9e1049dd664209371d44e1520e86016f2b761 \
-                    sha256  b923617bec3cde420d80bf78aeb05002be3c0e930b93adaacaa5c2e0c25adb42 \
-                    size    2229480
+    checksums       rmd160  ac640e530978616c4e21d9db51ff4f80fad5498f \
+                    sha256  370ff9c06932139c69f6b4c57b1a97c95b0278d3baf23fa42b8fb571ddb92bbf \
+                    size    2243389
 } elseif {[vercmp ${php.branch} >= 7.4]} {
     version         1.20.1
     revision        0

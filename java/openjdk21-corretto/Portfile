@@ -21,7 +21,7 @@ universal_variant no
 supported_archs  x86_64 arm64
 
 # https://github.com/corretto/corretto-21/releases
-version      ${feature}.0.11.10.1
+version      ${feature}.0.12.9.1
 revision     0
 
 # Amazon Corretto's support dates: https://aws.amazon.com/corretto/faqs/#topic-0
@@ -33,14 +33,14 @@ master_sites https://corretto.aws/downloads/resources/${version}/
 
 if {${configure.build_arch} eq "x86_64"} {
     set arch_classifier x64
-    checksums    rmd160  af061a9b3abb56cbbb0f54d3cc6afe693ad45f02 \
-                 sha256  fb08b09af67ca930d6868405263259d5e43faab89216f6886780e544fd700f00 \
-                 size    202893526
+    checksums    rmd160  85b984676d50b1d78a491bd84fa668529294985a \
+                 sha256  203b3d37c16b388db2b2f3cabe9d37189bac09294848737a26f7dc9063331cb8 \
+                 size    202991079
 } elseif {${configure.build_arch} eq "arm64"} {
     set arch_classifier aarch64
-    checksums    rmd160  9172ab6c68af275a5ef3d5190bf33acd7ed9a207 \
-                 sha256  c6c9ba09ef0ae741aa04cfbd5ef8a6b75dd2d26034a1de0808ee7976a04446ea \
-                 size    200535571
+    checksums    rmd160  0bb17f7b6158754705fe3e56036bd763fc7e81e5 \
+                 sha256  2c03e806a8fb634b9fa21013f9de43ed4ec7fc6e6487144d2af5e2d4c126dfdd \
+                 size    200627351
 } else {
     set arch_classifier unsupported_arch
 }

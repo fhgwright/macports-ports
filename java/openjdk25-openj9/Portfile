@@ -20,28 +20,26 @@ universal_variant no
 # https://developer.ibm.com/languages/java/semeru-runtimes/downloads?os=macOS
 supported_archs  x86_64 arm64
 
-version      ${feature}.0.2
-revision     1
-
-set build    10
-set openj9_version 0.57.0
+version      ${feature}.0.4
+set build    7
+revision     0
 
 description  IBM Semeru with Eclipse OpenJ9 VM distribution, based on OpenJDK ${feature} (Long Term Support)
 long_description The IBM Semeru Runtimes are free production-ready open source binaries to run your Java applications\
                  built with the OpenJDK class libraries and the Eclipse OpenJ9 JVM.
 
-master_sites https://github.com/ibmruntimes/semeru${feature}-binaries/releases/download/jdk-${version}+${build}.${revision}_openj9-${openj9_version}/
+master_sites https://github.com/ibmruntimes/semeru${feature}-binaries/releases/download/jdk-${version}.${revision}/
 
 if {${configure.build_arch} eq "x86_64"} {
     set arch_classifier x64
-    checksums    rmd160  9106e8030dc6daa40b090d2acf9997265b6fab4b \
-                 sha256  eeeae81af54332b94a0808c500e6d98d052683ee3b6cb0e209c486c23a81a1ba \
-                 size    239812387
+    checksums    rmd160  5fe0b89092b15b9c4ccf2e9426a2fb96a6a9545a \
+                 sha256  6a0be956cf61f73cdb2f016c04a9b5d8118d9ebf3b2e58a22703d1fd341e1e42 \
+                 size    240245232
 } elseif {${configure.build_arch} eq "arm64"} {
     set arch_classifier aarch64
-    checksums    rmd160  8afe752a12e8ad94ff4c7cfdfaa1c176181be85c \
-                 sha256  2c2c200a299f5f22b399733773ec1e931e1d738f7a5970de601c4edb2955ab43 \
-                 size    234001321
+    checksums    rmd160  f885790f66d37c79d799fe1af353e6cbb61341c1 \
+                 sha256  872eef131370704bd498b8f7961917758f980b86b98903d482c48c145f8c1a32 \
+                 size    234146940
 } else {
     set arch_classifier unsupported_arch
 }

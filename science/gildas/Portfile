@@ -5,7 +5,7 @@ PortGroup           compilers 1.0
 PortGroup           active_variants 1.1
 
 name                gildas
-version             202604a
+version             202607b
 set my_version      [string tolower [clock format [clock scan 2000-[string range ${version} 4 5]-10] -format %b]][string range ${version} 2 3][string range ${version} 6 end]
 
 supported_archs     arm64 x86_64
@@ -31,9 +31,9 @@ master_sites        https://www.iram.fr/~gildas/dist/ \
 distname            ${name}-src-${my_version}
 use_xz              yes
 
-checksums           rmd160  7342a2ae68dc41465f0e15b133a503124339e42b \
-                    sha256  7afbafd17229a69787494c4878fb64fc1c1c5e90259feb7cf48950a566c621bf \
-                    size    27789828
+checksums           rmd160  5f161b83383f315f697adbcbe2fefca737bb98a4 \
+                    sha256  3f32d4d90c1cd0d952f0268963b1ea41d03783c9938b0e3e10925caa002b048b \
+                    size    27872216
 
 patch.pre_args-replace  -p0 -p1
 patchfiles          patch-admin-Makefile.def.diff \
@@ -58,9 +58,6 @@ variant openmp description {Add OpenMP support} {set my_build_opts "-o openmp"}
 
 # need x11 and cannot be used with quartz; see ticket #42886
 require_active_variants gtk3 x11 quartz
-
-# need the fortran interface; see ticket #50543
-compilers.enforce_some_fortran cfitsio
 
 compilers.add_gcc_rpath_support no
 

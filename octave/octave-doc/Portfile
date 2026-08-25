@@ -3,10 +3,11 @@
 PortSystem          1.0
 PortGroup           octave 1.0
 
-octave.setup        github gnu-octave pkg-octave-doc 0.6.9 release-
+octave.setup        github gnu-octave pkg-octave-doc 0.7.5 release-
 octave.module       doc
 github.tarball_from releases
 revision            0
+
 license             GPL-3+
 maintainers         {mps @Schamschula} openmaintainer
 description         Create a function reference from Octave help texts (docstrings) \
@@ -20,9 +21,9 @@ long_description    {*}${description} The generated pages follow the template of
 supported_archs     noarch
 platforms           {darwin any}
 
-checksums           rmd160  2abdf3a396c51cfc86b9dddea988b046b37f1dbc \
-                    sha256  cdbf953ba0ef5cfefe9bb57bc832772ceb1034059346997597a7e33ac05e5fad \
-                    size    105944
+checksums           rmd160  73d5a1af4cd09e0fe9e6c817841ca03819e51766 \
+                    sha256  149e119233c832ab6630838c2d58f1265cd4eca57b9d11f21e3c797595f81f76 \
+                    size    134069
 
 depends_lib         port:git \
                     port:texi2html

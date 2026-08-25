@@ -3,8 +3,9 @@
 PortSystem          1.0
 PortGroup           golang 1.0
 
-go.setup            github.com/hashicorp/packer 1.15.1 v
+go.setup            github.com/hashicorp/packer 1.16.0 v
 go.offline_build    no
+go.toolchain_min    1.26.3
 revision            0
 
 homepage            https://www.packer.io
@@ -28,9 +29,9 @@ maintainers         {gmail.com:newtonne.github @newtonne} \
                     {gmail.com:herby.gillot @herbygillot} \
                     openmaintainer
 
-checksums           rmd160  76cdbbdb6bcaaecbab49506f641db9a4b3b4d73a \
-                    sha256  4123971690a5ca44ad0c4e9989aa5e332a4050dc7b102525452ae2c26622911d \
-                    size    2474024
+checksums           rmd160  7d4bf1f228f0798d25a331b752420723acd166b1 \
+                    sha256  9527aa4ba6a621b67c767803e5ba12b560263ae11b5e25d3db4623a7ec70d6d4 \
+                    size    748796
 
 depends_build-append port:realpath
 

@@ -3,7 +3,7 @@
 PortSystem          1.0
 PortGroup           golang 1.0
 
-go.setup            github.com/ollama/ollama 0.21.0 v
+go.setup            github.com/ollama/ollama 0.32.13 v
 github.tarball_from archive
 revision            0
 
@@ -17,19 +17,15 @@ description         ${name} runs and manages LLMs
 long_description    Get up and running with large language models easily
 homepage            https://ollama.com
 
-checksums           rmd160  7a30d137edb2bfe11d803b9f0d9e9f91d632fd9b \
-                    sha256  4c23b1906e047b1ab6826e0c46692932b7bcd9e3ba24f130af076a02a0e90577 \
-                    size    26526302
+checksums           rmd160  866c18da0730658f8548b197f42cc4086bfb0f69 \
+                    sha256  103767d263ea21fcd9c1803a9093131bb7bcbd4590638690859645c8745c5768 \
+                    size    29001181
+
+depends_run-append  port:llama.cpp
 
 # See https://github.com/ollama/ollama/pull/6854
 patchfiles-append   patch-NO_MMAP_ENV.diff
 patch.args          -p1
-
-post-patch {
-    # Add ${prefix}/lib to libOllamaRoots (candidate directories for MLX dynamic libraries)
-    # Replacing binary path since we're not creating a bundle
-    reinplace "s|roots, exeDir|roots, filepath.FromSlash(\"${prefix}/lib\")|" ${worksrcpath}/x/mlxrunner/mlx/dynamic.go
-}
 
 go.offline_build    no
 build.post_args     -ldflags \"-s -w \
@@ -101,12 +97,29 @@ variant completion description "Install bash completion for ${name}" {
 }
 
 variant mlx description "Support acceleration with Apple's MLX library" {
-    depends_lib-append  port:mlx-c
+    depends_lib-append  \
+                    port:mlx-c
+
+    build.post_args-append \
+                    -tags=mlx
+
+    post-patch {
+        # Add ${prefix}/lib to libOllamaRoots (candidate directories for MLX dynamic libraries)
+        # Replacing binary path since we're not creating a bundle
+        reinplace "s|roots, exeDir|roots, filepath.FromSlash(\"${prefix}/lib\")|" ${worksrcpath}/x/mlxrunner/mlx/dynamic.go
+        # Force system installed mlx-c
+        delete ${worksrcpath}/x/mlxrunner/mlx/include/mlx
+        ln -s ${prefix}/include/mlx/ ${worksrcpath}/x/mlxrunner/mlx/include/mlx
+    }
+
+    pre-build {
+        system -W ${worksrcpath} "${build.env} ${prefix}/bin/go generate -tags=mlx ./x/mlxrunner/mlx"
+    }
 }
 
 platform darwin arm {
     default_variants-append \
-        +mlx
+                    +mlx
 }
 
 default_variants-append \

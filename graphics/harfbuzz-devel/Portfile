@@ -8,10 +8,10 @@ PortGroup           muniversal 1.1
 
 # Please keep the harfbuzz and harfbuzz-devel ports as similar as possible.
 
-github.setup        harfbuzz harfbuzz 14.1.0
-checksums           rmd160  4f9c2cbe3b71a62a615dbe336e54f41fbdc88633 \
-                    sha256  ee0eb3a1da2c5a28147f12dff55f6c7d60aeeeb29ac7ef334eabe84c8476c105 \
-                    size    19499908
+github.setup        harfbuzz harfbuzz 14.3.0
+checksums           rmd160  10a73de7dde8b4b36c66331ac0749f641a0af97e \
+                    sha256  16070d77cfc4ba1f1e7327e83bf9b3f55898081cabdb94e56a33e04fc8874eae \
+                    size    19819024
 
 name                harfbuzz-devel
 conflicts           harfbuzz

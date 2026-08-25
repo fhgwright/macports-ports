@@ -4,9 +4,9 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                py-imagecodecs
-epoch               1
-version             2026.3.6
+version             2026.8.16
 revision            0
+epoch               1
 
 categories-append   graphics
 license             BSD
@@ -17,9 +17,9 @@ long_description    {*}${description}
 
 homepage            https://github.com/cgohlke/imagecodecs/
 
-checksums           rmd160  f0eb45e8fba6b7901cac87d54db0a8464e0ab43a \
-                    sha256  471b8a4d1b3843cbf7179b45f7d7261f0c0b28809efc1ca6c47822477b143b85 \
-                    size    9565259
+checksums           rmd160  2711ca1abff2d5aa8424dcb7c3aa8a7a03ffc992 \
+                    sha256  03a6add9ad9ba61dce1520489fd090b1b5cf2a2701a9666d1ab8e7653278175f \
+                    size    9703497
 
 python.versions     310 311 312 313 314
 
@@ -48,6 +48,8 @@ if {${name} ne ${subport}} {
                     port:webp \
                     port:zopfli \
                     port:zstd
+
+    patchfiles      patch-setup.py.diff
 
     post-patch {
         reinplace "s|%PREFIX%|${prefix}|g" ${worksrcpath}/setup.py

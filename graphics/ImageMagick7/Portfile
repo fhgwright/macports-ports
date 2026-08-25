@@ -2,6 +2,7 @@
 
 PortSystem          1.0
 PortGroup           conflicts_build 1.0
+PortGroup           github 1.0
 PortGroup           legacysupport 1.1
 
 # IM7 7.1.1-29, 2024 March, for OS 10.6/Snow Leopard;
@@ -11,7 +12,6 @@ legacysupport.newest_darwin_requires_legacy 10
 ###### OBSOLETE NOTE FROM IM6:
 # Keep relevant lines in sync between ImageMagick and p5-perlmagick.
 
-###### OBSOLETE NOTE FROM IM6:
 # Before updating to a newer version, install phpNN-imagick.
 # After updating, run `phpNN -v`.
 # If the following warning appears, revbump php-imagick.
@@ -20,12 +20,13 @@ legacysupport.newest_darwin_requires_legacy 10
 # Imagick will run but may behave surprisingly in Unknown on line 0.
 
 name                ImageMagick7
-version             7.1.2-19
+github.setup        ImageMagick ImageMagick 7.1.2-30
+github.tarball_from releases
 revision            0
 use_xz              yes
-checksums           rmd160  c8d3b1742ac0a1354dfef419c39181301ca607a9 \
-                    sha256  4ffd17387d0b55c1f7465ea2baf39e1404afcfe7321ee66430741045d282fc6a \
-                    size    10802076
+checksums           rmd160  43e16101dabcb07ac37ebe925646a18beb4832f3 \
+                    sha256  55100ca72b2332df6b2df4769bc153afcfcf588753dfc49b6fb8afa8ead59b23 \
+                    size    10215380
 
 categories          graphics devel
 maintainers         {@Dave-Allured noaa.gov:dave.allured} \
@@ -53,15 +54,6 @@ long_description    For the ImageMagick-6 legacy version, please see \
                     PhotoCD and TIFF.
 
 homepage            https://imagemagick.org
-master_sites        https://imagemagick.org/archive/ \
-                    https://imagemagick.org/archive/releases/ \
-                    https://mirror.aarnet.edu.au/pub/imagemagick/ \
-                    https://ftp.icm.edu.pl/pub/unix/graphics/ImageMagick/ \
-                    https://mirror.accum.se/mirror/imagemagick.org/ftp/ \
-                    https://mirror.metanet.ch/imagemagick/ \
-                    http://mirror.checkdomain.de/imagemagick/releases/ \
-                    ftp://sunsite.icm.edu.pl/packages/ImageMagick/releases/
-distname            ImageMagick-${version}
 
 depends_lib         port:bzip2 \
                     port:djvulibre \
@@ -89,7 +81,11 @@ depends_lib         port:bzip2 \
 # Magick-config etc. use pkg-config
 depends_lib-append  path:bin/pkg-config:pkgconfig
 
-depends_run         port:urw-fonts
+# see ${prefix}/lib/ImageMagick7/etc/ImageMagick-7/delegates.xml
+depends_run         port:jxrlib \
+                    port:libbpg \
+                    port:urw-fonts \
+                    port:xdg-utils
 
 # error: wrong number of arguments specified for 'deprecated' attribute
 compiler.blacklist-append \
@@ -198,10 +194,6 @@ variant x11 {
 }
 
 default_variants    +openexr +x11
-
-livecheck.type              regex
-livecheck.url               [lindex ${master_sites} 0]
-livecheck.regex             ImageMagick-(7(?:\\.\\d+)+(?:-\\d+)?)\.tar
 
 notes-append {
 To use the ImageMagick7 command-line interface, add\

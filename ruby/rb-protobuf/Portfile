@@ -5,7 +5,7 @@ PortGroup           ruby 1.0
 
 name                rb-protobuf
 ruby.branches       3.4 3.3 3.2 3.1
-ruby.setup          google-protobuf 4.34.1 gem {} rubygems
+ruby.setup          google-protobuf 4.35.1 gem {} rubygems
 categories-append   devel
 license             BSD
 maintainers         nomaintainer
@@ -13,9 +13,9 @@ description         Protocol Buffers for Ruby
 long_description    Protocol Buffers are Google's data interchange format \
                     for structured data serialization.
 homepage            https://developers.google.com/protocol-buffers
-checksums           rmd160  77dbf5b322a630180e17854358e1cb27d8d2ed52 \
-                    sha256  347181542b8d659c60f028fa3791c9cccce651a91ad27782dbc5c5e374796cdc \
-                    size    311296
+checksums           rmd160  f95838e1fd33434e38d3c693822992f9a4435316 \
+                    sha256  a3a6471331d918f58dfa4d014a8f6286f0af2cf4840216bde52fcf2ea3fe3726 \
+                    size    313344
 
 if {${name} ne ${subport}} {
     depends_run-append \

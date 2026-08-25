@@ -3,14 +3,14 @@
 PortSystem          1.0
 PortGroup           github 1.0
 
-set rev             401e94882e22cf2aa7af649b92ab123eaa329321
+set rev             464fd3e879d6bb72fe8210b3e58b59836f711951
 
 github.setup        google angle $rev
 github.tarball_from archive
 
 # Major and minor version from src/common/angle_version.h
 # Patch version using `git rev-list HEAD --count`
-version             2.1.27283
+version             2.1.28465
 revision            0
 categories          graphics devel
 license             BSD
@@ -25,14 +25,14 @@ homepage            https://angleproject.org
 # grep -E 'jsoncpp_revision.:|(build.git|testing|astc-encoder|rust|SPIRV-(Headers|Tools)|Vulkan-Headers|zlib)@' DEPS
 set jsoncpp         42e892d96e47b1f6e29844cc705e148ec4856448
 set cr_jsoncpp      f62d44704b4da6014aa231cfc116e7fd29617d2a
-set cr_build        97e2bd1131c90d68561f34776219613b9dfc13ba
-set cr_testing      867a91fb26b8e90951e564dead1ff59793148c55
+set cr_build        ad76126f62c1a8f7b6a6285ca796e1dcf54a727a
+set cr_testing      1e889a86415dd4e4453699b017c40840e0c0aeb1
 set astc_encoder    2319d9c4d4af53a7fc7c52985e264ce6e8a02a9b
-set cr_rust         ba6ceef355cf48cc50493296d4fc862d9745b742
-set spirv_headers   f88a2d766840fc825af1fc065977953ba1fa4a91
-set spirv_tools     7d8d9e58c384949f1615c069d4c9346bf51b9738
-set vk_headers      74d8a6cb930c68ef617b202c3ff3c59d919e086b
-set cr_zlib         b80f1d1e5256ac25f6aea3f31f13d458981cb1f9
+set cr_rust         10cbea750eb898be3a0fb5291b10f94564892625
+set spirv_headers   29981f65241605e08b0ede4cfeb999fe3b723c6a
+set spirv_tools     a665e21f3061f34064b39937cf00fe8d8769f4ef
+set vk_headers      d314eae73fdc90847bb8304a86ee7c6a8ee023b6
+set cr_zlib         42c2f19a14d33b4ed327ab898fe7b652013aa740
 
 master_sites-append https://github.com/gsource-mirror/chromium-src-build/archive/${cr_build}:chromium-build
 distfiles-append    chromium-src-build-${cr_build}${extract.suffix}:chromium-build
@@ -65,41 +65,41 @@ master_sites-append https://github.com/open-source-parsers/jsoncpp/archive/${jso
 distfiles-append    jsoncpp-${jsoncpp}${extract.suffix}:jsoncpp
 
 checksums           ${distname}${extract.suffix} \
-                    rmd160  a321f3f804a17c61e32952d8a77afd895ecaabf5 \
-                    sha256  f54a526ae8b13f10aa778118e57b92ce597f22aa6cc78a2a2c1979b4b3d2e80d \
-                    size    16628819 \
+                    rmd160  dbe23c462f2d6478a08653f420f0892cc7a179eb \
+                    sha256  f665defbda1aed43eedb8bfd3fabbfa8d0917e5544bc40d939d8d43224de5301 \
+                    size    16601769 \
                     chromium-src-build-${cr_build}${extract.suffix} \
-                    rmd160  81865c175e5c270d003837d3bf118e86631e8195 \
-                    sha256  4a9c593a774ca5d46f3c07837771d810b70c8f10f00e8a1b14eb501afec6295a \
-                    size    1756470 \
+                    rmd160  9453fdc86bb6ab8ed46b87e7fae38f0c6cc04d2b \
+                    sha256  ad5b5983a8da246382e469378cb61e0fca5d150ae72359c2e1c349e416359c56 \
+                    size    1853165 \
                     chromium-src-testing-${cr_testing}${extract.suffix} \
-                    rmd160  de73a0cdbafe3ad793fbb08135dc1911aa72e30e \
-                    sha256  284dd52bfc735ec340135e5fdf404afa3a216c1a7fa0568313d70a7bba972d38 \
-                    size    2042993 \
+                    rmd160  092ca2367c7205cd858f31f2fa341f748e45ac44 \
+                    sha256  7b7c98e39245d0e4c07cbf89478536ec2cebeaa672a93cc45d7aa02f959a4b1a \
+                    size    2059501 \
                     chromium-src-third_party-jsoncpp-${cr_jsoncpp}${extract.suffix} \
                     rmd160  8611455ceb50dd821a942c3b10f2110c418fe182 \
                     sha256  7360eff9ce58208c68da260db23bdc29bbc00c769905af10aa45af0dd308aba4 \
                     size    4411 \
                     chromium-src-third_party-rust-${cr_rust}${extract.suffix} \
-                    rmd160  1edde5efdfa44e9cb25423f6340147c9b50a4076 \
-                    sha256  7600745577ee1831ad952bf72a9416158eb055c7a956538f8d6bbeaa2b98dac3 \
-                    size    25991280 \
+                    rmd160  ee0df0e17fccff5c22f8135812b9127ebc071b30 \
+                    sha256  be268d7e6da39286c4c757c15533135f6f8acc73d5a02d87bb297fa675c7819b \
+                    size    33651096 \
                     chromium-src-third_party-zlib-${cr_zlib}${extract.suffix} \
-                    rmd160  1781e5a13bb84b6f3be67933e6cf04d9971b0c88 \
-                    sha256  7ac2fa3b153b89cb68a06d455761982865f6d4c3fa2aac302b53838afc63db66 \
-                    size    1379964 \
+                    rmd160  6375482b94ba6c624a0801232f85710a40d11573 \
+                    sha256  cde9b867c07d124c67b6fb7d66af4f72ff2094a34506e3ef5521ff0d792fba24 \
+                    size    1384254 \
                     SPIRV-Headers-${spirv_headers}${extract.suffix} \
-                    rmd160  414e47fcaefcc5b645396cec5179d7b4d6c459e3 \
-                    sha256  028424e4934f2ed8567319939e79d0a87e529ac7c504501b8b406f98598bdadd \
-                    size    562966 \
+                    rmd160  0f7b9d89d0cd76d9a61f85ab019387d897e8f0b8 \
+                    sha256  232899f1ad4104fb5bc377b94596c7621575eee62ad9a9e8f929b63a7dd8a7ad \
+                    size    572275 \
                     SPIRV-Tools-${spirv_tools}${extract.suffix} \
-                    rmd160  099c12ac21dede1ce336723c6f691560fe4ec1f7 \
-                    sha256  e48b296026314d766c796ebe0ac5c59a3996c85c05159510fac39667f267890c \
-                    size    3442549 \
+                    rmd160  e71ed1e91f000279d4be80fe76fc0f1317f64e65 \
+                    sha256  f9872ab8a7e8e5454c1b4853655d9e7cda9a7bfce07c4d79fcd30360376ad50b \
+                    size    3527218 \
                     Vulkan-Headers-${vk_headers}${extract.suffix} \
-                    rmd160  4a43e8eed1deeb23905f916011ea553078ca6da0 \
-                    sha256  75967a8288ff16044a86d1af462b96d2e75c435937efb75f2bb4102ab0382f29 \
-                    size    3029927 \
+                    rmd160  2031d54f66501de7ec4e6f637aceedb412fcf5ad \
+                    sha256  345c7e16f3eea833b54c617e8d4d0abffef34fccd9bbb4f65fdf7fcdbb06feac \
+                    size    3376850 \
                     astc-encoder-${astc_encoder}${extract.suffix} \
                     rmd160  1c792cca8415346924640772699e6ffc2d3871f4 \
                     sha256  8b5068ef28a8db1cb354d89d9cefd19d43eddfc72c3468fce7ebb92b2431d4c4 \
@@ -174,8 +174,11 @@ post-patch {
 
 compiler.cxx_standard   2020
 
-configure.cmd       gn --script-executable=${configure.python}
-configure.pre_args  gen out
+# avoid conflict with installed zlib
+compiler.limit_flags    yes
+
+configure.cmd       gn gen
+configure.pre_args  --script-executable=${configure.python}
 configure.args      --args='\
                     mac_sdk_min=\"${macosx_deployment_target}\" \
                     mac_deployment_target=\"${macosx_deployment_target}\" \
@@ -185,12 +188,12 @@ configure.args      --args='\
                     treat_warnings_as_errors=false \
                     fatal_linker_warnings=false \
                     use_custom_libcxx=false \
-                    rust_sysroot_absolute=\"${prefix}\" \
+                    enable_rust=false \
                     angle_build_tests=false \
                     angle_enable_metal=false \
                     angle_enable_vulkan=false'
+configure.post_args out
 
-configure.cppflags
 if {${os.platform} eq "darwin" && ${os.major} < 19} {
     configure.cppflags-append   -DTARGET_OS_MACCATALYST=0 \
                                 -DMTLGPUFamilyMac2=2002
@@ -198,7 +201,7 @@ if {${os.platform} eq "darwin" && ${os.major} < 19} {
 if {${os.platform} eq "darwin" && ${os.major} < 21} {
     configure.cppflags-append   -DkIOMainPortDefault=kIOMasterPortDefault
 }
-configure.cxx       ${configure.cxx} {*}${configure.cppflags}
+configure.cxx-append    {*}${configure.cppflags}
 
 build.cmd           ninja
 build.target        angle

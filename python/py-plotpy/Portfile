@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                py-plotpy
-version             2.8.4
+version             2.11.0
 revision            0
 
 license             BSD
@@ -15,9 +15,9 @@ long_description    {*}${description}
 
 homepage            https://github.com/PlotPyStack/plotpy/
 
-checksums           rmd160  897af3bcb829bb337fe8265b488ec6af20fd13ec \
-                    sha256  559a3a60550b1bfbae283056add73ec54b36ef32afed1ab66b95fdeffacddff4 \
-                    size    8257672
+checksums           rmd160  dd119c08d0691be5a6dbc95afa485630d8b69c76 \
+                    sha256  a29729bf6ac8c94a693e5faaf3041bc0ce130a24b54389ee870b13ceec53747b \
+                    size    8281346
 
 python.versions     313 314
 

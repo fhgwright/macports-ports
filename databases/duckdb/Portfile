@@ -6,7 +6,7 @@ PortGroup           github          1.0
 PortGroup           legacysupport   1.0
 PortGroup           openssl         1.0
 
-github.setup        cwida duckdb 1.5.2 v
+github.setup        cwida duckdb 1.5.5 v
 github.tarball_from archive
 revision            0
 
@@ -27,9 +27,9 @@ license             MIT
 maintainers         {gmail.com:herby.gillot @herbygillot} \
                     openmaintainer
 
-checksums           rmd160  0f9d8e21597eaf3581c686a13816a19f87fc2d29 \
-                    sha256  6d8612fc87115cf4d3512a934ada5d1669db29378b4cc8e226fdfa8f5c537385 \
-                    size    99808226
+checksums           rmd160  1a7c6c0e37489c4dd07ef9c3d97df378b3c36357 \
+                    sha256  f33155ff962e6e1e08fd1e9caffa487d4325aa60999e2eabc76feff534d6558b \
+                    size    101169313
 
 patchfiles-append   no-ccache.patch \
                     no-clangd-cache.patch

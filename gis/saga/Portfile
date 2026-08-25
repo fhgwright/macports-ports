@@ -10,8 +10,8 @@ wxWidgets.use       wxWidgets-3.2
 name                saga
 categories          gis
 license             GPL
-version             9.11.1
-revision            0
+version             9.12.4
+revision            1
 maintainers         {yahoo.com:n_larsson @nilason} openmaintainer
 
 description         SAGA is a GIS oriented towards statistics and analysis
@@ -26,9 +26,9 @@ homepage            https://saga-gis.sourceforge.io/en/index.html
 set master_sites_in sourceforge:project/saga-gis/SAGA%20-%20[lindex [split ${version} "."] 0]/SAGA%20-%20${version}
 master_sites        ${master_sites_in}
 
-checksums           rmd160  bbbf6d4a2f7213103cfc97cf4d28748d0900cdb0 \
-                    sha256  70d93afc8720a8b80eaf0d8b69e33dee9c9d1702e60cbe8caf5ebda6304d6031 \
-                    size    10352892
+checksums           rmd160  829e18a3a31d24ffc60b17214b927b0d57d6a493 \
+                    sha256  848ee5d178880020fae7f8be321c25a7614c62ba572879c6af7a18870344c375 \
+                    size    10636229
 
 cmake.source_dir    ${worksrcpath}/saga-gis
 
@@ -137,7 +137,7 @@ if {${subport} eq ${name}} {
     }
 
     # Set PostgreSQL variant
-    set postgresql_suffixes {12 13 14 15 16 17}
+    set postgresql_suffixes {12 13 14 15 16 17 18}
     set postgresql_variants {}
     foreach suffix ${postgresql_suffixes} {
         lappend postgresql_variants postgresql${suffix}
@@ -158,7 +158,7 @@ if {${subport} eq ${name}} {
         set pgdefault "${pgdefault}!\[variant_isset postgresql${suffix}\] && "
     }
     set pgdefault [string range ${pgdefault} 0 end-4]
-    set pgdefault "${pgdefault}} { default_variants +postgresql17 }"
+    set pgdefault "${pgdefault}} { default_variants +postgresql18 }"
     eval ${pgdefault}
 }
 

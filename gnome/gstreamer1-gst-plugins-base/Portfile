@@ -10,8 +10,7 @@ PortGroup           muniversal 1.0
 name                gstreamer1-gst-plugins-base
 set my_name         gst-plugins-base
 # please only commit stable updates (even numbered releases)
-version             1.24.9
-revision            1
+version             1.28.6
 description         This is gst-plugins, a set of plug-ins for GStreamer.
 long_description    {*}${description}
 maintainers         nomaintainer
@@ -22,16 +21,15 @@ master_sites        https://gstreamer.freedesktop.org/src/${my_name}/
 distname            ${my_name}-${version}
 use_xz              yes
 
-checksums           rmd160  bc10b3e3741980bf0ff8bc837fc6dd502c13fef6 \
-                    sha256  5bb3b946907d3ce04dd842b610c8111c2b0611351b25a1fa22af5efa897857cb \
-                    size    2446392
+checksums           rmd160  54225ed25286315b9a2f926eb71b2717dbb6d578 \
+                    sha256  0ba699c7c6c66f4ba640be78cb38a24715add9683f3e3a199f5369dc5a4f04ac \
+                    size    2553864
 
 set py_ver          3.14
 set py_ver_nodot    [string map {. {}} ${py_ver}]
 set python.bin      ${prefix}/bin/python${py_ver}
 
 depends_build-append \
-                    port:gtk-doc \
                     path:bin/pkg-config:pkgconfig \
                     port:python${py_ver_nodot}
 

@@ -13,7 +13,7 @@ maintainers             {ogsite.net:sirn @sirn} \
 subport helm_select     {}
 
 # *NOTE* Remember to update `latestVersion` on a version upgrade.
-set latestVersion       helm-4.1
+set latestVersion       helm-4.2
 
 set armAvailable        no
 
@@ -30,6 +30,24 @@ proc helmDistBase {arch} {
 proc helmDistName {arch} {
     global extract.suffix
     return [helmDistBase ${arch}]${extract.suffix}
+}
+
+subport helm-4.2 {
+    set baseVersion     4.2
+    set patchNumber     4
+    revision            0
+
+    set armAvailable    yes
+
+    checksums           [helmDistName arm64] \
+                        rmd160  1f56637a97a51c8cccc56fe509c3eeee8704ef5c \
+                        sha256  d747eb4e28bd2727173d15b759fa0a17822291ec09db7ced3d55af290a3661a2 \
+                        size    18370199 \
+                        [helmDistName amd64] \
+                        rmd160  4fe2f3451114e196ab68844257f715b1cfdf5a62 \
+                        sha256  6c163d687ca03c3b5c01928e53bbbcf9518278f47ce7a2f249a5a08e8bdaa2bc \
+                        size    20204498
+
 }
 
 subport helm-4.1 {
@@ -65,6 +83,23 @@ subport helm-4.0 {
                         rmd160  fd506b46eddd95bd4661fddd537f923eb02c8fd9 \
                         sha256  270d906140eadbe95584d2cebae1fa0e46950027d82de0c4db937dc936b564a6 \
                         size    20325953
+}
+
+subport helm-3.21 {
+    set baseVersion     3.21
+    set patchNumber     3
+    revision            0
+
+    set armAvailable    yes
+
+    checksums           [helmDistName arm64] \
+                        rmd160  344303770926ebfafef02e90542c90c799d75bdb \
+                        sha256  19879a848cad832b7a1ac24b767a481d20fb3b95ab53a220849649422ada144e \
+                        size    16488745 \
+                        [helmDistName amd64] \
+                        rmd160  78cfc52753bf41fe1967a88b0440fd580cfd41cb \
+                        sha256  76d0db4730b05d3d625eee11e80f0721b32b4d8422f4e5d093de6337bf3ac9f8 \
+                        size    18121437
 }
 
 subport helm-3.20 {
@@ -435,7 +470,7 @@ if {${subport} == ${name}} {
     PortGroup           obsolete 1.0
 
     replaced_by         ${latestVersion}
-    version             4.1.4
+    version             4.2.4
     revision            0
 
 } elseif {${subport} == "helm_select"} {

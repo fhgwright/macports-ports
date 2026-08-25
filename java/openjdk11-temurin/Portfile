@@ -20,8 +20,8 @@ universal_variant no
 # https://adoptium.net/temurin/releases/?os=mac&version=11
 supported_archs  x86_64 arm64
 
-version      ${feature}.0.30
-set build    7
+version      ${feature}.0.32
+set build    9
 revision     0
 
 # See https://adoptium.net/support/ for end of support date
@@ -32,14 +32,14 @@ master_sites https://github.com/adoptium/temurin${feature}-binaries/releases/dow
 
 if {${configure.build_arch} eq "x86_64"} {
     set arch_classifier x64
-    checksums    rmd160  15415093dcbde51bb19f68a08e875d046527cf30 \
-                 sha256  bb080059fdd02b61f8348f6b4d0878b8d33da0ebff9a6860e2497e4c5b8ee682 \
-                 size    187289133
+    checksums    rmd160  f7fd9cbbd36d40efad10de641fb0597c0926e08a \
+                 sha256  e4c30df263e3ebb4b2b5df52c736fbd0b16df5ae6b9a6789460a784620ba1319 \
+                 size    187336978
 } elseif {${configure.build_arch} eq "arm64"} {
     set arch_classifier aarch64
-    checksums    rmd160  98ab3b6580ae4ecba45c1d3a7b376ce02bee0d68 \
-                 sha256  d7b52d25d6f7aae2d4d85191d84bc132b80d061006dcd5f76ca79f277c3acb28 \
-                 size    184599096
+    checksums    rmd160  6388c8972f24f73b4d244a97d4c13b7eda8e3dd8 \
+                 sha256  3e3687488e472035b7a27732f0f6127d59903ba9fd0cb6c815f1a182f4160109 \
+                 size    184657053
 } else {
     set arch_classifier unsupported_arch
 }

@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           java 1.0
 
 name                gradle
-version             9.4.1
+version             9.7.1
 revision            0
 categories          devel java groovy
 license             Apache-2
@@ -22,12 +22,11 @@ platforms           {darwin any}
 supported_archs     noarch
 default distname    {${name}-${version}-bin}
 master_sites        https://services.gradle.org/distributions
-conflicts           ${name}8
 
 # Update checksums for variant when updating these!
-checksums           rmd160  08cc0ed821ea874648303ed4543e94d1c09a9eb0 \
-                    sha256  2ab2958f2a1e51120c326cad6f385153bb11ee93b3c216c5fccebfdfbb7ec6cb \
-                    size    137878901
+checksums           rmd160  57764b6e7436bf0e9f90c38f6afd7a8690b472e2 \
+                    sha256  acd53f1edaf02f1a8ff99879f8a34b302661a057d9b063ae9e35b552f804d20a \
+                    size    151433392
 
 default worksrcdir  {${name}-${version}}
 
@@ -66,9 +65,9 @@ if {${subport} eq ${name}} {
     variant all description {Install supplemental documentation and source code} {
         distname    ${name}-${version}-all
 
-        checksums   rmd160  369c0dbca2594bc83ce5be5de9a7e0b34071eda6 \
-                    sha256  708d2c6ecc97ca9a11838ef64a6c2301151b8dd10387e22dc1a12c30557cab5b \
-                    size    238160795
+        checksums   rmd160  4ca5499121e9fa1b69e93c148344c4f77ec2244e \
+                    sha256  92c1a136d76b5017732a66d2e0a648ebff00dd3687d8bff0d0047a1bd904fdf2 \
+                    size    258181632
 
         post-destroot {
             xinstall -m 0755 -d ${destroot}${prefix}/share/doc/${name}
@@ -84,23 +83,27 @@ livecheck.url   ${master_sites}
 livecheck.regex ${name}-(\\d+\\.\\d+(\\.\\d+)?)-all\\.zip
 
 subport ${name}8 {
-    version         8.14.3
+    version         8.14.5
     revision        0
 
     maintainers     nomaintainer
     description-append\
                     (version 8 for compatibility with older projects)
 
-    conflicts       ${name}
-
     java.version    1.8+
     java.fallback   openjdk8
 
-    checksums       rmd160  a933fdefa4f255db5b7a14f8e53ba7ae8cc311d5 \
-                    sha256  bd71102213493060956ec229d946beee57158dbd89d0e62b91bca0fa2c5f3531 \
-                    size    137393837
+    checksums       rmd160  979403ccd77871395444d68776162ce23868ad8a \
+                    sha256  6f74b601422d6d6fc4e1f9a1ab6522f642c2fdcbc15ae33ebd30ba3d7198e854 \
+                    size    138068841
 
-    livecheck.type  none
+    post-destroot {
+        move ${destroot}${prefix}/share/java/${name} ${destroot}${prefix}/share/java/${subport}
+        delete ${destroot}${prefix}/bin/${name}
+        ln -s ${prefix}/share/java/${subport}/bin/gradle ${destroot}${prefix}/bin/${subport}
+    }
+
+    livecheck.regex ${name}-(8\\.\\d+(\\.\\d+)?)-all\\.zip
 }
 
 notes {

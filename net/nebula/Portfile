@@ -3,8 +3,9 @@
 PortSystem          1.0
 PortGroup           golang 1.0
 
-go.setup            github.com/slackhq/nebula 1.10.1 v
+go.setup            github.com/slackhq/nebula 1.11.1 v
 go.offline_build    no
+go.toolchain_min    1.26.0
 revision            0
 
 categories          net
@@ -23,9 +24,9 @@ long_description    Nebula is a scalable overlay networking tool with a focus \
                     It can be used to connect a small number of computers, \
                     but is also able to connect tens of thousands of computers.
 
-checksums           rmd160  fe5e4f98ec2475ec0368b736997f2c2a5a763d18 \
-                    sha256  43223baae6909f08ce369d1100b5098b8f77c39fc8ce736afc74bed9917db752 \
-                    size    1048731
+checksums           rmd160  c5a93c7a0d62a428967fd0a54b491db92ead358c \
+                    sha256  bcd5f144aa7bbf06dc62bc64b1734b0f33759b2eb13798ce2d93f16d4afc0ac3 \
+                    size    1178683
 
 build.env-append    BUILD_NUMBER="${version}"
 build.cmd           make

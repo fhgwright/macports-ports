@@ -4,8 +4,9 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                py-tropycal
-version             1.4
+version             1.5.1
 revision            0
+
 categories-append   science
 license             MIT
 maintainers         {mps @Schamschula} openmaintainer
@@ -19,11 +20,11 @@ homepage            https://github.com/tropycal/tropycal
 supported_archs     noarch
 platforms           {darwin any}
 
-checksums           rmd160  46e52aae7b4854236400bd1b6be4ac2a8a3cb97a \
-                    sha256  3ad0b3b5b5631ba6db8b24aae16b32baa7e43bba841468faa58355790720d12c \
-                    size    10080794
+checksums           rmd160  7cd743a026d8bcf83f1cc0ddd33c9d4002770fb4 \
+                    sha256  86e289458ed34cbf019ce69b935c5c31420c8a464329a4383357ec5ea08f5d7f \
+                    size    10083945
 
-python.versions     310 311 312 313
+python.versions     310 311 312 313 314
 
 if {${name} ne ${subport}} {
     depends_build-append \

@@ -4,7 +4,7 @@ PortSystem      1.0
 PortGroup       java 1.0
 
 name            spring-boot-cli
-version         4.0.5
+version         4.1.1
 revision        0
 
 categories      java
@@ -30,9 +30,9 @@ master_sites    https://repo.maven.apache.org/maven2/org/springframework/boot/${
 
 distname        ${name}-${version}-bin
 
-checksums       rmd160  0875839b40b777832a937b8dac59057ebd85737e \
-                sha256  7ed664f2e716e7c23c53b7edf5670c708ebee4ea63489033f9e7c3aff655d58c \
-                size    7185625
+checksums       rmd160  66ee2de24f9b333f9654373dfbff11586a012240 \
+                sha256  1b2bf6991e5540728b862f49721241d3d52acb9d48e48ce5ea0d24d75978dfc4 \
+                size    7374975
 
 worksrcdir      spring-${version}
 
@@ -42,7 +42,7 @@ use_configure   no
 # Oldest supported Long Term Support version
 java.version    17+
 # Latest supported Long Term Support version
-java.fallback   openjdk21
+java.fallback   openjdk25
 
 build {}
 
