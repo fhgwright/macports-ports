@@ -3,7 +3,7 @@
 PortSystem          1.0
 
 name                1password-cli
-version             2.38.1
+version             2.40.0
 revision            0
 
 homepage            https://support.1password.com/command-line
@@ -35,9 +35,9 @@ master_sites        https://cache.agilebits.com/dist/1P/op2/pkg/v${version}/
 distfiles           ${archive}_v${version}${extract.suffix}
 supported_archs     arm64 x86_64
 
-checksums           rmd160  0144eba37abc21b715e7acbb8ecf08c19c359865 \
-                    sha256  a4b944b2a08be63f500ae2e44312bf326cfae3b94a6c262139488f721d8c32e1 \
-                    size    28695095
+checksums           rmd160  c227036c7bb3929152a4e41705c14c395b9c491d \
+                    sha256  f1ef6c9560c332db03fde32c833758caa2f123c4335e676b79ebd8359e34db9b \
+                    size    29297904
 
 # Pre-built binary
 use_configure       no

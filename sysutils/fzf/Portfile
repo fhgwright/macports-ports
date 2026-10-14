@@ -3,10 +3,10 @@
 PortSystem          1.0
 PortGroup           golang 1.0
 
-go.setup            github.com/junegunn/fzf 0.74.3 v
+go.setup            github.com/junegunn/fzf 0.74.5 v
 github.tarball_from archive
 go.toolchain_min    1.23.0
-revision            1
+revision            0
 
 description         A command-line fuzzy finder written in Go
 
@@ -20,9 +20,9 @@ maintainers         {isi.edu:calvin @cardi} \
                     openmaintainer
 
 checksums           ${distname}${extract.suffix} \
-                        rmd160  dbfebf5cb68e6d3f5bd84e8574d006581df592dd \
-                        sha256  5b142217c3068647a7d8faa9c678cffada100b5f11a48609aa79c94ce04b28ef \
-                        size    476701
+                        rmd160  3def1bcaa77446339ff57c8c0d011e71ce02781f \
+                        sha256  5529d08897b85ae773695787c811ff9c9eeee32419c8a297fa1dbe586ed0a27e \
+                        size    491872
 
 go.vendors          golang.org/x/text \
                         lock    v0.28.0 \

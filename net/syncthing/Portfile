@@ -3,9 +3,9 @@
 PortSystem          1.0
 PortGroup           golang 1.0
 
-go.setup            github.com/syncthing/syncthing 2.1.3 v
+go.setup            github.com/syncthing/syncthing 2.1.6 v
 go.offline_build    no
-go.toolchain_min    1.25.0
+go.toolchain_min    1.26.2
 revision            0
 
 homepage            https://syncthing.net
@@ -18,9 +18,9 @@ long_description    Syncthing replaces proprietary sync and cloud services \
                     where it is stored, if it is shared with some third party \
                     and how it's transmitted over the Internet.
 
-checksums           rmd160  fbc037553d45b3b9adef3696ae493407bab22d93 \
-                    sha256  177792c697f61fc25f02d8fc8923dfc57ebb35753bd92c8d32a73d553446d117 \
-                    size    5454749
+checksums           rmd160  8fdc9e6cb78f8f266300cc1a212be024b3512625 \
+                    sha256  912cf0cf214a3cb68dedf88fbafc78bb842bfcdc857f5e26c4d3a6971f1a5c8e \
+                    size    5459643
 
 categories          net
 installs_libs       no

@@ -3,9 +3,9 @@
 PortSystem          1.0
 PortGroup           golang 1.0
 
-go.setup            github.com/go-acme/lego 5.4.0 v
+go.setup            github.com/go-acme/lego 5.5.2 v
 go.offline_build    no
-go.toolchain_min    1.25.0
+go.toolchain_min    1.26.0
 revision            0
 
 homepage            https://go-acme.github.io/lego
@@ -29,9 +29,9 @@ build.cmd           make
 build.pre_args      VERSION=v${version}
 build.args          build
 
-checksums           rmd160  a4a711ddd5f2f334f03a2cdb876eb9ff9d849a89 \
-                    sha256  af297c5fffa4270b647405967500ba4c6531f611932e3a66e018e84ac2c33b40 \
-                    size    1284273
+checksums           rmd160  d51ec074dc22ff2c2fff6f305be9a7ae759a6a51 \
+                    sha256  5e0ead0ff177a3f896136817842a420eadc55cccaab9d3afe957b05506f17d27 \
+                    size    1266635
 
 destroot {
     xinstall -m 0755 ${worksrcpath}/dist/${name} ${destroot}${prefix}/bin/

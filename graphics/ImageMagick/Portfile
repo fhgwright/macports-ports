@@ -14,19 +14,20 @@ legacysupport.newest_darwin_requires_legacy 11
 # PHP Warning:  Version warning: Imagick was compiled against Image Magick version XXXX but version YYYY is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
 
 name                        ImageMagick
-github.setup                ImageMagick ImageMagick6 6.9.13-52
-revision                    0
+github.setup                ImageMagick ImageMagick6 6.9.13-57
+revision                    1
 
 github.tarball_from         releases
 distname                    ${name}-${version}
 use_xz                      yes
 
-checksums                   rmd160  d255f948705898e3d63afd0c26a8ed534b8402f5 \
-                            sha256  0e313e1a4d3bcac8bdce22fcaa31589ccb5450a17966e7ce8d22c407b04b437b \
-                            size    9727724
+checksums                   rmd160  4e27c48008fa62000f0635d5376aaa6028a27950 \
+                            sha256  24c04d0cd44cf92f109f9cff76a9d71478930d9891b6e41f00735b65722c34f8 \
+                            size    8653200
 
 categories                  graphics devel
-maintainers                 {ryandesign @ryandesign} \
+maintainers                 {@Dave-Allured noaa.gov:dave.allured} \
+                            {ryandesign @ryandesign} \
                             openmaintainer
 license                     Apache-2
 

@@ -20,9 +20,7 @@ universal_variant no
 # https://developer.ibm.com/languages/java/semeru-runtimes/downloads?os=macOS
 supported_archs  x86_64
 
-set patch    502
-version      ${feature}.0.${patch}.0
-set build    07
+version      ${feature}.0.504.5
 revision     0
 
 description  IBM Semeru with Eclipse OpenJ9 VM distribution, based on OpenJDK ${feature} (Long Term Support)
@@ -32,11 +30,11 @@ long_description The IBM Semeru Runtimes are free production-ready open source b
 master_sites https://github.com/ibmruntimes/semeru${feature}-binaries/releases/download/jdk-${version}/
 
 distname     ibm-semeru-open-jdk_x64_mac_${version}
-worksrcdir   jdk${feature}u${patch}-b${build}
+worksrcdir   jdk-${version}
 
-checksums    rmd160  9ee71876b28ab3ba06b913c9fa64d2e71dd11a24 \
-             sha256  62fbb02e49c44c9c447f75108480b4900b3f2583f197e22bb986a731b938e700 \
-             size    129980760
+checksums    rmd160  6a9a192d85facfa4522e372b919650db42726334 \
+             sha256  2fc8a499fd9da9cc57995fc35e0e3b8b567b59078fd79fe7e07d0ad77bcebc57 \
+             size    129987823
 
 homepage     https://developer.ibm.com/languages/java/semeru-runtimes/
 

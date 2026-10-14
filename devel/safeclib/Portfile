@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           github 1.0
 PortGroup           muniversal 1.1
 
-github.setup        rurban safeclib 3.9.2 v
+github.setup        rurban safeclib 3.14 v
 
 revision            0
 
@@ -19,9 +19,9 @@ long_description    This library implements the secure C11 Annex K functions \
                     on top of most libc implementations, which are missing \
                     from them.
 
-checksums           rmd160  de45ef3b90abd0ca65f2998472e093811497895e \
-                    sha256  64a3fe2a7d6236781e8b8658094032e5dced19b3cd78744ff4d1ee8a34a29f4f \
-                    size    1022975
+checksums           rmd160  3bc2cef174eb4eb7866f1ba8d2eb2773ca02baa3 \
+                    sha256  3c0a2e34f69b1a9ac2cddeea23f221f3623410843fd375983c55657a9db453e4 \
+                    size    1328955
 
 compiler.c_standard 1999
 # safe_mem_constraint.c: error: thread-local storage not supported for this target

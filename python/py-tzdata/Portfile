@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                py-tzdata
-version             2026.3
+version             2026.5
 revision            0
 
 license             Apache-2
@@ -16,8 +16,8 @@ homepage            https://github.com/python/tzdata
 supported_archs     noarch
 platforms           {darwin any}
 
-checksums           rmd160  2b96d854c87a2df7e810ed2058b18518cbc7308b \
-                    sha256  4a1518b8993086a7982523e071643f3c0e5f213e75b21318e78bcabfff9d1415 \
-                    size    198674
+checksums           rmd160  ed141ac757fbcafac5b4c0233ab3a284bc6c2369 \
+                    sha256  8cc73c0a0bfca7dbfa59235d60b2eff82231dee33f53d206db1acd9173cfc0a7 \
+                    size    200404
 
 python.versions     310 311 312 313 314

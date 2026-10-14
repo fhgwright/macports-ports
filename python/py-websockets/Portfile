@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                py-websockets
-version             17.0.1
+version             17.2
 revision            0
 
 license             BSD
@@ -17,8 +17,8 @@ long_description    websockets is a library for building WebSocket servers and \
 
 homepage            https://github.com/aaugustin/websockets
 
-checksums           rmd160  4bb120b22f58b69ded274f1c5ba39ec2694a4473 \
-                    sha256  5baa9bc0dfbae8c507e51c8cf1b6d4628086f7a87bbd3a9952bd5f035451f1cc \
-                    size    183298
+checksums           rmd160  74a970a88cabbf0cf049e16ab33b9015d8dbfbc7 \
+                    sha256  36c2fb94c990cc2545143b12690e2de6c16300f9dbe5b4f33fa300cf57dc8792 \
+                    size    188355
 
 python.versions     310 311 312 313 314

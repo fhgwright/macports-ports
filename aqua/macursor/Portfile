@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           github 1.0
 PortGroup           xcode 1.0
 
-github.setup        writronic MaCursor 2.4.0 v
+github.setup        writronic MaCursor 2.6.5 v
 github.tarball_from archive
 name                [string tolower ${github.project}]
 revision            0
@@ -18,9 +18,9 @@ description         Custom cursor themes for macOS
 long_description    ${github.project} lets you replace every macOS system cursor — arrow, I-beam,\
                     crosshair, wait spinner, and more — with custom artwork of your own.
 
-checksums           rmd160  2185f84a4b3f60fee21d4d9425927a943ca05229 \
-                    sha256  764070850a8642e5f125a6399ef0d845f6802ea72b1a3aeca13e38c47da56259 \
-                    size    81174735
+checksums           rmd160  f97305eee4130f938fbd6853070823550703609b \
+                    sha256  c92a80a52923142c68760864abeecc7498df46e3f63c36c84d9b198c3770f2dc \
+                    size    83468234
 
 post-patch {
     # Disable Sparkle without messing with xib files

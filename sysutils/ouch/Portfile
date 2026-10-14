@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           cargo   1.0
 PortGroup           github  1.0
 
-github.setup        ouch-org ouch 0.8.1
+github.setup        ouch-org ouch 0.8.3
 github.tarball_from archive
 revision            0
 
@@ -24,9 +24,9 @@ maintainers         {gmail.com:herby.gillot @herbygillot} \
 platforms           darwin
 
 checksums           ${distname}${extract.suffix} \
-                    rmd160  b4f6cf41bc86980c878368aee5aad72cf882de34 \
-                    sha256  920f73d4b162bd1814b67c57906b7322345f198d763f28d04722a406f8352246 \
-                    size    102381
+                    rmd160  60fa7863f3e369f840916579d181f25988238438 \
+                    sha256  f695393cbbd89cf5a2095c32235e585a85432ccfb902c78d2a2e9787abbb439c \
+                    size    103665
 
 depends_lib-append  port:libiconv   \
                     port:lzma       \
@@ -247,7 +247,7 @@ cargo.crates \
     walkdir                             2.5.0  29790946404f91d9c5d06f9874efddea1dc06c5efe94541a7d6863108e3a5e4b \
     wasi        0.11.1+wasi-snapshot-preview1  ccf3ec651a847eb01de73ccad15eb7d99f80485de043efb2f370cd654f4ea44b \
     wasip2                   1.0.3+wasi-0.2.9  20064672db26d7cdc89c7798c48a0fdfac8213434a1186e5ef29fd560ae223d6 \
-    wasip3     0.4.0+wasi-0.3.0-rc-2026-01-06  5428f8bf88ea5ddc08faddef2ac4a67e390b88186c703ce6dbd955e1c145aca5 \
+    wasip3        0.4.0+wasi-0.3.0-rc-2026-01-06  5428f8bf88ea5ddc08faddef2ac4a67e390b88186c703ce6dbd955e1c145aca5 \
     wasm-bindgen                      0.2.121  49ace1d07c165b0864824eee619580c4689389afa9dc9ed3a4c75040d82e6790 \
     wasm-bindgen-macro                0.2.121  8e68e6f4afd367a562002c05637acb8578ff2dea1943df76afb9e83d177c8578 \
     wasm-bindgen-macro-support        0.2.121  d95a9ec35c64b2a7cb35d3fead40c4238d0940c86d107136999567a4703259f2 \

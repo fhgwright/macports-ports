@@ -4,12 +4,12 @@ PortSystem          1.0
 PortGroup           maven 1.0
 PortGroup           github 1.0
 
-github.setup        raphw byte-buddy 1.18.11 byte-buddy-
+github.setup        raphw byte-buddy 1.18.14 byte-buddy-
 github.tarball_from archive
 revision            0
-checksums           rmd160  426828c5decddd6eeec5fe84b0c704a09caceee8 \
-                    sha256  bfd000952f2b5518953666bd426afecb9f82e089c4695a55c0a0b118a1bc342c \
-                    size    3451361
+checksums           rmd160  a3ffdb1c456ab0dbc211942521301206841b3f0a \
+                    sha256  fdd6883cf51aed9fd220457907a0ad75c8e7b771579e2bd0e3e25184bd7f6c78 \
+                    size    3490689
 
 categories          java
 license             Apache-2

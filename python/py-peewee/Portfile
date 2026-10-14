@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                py-peewee
-version             4.3.0
+version             4.5.3
 revision            0
 
 license             MIT
@@ -16,9 +16,9 @@ long_description    Peewee is a simple and small ORM. It has few (but expressive
 
 homepage            https://github.com/coleifer/peewee/
 
-checksums           rmd160  155c439af95f1a486014c51f65441abb5dc70126 \
-                    sha256  f2e6686e6fc61d236fd12f370bfd42955b7b42bbd9954f207d02434a0328c3de \
-                    size    795277
+checksums           rmd160  78d444362cdf0b7b8f774bc13040b22081648a78 \
+                    sha256  434576afaf806428a01f84af74c42fde59372c4f6a6eba26d9b5372113344a8a \
+                    size    821823
 
 python.versions     310 311 312 313 314
 

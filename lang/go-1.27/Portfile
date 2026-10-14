@@ -3,19 +3,19 @@
 PortSystem          1.0
 PortGroup           go_toolchain 1.0
 
-go_toolchain.setup  1.27.0
+go_toolchain.setup  1.27.2
 revision            0
 
 checksums           \
-                    go1.27.0.src.tar.gz \
-                    rmd160  7c5ab0a2a88bfb9f6dd92e3a4fce256ac434eaf7 \
-                    sha256  7002403d7cc44529ef6d26f69a44818263395ead7c16c05a5808ae047ebeb0e5 \
-                    size    35080395 \
-                    go1.27.0.darwin-arm64.tar.gz \
-                    rmd160  aee482edf12da03fe2bba0fa3cebafaf48be289d \
-                    sha256  90493b3bbd5e10f91d12153198bf1994fd756399b4fec93b49b0c6e2acdeeb3e \
-                    size    68303667 \
-                    go1.27.0.darwin-amd64.tar.gz \
-                    rmd160  15d80b7278157c3cec55df1778d2619bc6715e42 \
-                    sha256  d3314e25496e4381d71a5c51d2907e7af655d199f6780b549f015bd85fef4986 \
-                    size    71684980
+                    go1.27.2.src.tar.gz \
+                    rmd160  4afac78aac6f5d54722318cf6f4db4d3f2d296c8 \
+                    sha256  03495da2ba64894d40f5c4992e49454fa78b50690604ff92b6afff5081b76e62 \
+                    size    35134614 \
+                    go1.27.2.darwin-arm64.tar.gz \
+                    rmd160  9f4311f93c1733b331e16687b77ffa1b3ca7f5aa \
+                    sha256  76812b213b1b2302c978d28fa52fa92d541704b9e7d9d5db8002c50e4018c4c5 \
+                    size    68195916 \
+                    go1.27.2.darwin-amd64.tar.gz \
+                    rmd160  ea13bddb451b12a7e702fea544bb4914cc569896 \
+                    sha256  587b59182488b23aa6e5fc25110405a3e0e5b38ed2f5b2f46ed13c32aee356fe \
+                    size    71695284

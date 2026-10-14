@@ -3,14 +3,14 @@
 PortSystem          1.0
 PortGroup           github 1.0
 
-set rev             464fd3e879d6bb72fe8210b3e58b59836f711951
+set rev             170484eea03a4255a388072add4232e1fadfbee4
 
 github.setup        google angle $rev
 github.tarball_from archive
 
 # Major and minor version from src/common/angle_version.h
 # Patch version using `git rev-list HEAD --count`
-version             2.1.28465
+version             2.1.28853
 revision            0
 categories          graphics devel
 license             BSD
@@ -25,14 +25,14 @@ homepage            https://angleproject.org
 # grep -E 'jsoncpp_revision.:|(build.git|testing|astc-encoder|rust|SPIRV-(Headers|Tools)|Vulkan-Headers|zlib)@' DEPS
 set jsoncpp         42e892d96e47b1f6e29844cc705e148ec4856448
 set cr_jsoncpp      f62d44704b4da6014aa231cfc116e7fd29617d2a
-set cr_build        ad76126f62c1a8f7b6a6285ca796e1dcf54a727a
-set cr_testing      1e889a86415dd4e4453699b017c40840e0c0aeb1
+set cr_build        e6aa79b579ec7536ac9cbb92b47c1d3c2ecec984
+set cr_testing      617d94f985f3b2e535b62d5e87c1a0d649394265
 set astc_encoder    2319d9c4d4af53a7fc7c52985e264ce6e8a02a9b
-set cr_rust         10cbea750eb898be3a0fb5291b10f94564892625
-set spirv_headers   29981f65241605e08b0ede4cfeb999fe3b723c6a
-set spirv_tools     a665e21f3061f34064b39937cf00fe8d8769f4ef
-set vk_headers      d314eae73fdc90847bb8304a86ee7c6a8ee023b6
-set cr_zlib         42c2f19a14d33b4ed327ab898fe7b652013aa740
+set cr_rust         5d1eef11ee101253a9ba316fff0517f758ec12fd
+set spirv_headers   04fd3caa1e8267e4d95c806cad901181728e1006
+set spirv_tools     d6f63db7031c181c146963206da772445704d5a0
+set vk_headers      ee2ec5fd83dafce291024683b50dc89219333076
+set cr_zlib         285e94b8fa95ad3b7d16b80798ec8dce6febb8c8
 
 master_sites-append https://github.com/gsource-mirror/chromium-src-build/archive/${cr_build}:chromium-build
 distfiles-append    chromium-src-build-${cr_build}${extract.suffix}:chromium-build
@@ -65,41 +65,41 @@ master_sites-append https://github.com/open-source-parsers/jsoncpp/archive/${jso
 distfiles-append    jsoncpp-${jsoncpp}${extract.suffix}:jsoncpp
 
 checksums           ${distname}${extract.suffix} \
-                    rmd160  dbe23c462f2d6478a08653f420f0892cc7a179eb \
-                    sha256  f665defbda1aed43eedb8bfd3fabbfa8d0917e5544bc40d939d8d43224de5301 \
-                    size    16601769 \
+                    rmd160  5eed5464aa7c1502d9f71db3d9d43a151f4d4ba4 \
+                    sha256  bf1e386b0f567844e21127cb9b183d72a835023e40d3920ce8507b4420fa64bf \
+                    size    16721916 \
                     chromium-src-build-${cr_build}${extract.suffix} \
-                    rmd160  9453fdc86bb6ab8ed46b87e7fae38f0c6cc04d2b \
-                    sha256  ad5b5983a8da246382e469378cb61e0fca5d150ae72359c2e1c349e416359c56 \
-                    size    1853165 \
+                    rmd160  d4f0407e6efdec77747d3034a0d7cebdcefda7e1 \
+                    sha256  b2b7ce21cc65df7a1141c044dec1a2890b58d45f3beb671378f69b9410b8b4d8 \
+                    size    1902176 \
                     chromium-src-testing-${cr_testing}${extract.suffix} \
-                    rmd160  092ca2367c7205cd858f31f2fa341f748e45ac44 \
-                    sha256  7b7c98e39245d0e4c07cbf89478536ec2cebeaa672a93cc45d7aa02f959a4b1a \
-                    size    2059501 \
+                    rmd160  c5e9fe93b5c6b25c764335b9f44784929bf69816 \
+                    sha256  fdd31b5ea5a5dabe4f231b40f6348d8fffa4c05f5a8de6b8c23bef0025f2b88c \
+                    size    2057644 \
                     chromium-src-third_party-jsoncpp-${cr_jsoncpp}${extract.suffix} \
                     rmd160  8611455ceb50dd821a942c3b10f2110c418fe182 \
                     sha256  7360eff9ce58208c68da260db23bdc29bbc00c769905af10aa45af0dd308aba4 \
                     size    4411 \
                     chromium-src-third_party-rust-${cr_rust}${extract.suffix} \
-                    rmd160  ee0df0e17fccff5c22f8135812b9127ebc071b30 \
-                    sha256  be268d7e6da39286c4c757c15533135f6f8acc73d5a02d87bb297fa675c7819b \
-                    size    33651096 \
+                    rmd160  07b122fd1630442143eba649f19b7a8431d839eb \
+                    sha256  765a526ed5fc396d9bc394620ab491401363235bda21c039c1cc84f08fbe2bfe \
+                    size    35154082 \
                     chromium-src-third_party-zlib-${cr_zlib}${extract.suffix} \
-                    rmd160  6375482b94ba6c624a0801232f85710a40d11573 \
-                    sha256  cde9b867c07d124c67b6fb7d66af4f72ff2094a34506e3ef5521ff0d792fba24 \
-                    size    1384254 \
+                    rmd160  3b966f46c5f6014353a3e68447bb094e43883025 \
+                    sha256  ff1b55551aad16c58cfca896a4d87d616cf70125829a8048278fd31c9278993d \
+                    size    1385580 \
                     SPIRV-Headers-${spirv_headers}${extract.suffix} \
-                    rmd160  0f7b9d89d0cd76d9a61f85ab019387d897e8f0b8 \
-                    sha256  232899f1ad4104fb5bc377b94596c7621575eee62ad9a9e8f929b63a7dd8a7ad \
-                    size    572275 \
+                    rmd160  d4c6862b4c31ff0bc43ea16f0382b542183fa28a \
+                    sha256  392f4801409aad9c4f1b77745f179952fd6264e4c8bd0fc1bc45dfa6807bf6d0 \
+                    size    594644 \
                     SPIRV-Tools-${spirv_tools}${extract.suffix} \
-                    rmd160  e71ed1e91f000279d4be80fe76fc0f1317f64e65 \
-                    sha256  f9872ab8a7e8e5454c1b4853655d9e7cda9a7bfce07c4d79fcd30360376ad50b \
-                    size    3527218 \
+                    rmd160  694fff8969ca2698e80d647092f9075d82008215 \
+                    sha256  2f036f62a160b9697474e908e01a65dcf4b788fac29df29dae1b84460a4324e6 \
+                    size    3564064 \
                     Vulkan-Headers-${vk_headers}${extract.suffix} \
-                    rmd160  2031d54f66501de7ec4e6f637aceedb412fcf5ad \
-                    sha256  345c7e16f3eea833b54c617e8d4d0abffef34fccd9bbb4f65fdf7fcdbb06feac \
-                    size    3376850 \
+                    rmd160  c6666a1ffd903fba22a9f17a9075cd5b246f7f59 \
+                    sha256  df7a152381a7fdaf98e36de7716b8d6d6ead776764bc76d1a1aef9049d1bca89 \
+                    size    3416190 \
                     astc-encoder-${astc_encoder}${extract.suffix} \
                     rmd160  1c792cca8415346924640772699e6ffc2d3871f4 \
                     sha256  8b5068ef28a8db1cb354d89d9cefd19d43eddfc72c3468fce7ebb92b2431d4c4 \

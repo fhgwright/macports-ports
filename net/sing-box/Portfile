@@ -3,7 +3,7 @@
 PortSystem          1.0
 PortGroup           golang 1.0
 
-go.setup            github.com/sagernet/sing-box 1.13.18 v
+go.setup            github.com/sagernet/sing-box 1.14.2 v
 revision            0
 name                sing-box
 categories          net security
@@ -18,9 +18,9 @@ long_description    sing-box is a universal proxy platform supporting many proto
                     Trojan, WireGuard, QUIC/Hysteria, TUN, and more. It aims to be \
                     general, stable and high performance.
 
-checksums           rmd160  1398f4685be917f7538b9e199818153724a74652 \
-                    sha256  e41ed9d7adecd7597c1d5cc91818366a9538d94b41c244225ac40ac948c643f5 \
-                    size    957337
+checksums           rmd160  8cdf5895480880610f974ba13f05f5065213bbbb \
+                    sha256  67dd8f8c37ecaaadcfcafad1f0827eed4b034c963b86fd3aa5c0d7a36876845d \
+                    size    1985133
 
 go.offline_build    no
 go.toolchain_min    1.24

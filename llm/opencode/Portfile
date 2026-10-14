@@ -4,30 +4,51 @@ PortSystem          1.0
 PortGroup           npm 1.0
 
 name                opencode
-version             1.18.22
+version             2.0.27
 revision            0
 
 categories          llm
 platforms           {darwin any >= 19}
-maintainers         {breun @breun} openmaintainer
+maintainers         @oakimov \
+                    {breun @breun} \
+                    openmaintainer
 license             MIT
 supported_archs     x86_64 arm64
 
-description         OpenCode is an open source agent that helps you write code
-long_description    OpenCode is an open source agent that helps you write code\
+description         OpenCode, an open source AI coding agent
+long_description    OpenCode is an open source AI coding agent. This port \
+                    tracks the OpenCode 2.x line.\
                     \n\
-                    \n- LSP Enabled: Automatically loads the right LSPs for the LLM\
-                    \n- Multi-session: Start multiple agents in parallel on the same project\
-                    \n- Share links: Share a link to any session for reference or to debug\
-                    \n- Claude Pro: Log in with Anthropic to use your Claude Pro or Max account\
-                    \n- ChatGPT Plus/Pro: Log in with OpenAI to use your ChatGPT Plus or Pro account\
-                    \n- Any model: 75+ LLM providers through Models.dev, including local models\
-                    \n- Any editor: Available as a terminal interface, desktop app, and IDE extension
+                    \n- Terminal-based interface for AI-assisted coding\
+                    \n- Built-in support for many LLM providers via /connect\
+                    \n- Configurable agents, models, skills, tools, and themes\
+                    \n- Extensible with plugins, MCP servers, and custom commands\
+                    \n\
+                    \nMigration from 1.x: https://opencode.ai/v2/docs/migrate-v1/
 
-homepage            https://opencode.ai
+homepage            https://opencode.ai/v2/docs
 
-npm.rootname        opencode-ai
+npm.rootname        @opencode/cli
+distname            cli-${version}
 
-checksums           rmd160  0ae18611c64ecd71f2a272d4c6e3cb1ff5d58b4e \
-                    sha256  920ce17f8d9f24865d161e26d7e3e5121aa386b5a221374109cc118d52cce4e7 \
-                    size    3045
+checksums           rmd160  c219c82d0dc5a2b07675f2457a44a7e368b75733 \
+                    sha256  7f7aa0c6aa9dbf2e6a8fa06f250b4151138e7a47d70a2299d9210cf2198f81a9 \
+                    size    2556
+
+conflicts           opencode1
+
+# @opencode/cli also ships an opencode2 binary; keep only the unversioned name.
+post-destroot {
+    delete ${destroot}${prefix}/bin/opencode2
+}
+
+notes \
+"OpenCode 2.x is not a drop-in replacement for 1.x. Upgrading requires a \
+migration of plugins and configuration:\
+\n\
+\n    https://opencode.ai/v2/docs/migrate-v1/\
+\n\
+\nIf you rely on OpenCode 1.x plugins, use opencode1 instead:\
+\n\
+\n    sudo port uninstall opencode\
+\n    sudo port install opencode1"

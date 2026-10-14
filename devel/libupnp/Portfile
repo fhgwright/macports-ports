@@ -4,14 +4,14 @@ PortSystem          1.0
 PortGroup           github 1.0
 PortGroup           cmake 1.1
 
-github.setup        pupnp pupnp 22.0.6 release-
+github.setup        pupnp pupnp 22.1.8 release-
 
 github.tarball_from releases
 name                libupnp
 distname            ${name}-${version}
-checksums           rmd160  b86053b0cefd8dfeb0e697a31bc9b78a01b9d8b3 \
-                    sha256  7f4e1eed75d904180b705570c8c55d70a47885e46f702f4b96e4fac03159f5d7 \
-                    size    776325
+checksums           rmd160  e63e1b79cebd7b0aab8415bcea8a897c70228fc0 \
+                    sha256  4c50d3f3364021f6a6c70ab84d04bcd6f440654321a353cf644dc0cd89e5fad5 \
+                    size    805697
 
 categories          devel net
 maintainers         nomaintainer

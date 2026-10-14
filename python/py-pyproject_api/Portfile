@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                py-pyproject_api
-version             1.11.0
+version             1.11.5
 revision            0
 
 license             MIT
@@ -16,9 +16,9 @@ homepage            https://github.com/tox-dev/pyproject-api
 supported_archs     noarch
 platforms           {darwin any}
 
-checksums           rmd160  27872a097afd691ba772e5f5927d8d9ff6aa08b3 \
-                    sha256  b8807d85a293e6c9f133e6575946fed45f1d42b22d58c780b33aa2421a799549 \
-                    size    23787
+checksums           rmd160  2918a5c01b135f12f641009249a014c45c898419 \
+                    sha256  79294e79953a30fd3eac04bdf8b57241d33e2c8b7230b94c1b76e4d765fe09ad \
+                    size    25745
 
 python.versions     310 311 312 313 314
 

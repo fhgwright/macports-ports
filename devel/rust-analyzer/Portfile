@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           cargo   1.0
 PortGroup           github  1.0
 
-github.setup        rust-analyzer rust-analyzer 2026-08-10.1
+github.setup        rust-lang rust-analyzer 2026-10-12
 github.tarball_from archive
 version             [string map { {-} {} } ${github.version}]
 revision            0
@@ -25,9 +25,9 @@ maintainers         @fabius \
                     openmaintainer
 
 checksums           ${distname}${extract.suffix} \
-                    rmd160  24c4ee670fb3829381ef0e75a8a5b262842903e8 \
-                    sha256  eb8951d578df9b498ecdc3ebe3dd7324cf84265c7235cfea946222b3bf5e538c \
-                    size    4043357
+                    rmd160  d51e0cac83e25f781b4e4556ae2b228c2b906385 \
+                    sha256  4bdb46746c3bc2b66388c571fbfb59d11137f54c3fc2f3ba18a0e418dbc06420 \
+                    size    4076309
 
 destroot {
     xinstall -m 0755 \
@@ -60,7 +60,7 @@ cargo.crates \
     cargo-platform                      0.3.3  dd0061da739915fae12ea00e16397555ed4371a6bb285431aab930f61b0aa4ba \
     cargo_metadata                     0.23.1  ef987d17b0a113becdd19d3d0022d04d7ef41f9efe4f3fb63ac44ba61df3ade9 \
     cast                                0.3.0  37b2a672a2cb129a2e41c10b1224bb368f9f37a2b16b612598138befd7b37eb5 \
-    cc                                 1.2.63  556e016178bb5662a08681bbe0f00f8e17631781a4dfc8c45e466e4b185ec27f \
+    cc                                  1.4.3  509591b7bcd67f4ef775afad7662703b4935daaa6ec0e5605cfb1090b32a2b6d \
     cfg-if                              1.0.4  9330f8b2ff13f34540b44e946ef35111825727b38d33286ef986142615121801 \
     cfg_aliases                         0.2.1  613afe47fcd5fac7ccf1db93babcb082c5994d996f20b8b159f2ad1658eb5724 \
     ciborium                            0.2.2  42e69ffd6f0917f5c029256a24d0161db17cea3997d185db0d35926308770f0e \
@@ -102,7 +102,7 @@ cargo.crates \
     errno                              0.3.14  39cab71617ae0d63f51a36d69f866391735b51691dbda63cf6f96d042b63efeb \
     expect-test                         1.5.1  63af43ff4431e848fb47472a920f14fa71c24de13255a5692e93d4e90302acb0 \
     fastrand                            2.4.1  9f1f227452a390804cdb637b74a86990f2a7d7ba4b7d5693aac9b4dd6defd8d6 \
-    find-msvc-tools                     0.1.9  5baebc0774151f905a1a2cc41989300b1e6fbb29aff0ceffa1064fdd3088d582 \
+    find-msvc-tools                    0.1.11  d45db016d36b838f563236e9193d0ee6ce38f3f68b6c94e914b4929c96bbb890 \
     fixedbitset                         0.5.7  1d674e81391d1e1ab681a28d99df07927c6d4aa5b027d7da16ba32d1d21ecd99 \
     flate2                              1.1.9  843fba2746e448b37e26a819579957415c8cef339bf08564fe8b7ddbd959573c \
     fnv                                 1.0.7  3f9eec918d3f24069decb9af1554cad7c880e2da24a9afd88aca000531ab82c1 \
@@ -242,9 +242,9 @@ cargo.crates \
     rustix                              1.1.4  b6fe4565b9518b83ef4f91bb47ce29620ca828bd32cb7e408f0062e9930ba190 \
     rustversion                        1.0.22  b39cdef0fa800fc44525c84ccb54a029961a8215f9619753635a9c0d2538d46d \
     rusty-fork                          0.3.1  cc6bf79ff24e648f6da1f8d1f011e9cac26491b619e6b9280f2b47f1774e6ee2 \
-    salsa                              0.28.2  cf0e374215cd2db2b5c75d7b3a99cb0cc052c0595335dfdefc03d4eb08f4aa81 \
-    salsa-macro-rules                  0.28.2  85f4b7d4405540bbd6d4ffa52d4322d983f3781954d3073067ac1bdb028459b3 \
-    salsa-macros                       0.28.2  445be2bfbb2f67cb663225ecd7bc5a25370c0250fca30f9d8cbad9a913650370 \
+    salsa                              0.28.5  27d2e6e19e39591cd99c01ac4141544b4d012cfd0831348629b8187fa9fe6d34 \
+    salsa-macro-rules                  0.28.5  baf90a551c38f25ed8489111d3d5827aa18e1b85963f5e6a298505b1d1e2cb7e \
+    salsa-macros                       0.28.5  69dd77f86ec10e72e314f4ddf7c44c8d349e73cdff1aad524ba9668603fb0549 \
     same-file                           1.0.6  93fc1dc3aaa9bfed95e02e6eadabb4baf7e3078b0bd1b4d7b6b0b68378900502 \
     scip                                0.7.1  f4d0e81b39f590b2edbe2369760641511898ed34062aed2e18e6d05eead3d6b7 \
     scopeguard                          1.2.0  94143f37725109f92c262ed2cf5e59bce7498c01bcc1502d7b9afe439a4e9f49 \
@@ -266,7 +266,6 @@ cargo.crates \
     syn                               2.0.117  e665b8803e7b1d2a727f4023456bbbbe74da67099c585258af0ad9c5013b9b99 \
     syn                                 3.0.3  53e9bae58849f64dfa4f5d5ae372c8341f7305f82a3868709269343628b659a3 \
     synstructure                       0.13.2  728a70f3dbaf5bab7f0c4b1ac8d7ae5ea60a4b5549c8a5914361c99147a709d2 \
-    temp-dir                            0.2.0  016ef9739649996fcc983b9c588fe3d557cf216d4d98503ce1b057ab5a66d689 \
     tempfile                           3.27.0  32497e9a4c7b38532efcdebeef879707aa9f794296a4f0244f6f69e9bc8574bd \
     tenthash                            1.1.0  e5c4bcc0a4fa333239f43662d15fbf995f384b2aeaf89c4ab4c83353d6cbb952 \
     text-size                           1.1.1  f18aa187839b2bdb1ad2fa35ead8c4c2976b64e4363c386d45ac0f7ee85c9233 \

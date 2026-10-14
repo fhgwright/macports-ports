@@ -3,7 +3,7 @@
 PortSystem          1.0
 PortGroup           github 1.0
 
-github.setup        dbeaver dbeaver 26.1.1
+github.setup        dbeaver dbeaver 26.2.2
 github.tarball_from releases
 revision            0
 name                dbeaver-community
@@ -39,14 +39,14 @@ variant all_arches description {Download files for all arches} {
 
 checksums-append \
                     ${dist_x86_64} \
-                        rmd160  0d42a6892c92da251e9cbcfae2d3c732943b69d2 \
-                        sha256  1264c7bb311ce1b78ce76842d93ee9a19d5238a6bd90ed91a7736772d96c058a \
-                        size    123238963
+                        rmd160  42f03657f77b80b2c5596fa265631dd0b720a331 \
+                        sha256  e8d60c79a9e0191ede23d33b4f6c21385da3474d8aa34c63bae0a553a0c510de \
+                        size    124276362
 checksums-append \
                     ${dist_arm64} \
-                        rmd160  8be8aed595cb4085b638f94e02ff22129927dd95 \
-                        sha256  3f0b85c0413e681106ff293036b101976d327eb69d7bc05d5141dd2c91819307 \
-                        size    122056241
+                        rmd160  3b7cc1fe3820800e99eeb935e7037d508c445f27 \
+                        sha256  7f47579bc583571ca0ccef9fdce7d6cc56f84b74844e4e700ab7a46d1e501ec5 \
+                        size    122907891
 
 switch ${configure.build_arch} {
     x86_64 {

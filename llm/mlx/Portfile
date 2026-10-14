@@ -2,14 +2,12 @@
 
 PortSystem          1.0
 PortGroup           github 1.0
+PortGroup           metal 1.0
 
 # This pre-configure block needs to run before those defined in the cmake-1.1
 # PortGroup, or that will have passed an argument based on a wrong value of
 # macosx_sdk_version.
 pre-configure {
-    ui_msg "If the build fails, make sure you have a metal toolchain installed; run `sudo xcodebuild -downloadComponent MetalToolchain` to do so."
-    ui_msg "If you already have the metal toolchain installed but the build still fails, see https://trac.macports.org/wiki/TahoeProblems#MetaltoolchainisnolongerbundledinXcode."
-
     # The CMakeLists.txt will use `xcrun --show-sdk-version` to determine what
     # to enable, if we set a different sysroot, the build may fail because of
     # missing headers.
@@ -18,8 +16,8 @@ pre-configure {
 
 PortGroup           cmake 1.1
 
-# Do not upgrade until mlx-c and ollama adds support for 0.32
-github.setup        ml-explore mlx 0.31.2 v
+# Check if mlx-c and ollama is compatible before updating
+github.setup        ml-explore mlx 0.32.2 v
 github.tarball_from archive
 revision            0
 
@@ -33,9 +31,9 @@ master_sites-append https://developer.apple.com/metal/cpp/files:metal
 distfiles-append    metal-cpp_26.zip:metal
 
 checksums           ${name}-${version}.tar.gz \
-                    rmd160  6373be38bf1fad84b6de3e28a18b3c7c2c97a9fb \
-                    sha256  bdb9b619f80962dd00c0bffb65e59c53f565c2b550f189a1467f8bc6089401ab \
-                    size    4251596 \
+                    rmd160  94b8738acd120e4e62cbe69deb087be11f3660d4 \
+                    sha256  bf892386ccac1d249acc9da21574fd7b95a995f4c58b03310105fe05f077b175 \
+                    size    4413821 \
                     gguf-tools-${gguf_tools_commit}.tar.gz \
                     rmd160  065bc0c2ae0c4e5baa01f39a8d15ec68c748474f \
                     sha256  9e30bc1eb82cc2231150d39ce37dcdd6f844d6994fba18da83fc537a487ba86f \
@@ -98,7 +96,7 @@ post-extract {
 
 set pyversions {310 311 312 313 314}
 
-set nanobind_version    2.12.0
+set nanobind_version    2.15.0
 set nanobind_commit     ${nanobind_version}
 set robin_map_commit    4ec1bf19c6a96125ea22062f38c2cf5b958e448e
 
@@ -126,9 +124,9 @@ foreach v ${pyversions} {
         master_sites-append https://github.com/wjakob/nanobind/archive/refs/tags/v${nanobind_version}:nanobind
         distfiles-append    nanobind-${nanobind_version}.tar.gz:nanobind
         checksums-append    nanobind-${nanobind_version}.tar.gz \
-                            rmd160  cb6db5c51dba53f8b76142a60cd18f64fb373f49 \
-                            sha256  01f1f0cd0398743c18f33d07ae36ad410bd7f4a1e90683b508504de897d6e629 \
-                            size    940575
+                            rmd160  dfecadda000234c28e71a73817e63fa75b505c64 \
+                            sha256  36c8760b3acb25643cd89d549782d8c67bd82ce54c6238608787c22a34fd490f \
+                            size    999019
 
         # robin-map (nanobind submodule dependency)
         master_sites-append https://github.com/Tessil/robin-map/archive/${robin_map_commit}:robin_map

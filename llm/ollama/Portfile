@@ -3,7 +3,7 @@
 PortSystem          1.0
 PortGroup           golang 1.0
 
-go.setup            github.com/ollama/ollama 0.32.13 v
+go.setup            github.com/ollama/ollama 0.35.0 v
 github.tarball_from archive
 revision            0
 
@@ -17,9 +17,9 @@ description         ${name} runs and manages LLMs
 long_description    Get up and running with large language models easily
 homepage            https://ollama.com
 
-checksums           rmd160  866c18da0730658f8548b197f42cc4086bfb0f69 \
-                    sha256  103767d263ea21fcd9c1803a9093131bb7bcbd4590638690859645c8745c5768 \
-                    size    29001181
+checksums           rmd160  a049bae13533067061dba6fbbeea422d6d422811 \
+                    sha256  2d24c59fe4aec09fa68994816cd24e233dff4d57cbc31ee9b46973fb0b3f55e7 \
+                    size    26420689
 
 depends_run-append  port:llama.cpp
 
@@ -97,8 +97,11 @@ variant completion description "Install bash completion for ${name}" {
 }
 
 variant mlx description "Support acceleration with Apple's MLX library" {
-    depends_lib-append  \
+    depends_lib-append \
                     port:mlx-c
+
+    patchfiles-append \
+                    patch-mlx-c-0.6-ollama-0.34.4.diff
 
     build.post_args-append \
                     -tags=mlx
@@ -106,14 +109,14 @@ variant mlx description "Support acceleration with Apple's MLX library" {
     post-patch {
         # Add ${prefix}/lib to libOllamaRoots (candidate directories for MLX dynamic libraries)
         # Replacing binary path since we're not creating a bundle
-        reinplace "s|roots, exeDir|roots, filepath.FromSlash(\"${prefix}/lib\")|" ${worksrcpath}/x/mlxrunner/mlx/dynamic.go
+        reinplace "s|roots, exeDir|roots, filepath.FromSlash(\"${prefix}/lib\")|" ${worksrcpath}/mlx/dynamic.go
         # Force system installed mlx-c
-        delete ${worksrcpath}/x/mlxrunner/mlx/include/mlx
-        ln -s ${prefix}/include/mlx/ ${worksrcpath}/x/mlxrunner/mlx/include/mlx
+        delete ${worksrcpath}/mlx/include/mlx
+        ln -s ${prefix}/include/mlx ${worksrcpath}/mlx/include/mlx
     }
 
     pre-build {
-        system -W ${worksrcpath} "${build.env} ${prefix}/bin/go generate -tags=mlx ./x/mlxrunner/mlx"
+        system -W ${worksrcpath} "${build.env} ${prefix}/bin/go generate -tags=mlx ./mlx"
     }
 }
 

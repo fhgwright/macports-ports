@@ -3,7 +3,7 @@
 PortSystem          1.0
 PortGroup           golang 1.0
 
-go.setup            github.com/goreleaser/goreleaser 2.18.0 v
+go.setup            github.com/goreleaser/goreleaser 2.18.3 v
 go.offline_build    no
 go.toolchain_min    1.27.0
 revision            0
@@ -21,9 +21,9 @@ license             MIT
 maintainers         {gmail.com:herby.gillot @herbygillot} \
                     openmaintainer
 
-checksums           rmd160  14eaa740fcdaa9c28d2b467b8d9a0dc7eaa8a74b \
-                    sha256  844b775db6a4473f96559d89b046db4adb96f78282ca64de6c6d4181ce7db336 \
-                    size    2702822
+checksums           rmd160  bfca00b22f63e390f7b9c684b0651e2029c2aac3 \
+                    sha256  c9171b55aebb257d2c46fa8fc3d48b5062a725f8ebbfb9f746d8b80225bae800 \
+                    size    2785169
 
 livecheck.regex     {archive/refs/tags/v([0-9]+(?:\.[0-9]+)*)\.tar\.gz}
 

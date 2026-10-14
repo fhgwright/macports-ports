@@ -19,7 +19,8 @@ depends_build-append \
                     path:bin/pkg-config:pkgconfig \
                     path:bin/vala:vala
 
-depends_lib-append  path:lib/pkgconfig/cairo.pc:cairo \
+depends_lib-append \
+                    path:lib/pkgconfig/cairo.pc:cairo \
                     port:fontconfig \
                     port:freetype \
                     path:lib/pkgconfig/gdk-pixbuf-2.0.pc:gdk-pixbuf2 \
@@ -32,7 +33,8 @@ depends_lib-append  path:lib/pkgconfig/cairo.pc:cairo \
                     path:lib/pkgconfig/pango.pc:pango \
                     port:zlib
 
-license_noconflict  gobject-introspection \
+license_noconflict \
+                    gobject-introspection \
                     rust \
                     vala
 
@@ -77,7 +79,8 @@ if {${librsvg_fallback}} {
                     size    1655860
 
     # https://trac.macports.org/ticket/65407
-    patchfiles-append patch-librsvg-makefile-in-vapi-deps.diff
+    patchfiles-append \
+                    patch-librsvg-makefile-in-vapi-deps.diff
 
     # pre-cargo versions still use libcroco
     depends_lib-append \
@@ -108,13 +111,13 @@ if {${librsvg_fallback}} {
 } else {
     PortGroup       meson 1.0
 
-    version         2.62.3
+    version         2.63.2
     revision        0
     epoch           2
 
-    checksums       rmd160  9816cd222602101564fadab785497d006454b39b \
-                    sha256  7eb449b2722a768021356f66dfee3202c229b54ed4e6a70ce40c090e97ff16f2 \
-                    size    6760876
+    checksums       rmd160  587fe9c432a6f8675a321b67d9b8e2c067faebe4 \
+                    sha256  852b18e1a00b8605528825a27dc7748bff2a5dd254028f59dc22a34ea57e81b6 \
+                    size    6768408
 
     depends_build-append \
                     port:cargo \

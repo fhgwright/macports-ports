@@ -33,13 +33,13 @@ foreach pver [list {*}${python.versions} ""] {
     subport py${pver}-nmrglue-devel {
         PortGroup       github 1.0
 
-        github.setup    jjhelmus nmrglue fbac8a1dba039155875bdc6bac0678550f5146d3
+        github.setup    jjhelmus nmrglue cd0c2c9d1cac4f1125a89dbe6ecdcd8ca194b59d
         github.tarball_from archive
-        version         20260816-[string range ${github.version} 0 7]
+        version         20261008-[string range ${github.version} 0 7]
         revision        0
-        checksums       rmd160  fdc4699c8db77a8af0a6bd7a0d8cc9591808defa \
-                        sha256  1aa35680abc76b0fd616eccf8f9f93d2096dc4ffeb66bca68c05510caafc3340 \
-                        size    14938854
+        checksums       rmd160  a22addbd205bb9fdf4abd913286f08d54ca0eac3 \
+                        sha256  6e82c2221bc17c211d4861bae33790ca54d4fcd5117e8870f09ba6e1a3adaee2 \
+                        size    14944404
 
         conflicts       py${pver}-nmrglue
 

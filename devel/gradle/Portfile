@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           java 1.0
 
 name                gradle
-version             9.7.1
+version             9.8.1
 revision            0
 categories          devel java groovy
 license             Apache-2
@@ -24,9 +24,9 @@ default distname    {${name}-${version}-bin}
 master_sites        https://services.gradle.org/distributions
 
 # Update checksums for variant when updating these!
-checksums           rmd160  57764b6e7436bf0e9f90c38f6afd7a8690b472e2 \
-                    sha256  acd53f1edaf02f1a8ff99879f8a34b302661a057d9b063ae9e35b552f804d20a \
-                    size    151433392
+checksums           rmd160  75d0a8f96d7f4c6ff952a2978cd3a63f4caba79f \
+                    sha256  dce76f55f8e251a3a1f130eb120f30b3d271de2b76c9b0729d316b5a1b6dc01f \
+                    size    151620101
 
 default worksrcdir  {${name}-${version}}
 
@@ -65,9 +65,9 @@ if {${subport} eq ${name}} {
     variant all description {Install supplemental documentation and source code} {
         distname    ${name}-${version}-all
 
-        checksums   rmd160  4ca5499121e9fa1b69e93c148344c4f77ec2244e \
-                    sha256  92c1a136d76b5017732a66d2e0a648ebff00dd3687d8bff0d0047a1bd904fdf2 \
-                    size    258181632
+        checksums   rmd160  e6c98d45506debec7db9cbaf4a3cbeeb71ad1ab6 \
+                    sha256  5ceda8d2425eb2af196dec31b6fc1f38af2fb638fd621f86fa685805f2262224 \
+                    size    264641377
 
         post-destroot {
             xinstall -m 0755 -d ${destroot}${prefix}/share/doc/${name}
@@ -90,8 +90,8 @@ subport ${name}8 {
     description-append\
                     (version 8 for compatibility with older projects)
 
-    java.version    1.8+
-    java.fallback   openjdk8
+    java.version    1.8-24
+    java.fallback   openjdk11
 
     checksums       rmd160  979403ccd77871395444d68776162ce23868ad8a \
                     sha256  6f74b601422d6d6fc4e1f9a1ab6522f642c2fdcbc15ae33ebd30ba3d7198e854 \

@@ -52,6 +52,9 @@ depends_run         port:qemu
 patchfiles          patch-hvf.diff \
                     patch-launch-direct.diff
 
+# https://github.com/libguestfs/libguestfs/pull/405
+patchfiles-append   patch-lib-inspect-apps.diff
+
 configure.args      --disable-daemon \
                     --disable-appliance \
                     --disable-fuse \

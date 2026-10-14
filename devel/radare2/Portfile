@@ -5,7 +5,7 @@ PortGroup           conflicts_build 1.0
 PortGroup           github 1.0
 PortGroup           legacysupport 1.1
 
-github.setup        radareorg radare2 6.2.0
+github.setup        radareorg radare2 6.2.4
 github.tarball_from archive
 revision            0
 categories          devel
@@ -29,9 +29,9 @@ legacysupport.newest_darwin_requires_legacy 15
 # See: https://trac.macports.org/ticket/57688
 conflicts_build     ${name}
 
-checksums           rmd160  e270b78df29d7cf885757b9c06a334575c7bcaec \
-                    sha256  60b31af14772cdcff1703a80f51558dbdf2ee6c114768ca51ca2033fb4bd534b \
-                    size    11987568
+checksums           rmd160  2c4a84abd391b21d5cb2bab9f8b98337955a9126 \
+                    sha256  24f3f7ad24f44defc8fd1460a210f08a40980e0d5555b8e8439da8a92c54dac5 \
+                    size    12436484
 
 configure.args-append \
                     --with-syscapstone \
